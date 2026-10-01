@@ -228,6 +228,28 @@ textarea{width:100%;min-height:150px;border-radius:12px;border:2px solid #ffffff
 .pcode{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.pcode input{flex:1 1 180px;min-height:48px;font-size:18px;text-transform:uppercase;letter-spacing:1px;border-radius:12px;border:2px solid var(--violet);background:#120a28;color:var(--text);padding:0 12px}
 .pcode .btn{min-height:48px}.pmsg{min-height:22px;margin:8px 0 0;font-weight:700}
 details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summary{cursor:pointer;color:var(--muted);min-height:44px;display:flex;align-items:center;justify-content:center}
+
+/* Hauptmenü & Völker */
+.mtiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.mtile{--c:var(--cyan);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:136px;padding:14px 10px;border-radius:20px;border:3px solid var(--c);background:linear-gradient(160deg,color-mix(in srgb,var(--c) 24%,var(--panel2)),var(--panel));color:var(--text);font:inherit;font-weight:800;font-size:19px;cursor:pointer;box-shadow:0 0 18px color-mix(in srgb,var(--c) 40%,transparent);text-align:center;line-height:1.2}
+.mtile>span{font-size:46px;line-height:1;filter:drop-shadow(0 0 8px var(--c))}.mtile small{font-weight:500;font-size:13px;color:var(--muted)}
+.mtile.wide{grid-column:1/-1;min-height:96px;flex-direction:row;gap:14px;justify-content:flex-start;text-align:left;padding:14px 16px}.mtile.wide>span{font-size:40px}
+.mtile.mini{min-height:88px;font-size:16px}.mtile.mini>span{font-size:30px}
+.mtile:active{transform:scale(.97)}.mtile:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.honest{border:2px dashed var(--gold);border-radius:14px;padding:10px 12px;background:#2a2010;color:#ffe9a8;margin:12px 0;line-height:1.45}
+.copybox{white-space:pre-wrap;background:#120a28;border:1px solid #ffffff33;border-radius:12px;padding:10px;font:14px/1.45 ui-monospace,monospace;color:var(--text);margin:8px 0;user-select:all}
+.backrow{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px}
+.vcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:8px 0}
+.vcard{--c:var(--cyan);display:flex;flex-direction:column;align-items:center;gap:4px;min-height:118px;padding:10px 8px;border-radius:16px;border:2px solid color-mix(in srgb,var(--c) 70%,transparent);background:var(--panel2);color:var(--text);font:inherit;cursor:pointer;text-align:center}
+.vcard>span{font-size:38px;line-height:1.1}.vcard b{font-size:17px}.vcard small{font-size:12.5px;color:var(--muted);line-height:1.3}
+.vcard.sel{border-width:4px;border-color:var(--c);box-shadow:0 0 18px var(--c);background:linear-gradient(160deg,color-mix(in srgb,var(--c) 26%,var(--panel2)),var(--panel))}
+.vbadge{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:9px;background:#ffffff22;color:var(--muted)}
+.vdet{border:2px solid var(--c);border-left-width:8px;border-radius:var(--r);padding:10px 14px;margin:12px 0;background:linear-gradient(160deg,var(--panel2),var(--panel))}
+.vdet h3{margin:2px 0 6px;color:var(--c)}.vdet ul{margin:6px 0;padding-left:0;list-style:none}.vdet li{margin:6px 0;line-height:1.4}
+.vpanel{--c:var(--cyan);border:2px solid var(--c);border-radius:var(--r);padding:10px 12px;margin-top:12px;background:var(--panel)}
+.vpanel h3{margin:0 0 6px;color:var(--c)}.vpanel ul{margin:4px 0;padding-left:0;list-style:none}.vpanel li{margin:4px 0;font-size:14.5px;line-height:1.35}
+.dyn{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}.dyn .pips{display:flex;gap:5px}.dyn .pips i{width:20px;height:20px;border-radius:50%;border:2px solid var(--c);display:inline-block}.dyn .pips i.on{background:var(--c);box-shadow:0 0 8px var(--c)}
+.dyn .btn{min-width:44px;min-height:44px}
 </style>
 </head>
 <body data-errors="0">
@@ -257,11 +279,50 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
    <li><span>🔞</span><div><b>Ab 18</b> – ein freundlicher Tisch unter Erwachsenen.</div></li>
    <li><span>🙈</span><div><b>Keine echten Daten</b>: nur Fantasy-Namen, keine Klarnamen, Orte oder Kontakte.</div></li>
    <li><span>📱</span><div><b>Bilder bleiben auf deinem Gerät</b> – geteilt wird nur, was du selbst bewusst teilst.</div></li></ul></section>
-  <div class="incta"><button class="btn big" id="introGo" style="--c:var(--pink)">✨ Charakter erstellen</button><p class="tip" id="introHint">Dauert etwa 5 Minuten – in 6 kleinen Schritten.</p><details class="pdet hide" id="pcDet"><summary>🎟️ Ich habe einen Platz-Code (optional)</summary><div class="pcode"><input id="pcIn2" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="NP-ALPHA-…" aria-label="Platz-Code"><button class="btn" id="pcGo2" style="--c:var(--violet)">🔓 Einlösen</button></div><p class="pmsg" id="pcMsg2" role="status"></p></details></div>
+  <div class="incta"><button class="btn big" id="introGo" style="--c:var(--pink)">✨ Charakter erstellen</button><p class="tip" id="introHint">Dauert etwa 5 Minuten – in 6 kleinen Schritten.</p></div>
 </main>
 
 
+<main class="wrap hide" id="menu" aria-labelledby="mH">
+  <div class="inhero"><div class="inglow" aria-hidden="true">🎲🌀👑</div><h1 id="mH">Neon Park</h1><p class="sub">Rollenspiel-Abende im Chat · Alpha</p></div>
+  <div id="mCont"></div>
+  <div class="mtiles">
+   <button class="mtile" style="--c:var(--cyan)" id="mJoin"><span aria-hidden="true">🚪</span>Spiel beitreten<small>Platz-Code · Figur · Spielstand</small></button>
+   <button class="mtile" style="--c:var(--gold)" id="mHost"><span aria-hidden="true">👑</span>Spiel erstellen<small>Tisch vorbereiten · Einladung</small></button>
+   <button class="mtile mini" style="--c:var(--green)" id="mSaves"><span aria-hidden="true">💾</span>Spielstände</button>
+   <button class="mtile mini" style="--c:var(--violet)" id="mHelp"><span aria-hidden="true">❓</span>Hilfe</button>
+   <button class="mtile mini" style="--c:var(--pink)" id="mIntro"><span aria-hidden="true">🌆</span>Einleitung</button>
+   <button class="mtile mini" style="--c:var(--orange)" id="mSnd" aria-pressed="true"><span aria-hidden="true">🔊</span><b id="mSndL">Ton an</b></button>
+  </div>
+  <p class="honest">🧪 <b>Alpha:</b> kein Server, keine Live-Verbindung. Alles bleibt auf diesem Gerät – gespielt wird im Gruppen-Chat mit Neon Omina.</p>
+</main>
+<main class="wrap hide" id="join" aria-labelledby="jH">
+  <div class="backrow"><button class="btn small" style="--c:#ffffff55" data-menu>🏠 Hauptmenü</button></div>
+  <h1 id="jH">🚪 Spiel beitreten</h1>
+  <section class="insec" style="--c:var(--cyan)"><h2>🔗 Einladung & Platz</h2><p>Du hast den Link vom Host bekommen? Dann bist du hier richtig. Dein Tisch ist der <b>Gruppen-Chat mit Neon Omina</b> – es gibt keine Live-Verbindung zu einem Server.</p><p class="tip" id="pcState"></p><div id="pcBox"><details class="pdet hide" id="pcDet" open><summary>🎟️ Ich habe einen Platz-Code (optional)</summary><div class="pcode"><input id="pcIn2" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="NP-ALPHA-…" aria-label="Platz-Code"><button class="btn" id="pcGo2" style="--c:var(--violet)">🔓 Einlösen</button></div><p class="pmsg" id="pcMsg2" role="status"></p></details></div></section>
+  <section class="insec" style="--c:var(--pink)"><h2>🧙 Deine Figur</h2><div id="jFig"></div>
+   <div class="mtiles">
+    <button class="mtile" style="--c:var(--pink)" id="jNew"><span aria-hidden="true">✨</span>Neue Figur<small>Volk, Klasse, Werte – ca. 5 Min.</small></button>
+    <button class="mtile" style="--c:var(--orange)" id="jPre"><span aria-hidden="true">⚡</span>Fertige Figur<small>in 1 Minute startklar</small></button>
+    <button class="mtile wide" style="--c:var(--green)" id="jLoad"><span aria-hidden="true">💾</span><span style="font-size:inherit;filter:none">Spielstand laden<br><small>gespeicherte Figur oder .npsave-Datei</small></span></button>
+   </div>
+   <p class="tip">Neu hier? <button class="btn small" style="--c:var(--pink)" id="jIntro">🌆 Erst die Einleitung (2 Min.)</button></p></section>
+</main>
+<main class="wrap hide" id="host" aria-labelledby="hH">
+  <div class="backrow"><button class="btn small" style="--c:#ffffff55" data-menu>🏠 Hauptmenü</button></div>
+  <h1 id="hH">👑 Spiel erstellen</h1>
+  <p class="honest">🧪 <b>Ehrlich gesagt (Alpha):</b> Hier wird <b>kein</b> Online-Tisch angelegt. Es gibt keinen Server und keine Live-Verbindung. Diese Seite bereitet nur Texte vor: die <b>Einladung</b> für deine Gruppe und den <b>Startbefehl</b> für Neon Omina. Gespielt wird im Chat, den Spielstand gleicht ihr mit dem NP1-Code ab.</p>
+  <section class="insec" style="--c:var(--gold)"><h2>🌀 Abenteuer: Das Portalgate der Chaos Queen</h2><p>Die Chaos Queen schickt euch durch ihr Portalgate. Ihr stimmt ab, wohin:</p>
+   <p>⚔️ Velmora · 🚀 Station Halcyon · 🌆 Rand des Dead Core · 🎲 Zufallswelt A · 🎲 Zufallswelt B</p><p class="tip">ca. 3–4 Std. · 5 Plätze · ab 18 · Intro Lang / Kurz / Skip</p></section>
+  <section class="insec" style="--c:var(--cyan)"><h2>🏷️ Dein Tisch</h2>
+   <label class="f" for="hName">Tischname</label><input type="text" id="hName" maxlength="40" placeholder="z. B. Neonlicht-Runde" autocomplete="off">
+   <label class="f" for="hWhen">Termin (optional)</label><input type="text" id="hWhen" maxlength="40" placeholder="z. B. Freitag, 19 Uhr" autocomplete="off"><p class="tip">Bleibt nur auf diesem Gerät.</p></section>
+  <section class="insec" style="--c:var(--pink)"><h2>✉️ Einladung für die Gruppe</h2><pre class="copybox" id="hInv"></pre><div class="row"><button class="btn" style="--c:var(--pink)" id="hInvCp">📋 Einladung kopieren</button><span class="tip" id="hInvOk" aria-live="polite"></span></div></section>
+  <section class="insec" style="--c:var(--violet)"><h2>🔮 Startbefehl für Neon Omina</h2><pre class="copybox" id="hCmd"></pre><div class="row"><button class="btn" style="--c:var(--violet)" id="hCmdCp">📋 Startbefehl kopieren</button><span class="tip" id="hCmdOk" aria-live="polite"></span></div></section>
+  <section class="insec" style="--c:var(--green)"><h2>✅ So geht es weiter</h2><ol class="insteps" style="padding-left:0"><li><span>1️⃣</span><div>Einladung in die Gruppe posten.</div></li><li><span>2️⃣</span><div>Neuen Chat mit Neon Omina öffnen und den Startbefehl einfügen.</div></li><li><span>3️⃣</span><div>Mitspieler schicken ihren 📋 Charakterbogen in den Chat.</div></li><li><span>4️⃣</span><div>Selbst mitspielen? 🏠 → Spiel beitreten. Ohne Neon leiten? In deiner Figur unter ⚙️ Mehr → 🧙 Spielleitungs-Modus.</div></li></ol></section>
+</main>
 <main class="wrap hide" id="tisch" aria-labelledby="tvH">
+  <div class="backrow"><button class="btn small" style="--c:#ffffff55" data-menu>🏠 Hauptmenü</button></div>
   <div class="tvhero"><div class="tvcrown" aria-hidden="true">👑🌀</div><h1 id="tvH"><span class="tvemo" aria-hidden="true">🎲</span> Der Tisch ist voll</h1><p class="sub">Alpha-Runde · alle 5 Plätze sind vergeben</p></div>
   <section class="insec" style="--c:var(--pink)"><h2>🌀 Zu spät durchs Portal …</h2>
    <p>Das Portalgate hat gerade geleuchtet – und die ersten fünf Heldinnen und Helden sind schon hindurch. Der <b>Alpha-Tisch</b> ist komplett besetzt.</p>
@@ -302,6 +363,7 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
     <div class="grow">
       <div class="nm" id="gName"></div>
       <div class="cl" id="gClass"></div>
+      <div class="cl" id="gVolk"></div>
       <div class="row" style="margin-top:6px"><span class="chip" id="gFunkeChip"></span></div>
       <div class="fxbar" id="fxBar"></div>
     </div>
@@ -319,6 +381,7 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
     </div>
   </div>
   <div class="stats" id="gStats"></div>
+  <section class="vpanel" id="gVP" aria-label="Volk"></section>
   <button class="btn full big" style="--c:var(--violet);margin-top:12px" id="bigDice">🎲 Würfeln</button>
   <div class="out" id="out">
     <pre id="outTxt">Tippe unten auf ☰ Aktionen – hier erscheint dein fertiger Chat-Text.</pre>
@@ -385,6 +448,7 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
   <button class="btn" style="--c:var(--cyan)" data-open="imp">📥 Spielstand einfügen (Code von Neon)</button>
   <button class="btn" style="--c:var(--pink)" data-intro>🌆 Einleitung ansehen</button>
   <button class="btn" style="--c:var(--cyan)" data-opening>🌀 Intro ansehen (Lang / Kurz)</button>
+  <button class="btn" style="--c:var(--gold)" id="mySheet">📋 Charakterbogen als Chat-Text</button>
   <button class="btn" style="--c:var(--green)" id="myStatus">📤 Meinen Status als Chat-Zeile</button>
   <label class="row" style="margin:6px 0 14px;gap:10px"><input type="checkbox" id="appSt" style="width:28px;height:28px"> Status an jede Chat-Zeile anhängen</label>
   <h3>🔊 Töne & Vibration</h3>
@@ -399,6 +463,7 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
   <button class="btn" style="--c:var(--cyan)" data-open="avs">📤 Mein Avatar-Bild teilen</button>
   <button class="btn" style="--c:var(--green)" data-open="avr">📥 Avatar von Mitspielern empfangen</button>
   <button class="btn" style="--c:#ffffff55" id="switchFig">👤 Neue Figur erstellen</button>
+  <button class="btn" style="--c:var(--cyan)" data-menu>🏠 Hauptmenü</button>
  </div>
 </div>
 
@@ -525,6 +590,9 @@ const FX=[
  {n:'Erschöpft',e:'😮‍💨',t:'d',d:'0 TP: setzt die Szene aus, danach mit 1 TP weiter.'}
 ];
 const ITEM_FX={'Leuchtthermoskanne':{e:'☕',n:3,heal:'W6',t:'3 Schlucke: je W6 TP zurück oder als Geschenk'},'Tropfenglocke':{e:'🔔',n:1,t:'einmal läuten: Rückenwind bei Wasser oder Ruhe'},'Leuchtsetzling':{e:'🌱',t:'spendet Licht in der Dunkelheit; tolles Geschenk'},'Leuchtbrezel':{e:'🥨',n:1,heal:1,t:'1 TP zurück, schmeckt nach Abenteuer'}};
+const VOELKER=[{"id": "mensch", "e": "🧑", "n": "Menschen", "s": "Mensch", "c": "#FFB347", "opt": false, "tp": 0, "desc": "Die Vielen von Neon Park: Händlerinnen, Träumer, Tüftlerinnen. Menschen sind überall, wo Lichter brennen, und machen aus jedem Viertel ein Zuhause.", "bonus": "Kontakte knüpfen, Gerüchte & Handel in Städten (CHA)", "merk": [["🤝", "Stadtkind", "Volksbonus +1 auf Kontakte knüpfen, Gerüchte aufschnappen und Handeln in Städten."], ["🔥", "Neon-Ehrgeiz", "1× pro Abend: einen misslungenen Wurf nachträglich um +2 verbessern (nicht bei Nat 1)."]]}, {"id": "elf", "e": "🧝", "n": "Elfen", "s": "Elf", "c": "#7DF9FF", "opt": false, "tp": 0, "desc": "Uralt und doch immer neugierig: Elfen weben Lichtfasern in ihr Haar und hören Melodien im Summen der Neonröhren.", "bonus": "Magie, Runen & alte Geschichten erkennen (INT/WEI)", "merk": [["🌙", "Dunkelsicht", "Sieht im Dämmerlicht und in Dunkelheit fast wie am Tag (ohne Farben)."], ["✨", "Sternengedächtnis", "Volksbonus +1, um Magie, Runen und alte Geschichten zu erkennen."], ["🌌", "Sternenrast", "Braucht nur halb so viel Schlaf und hält Nachtwache ohne Gegenwind."]]}, {"id": "ork", "e": "👹", "n": "Orks", "s": "Ork", "c": "#5CFF9D", "opt": false, "tp": 1, "desc": "Laut, herzlich, loyal: Neon-Orks sind Türsteher, Festmeisterinnen und die besten Freunde des Parks. Wer einen Ork zum Freund hat, hat eine Mauer im Rücken.", "bonus": "Kraftakte & Einschüchtern (STÄ/CHA)", "merk": [["🛡️", "Eisenhaut", "+1 TP (dauerhaft)."], ["🥁", "Herzdonner", "Volksbonus +1 auf Kraftakte (heben, stemmen, aufbrechen) und Einschüchtern."], ["🌙", "Dunkelsicht", "Sieht im Dämmerlicht und in Dunkelheit fast wie am Tag (ohne Farben)."]]}, {"id": "goblin", "e": "👺", "n": "Goblins", "s": "Goblin", "c": "#C6FF3D", "opt": false, "tp": 0, "desc": "Kleine Funkenköpfe aus den Schrottgassen: Goblins reparieren alles, sammeln alles und lachen am lautesten.", "bonus": "Schlösser, Taschen & Mechanik mit flinken Fingern (GES)", "merk": [["🔧", "Flinkfinger", "Volksbonus +1 auf Schlösser, Taschenspielerei und kleine Mechanik."], ["🫥", "Wuselig", "1× pro Abend: Rückenwind auf Flucht oder Verstecken."], ["🌙", "Dunkelsicht", "Sieht im Dämmerlicht und in Dunkelheit fast wie am Tag (ohne Farben)."]]}, {"id": "untot", "e": "💀", "n": "Untote", "s": "Untote/r", "c": "#B79CFF", "opt": false, "tp": 0, "desc": "Erwachte, die das Grab gegen Neonlicht getauscht haben: freundlich, etwas blass und auf der Suche nach dem, was sie einmal waren.", "bonus": "Furcht widerstehen & Totenmagie erkennen (WEI)", "merk": [["☠️", "Grabesruhe", "„Vergiftet“ wirkt bei dir nur 1 Runde (statt voller Dauer); braucht weder Atem noch Essen."], ["🕯️", "Grabeswille", "Volksbonus +1, um Furcht zu widerstehen und Totenmagie zu erkennen."], ["🩹", "Kalte Heilung", "Nachteil: Heil-Verbrauchsgüter heilen bei dir nur die Hälfte (aufgerundet)."]], "dyn": {"id": "erinnerung", "e": "🕯️", "n": "Erinnerung", "max": 5, "start": 2, "text": "Leiste 0–5 (Start 2). +1, wenn die Figur etwas aus ihrem früheren Leben entdeckt oder einen bewegenden Moment erlebt (Neon vergibt). −1 bei einem Pech- oder Chaos-Event (Verfall). Bei 5: „Erinnerung erwacht“ – Neon erzählt ein Bruchstück, die Figur erhält 1× Rückenwind, Leiste zurück auf 3. Bei 0: „Verfall“ – Gegenwind auf CHA-Proben, bis ein Gespräch mit Freunden oder eine Rast die Leiste auf 1 hebt."}}, {"id": "dryade", "e": "🌿", "n": "Dryaden", "s": "Dryade", "c": "#7CFF6B", "opt": false, "tp": 0, "desc": "Baumgeister der Parkhaine: Dryaden tragen Rinde wie Rüstung und Blüten wie Schmuck, und jede Laterne mit Efeu ist ein bisschen ihr Zuhause.", "bonus": "Natur, Pflanzen & Heilkräuter (WEI)", "merk": [["🌱", "Wurzelsprache", "Kann einfache Gespräche mit Pflanzen führen (Gefühle, Erinnerungen, „wer kam hier vorbei?“)."], ["🍃", "Grünes Gespür", "Volksbonus +1 auf Natur, Pflanzen und Heilkräuter."], ["🌸", "Blütenheilung", "Heil-Verbrauchsgüter heilen bei dir +1 TP."]], "dyn": {"id": "korruption", "e": "🌑", "n": "Korruption", "max": 5, "start": 0, "text": "Leiste 0–5 (Start 0). +1 bei: Chaos-Event (Doppel-1, trägt die Seite automatisch ein), dunkle oder Chaos-Magie nutzen/berühren, Natur mutwillig zerstören, ungeschützt im Dead Core (Neon entscheidet). −1 nach jedem Abend ohne Auslöser oder nach einer Rast in einem Hain. Bei 5 wird die Dryade zum SATYR (Form, unabhängig vom Geschlecht). Weg zurück: Läuterung an einer heiligen Quelle oder in einem Hain – WEI-Probe SW 13, ein Versuch pro Rast (ein Empath-Funke gibt Rückenwind) → zurück zur Dryade, Korruption 2.", "form": {"id": "satyr", "e": "🐐", "s": "Satyr", "bonus": "Springen, Klettern & Feiern (GES/CHA)", "desc": "Die Korruption hat Hörner und Hufe wachsen lassen: wild, laut, unbändig fröhlich – und ein bisschen gefährlich.", "merk": [["🐐", "Bockssprung", "Volksbonus +1 auf Springen, Klettern und Feiern."], ["🎶", "Wilde Flöte", "1× pro Abend: ein Gegner erhält Gegenwind auf seine nächste Probe (Lärm und Chaos)."], ["🥀", "Welkes Band", "Nachteil: Wurzelsprache und Blütenheilung sind weg, Pflanzen weichen vor dir zurück."]]}}}, {"id": "zwerg", "e": "⛏️", "n": "Zwerge", "s": "Zwerg", "c": "#FFB86B", "opt": false, "tp": 1, "desc": "Neonschmiede aus den Tiefen unter dem Park: Zwerge bauen Brücken, Lifte und Lichtadern der Stadt und feiern jede fertige Schraube.", "bonus": "Handwerk, Steinarbeit & Schätze schätzen (INT)", "merk": [["🪨", "Steinblut", "+1 TP (dauerhaft)."], ["⚒️", "Schmiedeauge", "Volksbonus +1 auf Handwerk, Steinarbeit und das Schätzen von Wertsachen."], ["🌙", "Dunkelsicht", "Sieht im Dämmerlicht und in Dunkelheit fast wie am Tag (ohne Farben)."]]}, {"id": "gnom", "e": "🍄", "n": "Gnome", "s": "Gnom", "c": "#FF8BD8", "opt": false, "tp": 0, "desc": "Funkentüftler mit großen Ideen: Gnome bauen Spieluhren, die Wetter machen, und stellen mehr Fragen als ein ganzer Hörsaal.", "bonus": "Erfinden, Reparieren & Rätsel lösen (INT)", "merk": [["💡", "Tüftelgeist", "Volksbonus +1 auf Erfinden, Reparieren und Rätsel."], ["🎇", "Funkenspielerei", "1× pro Szene: ein kleines, harmloses Lichtbild oder Geräusch erzeugen (keine Probe)."], ["🧠", "Wacher Kopf", "1× pro Abend: Rückenwind gegen Verzauberung oder Täuschung."]]}, {"id": "halbling", "e": "🍀", "n": "Halblinge", "s": "Halbling", "c": "#9BE15D", "opt": false, "tp": 0, "desc": "Gemütliche Weltenbummler mit großem Herz und noch größerem Proviantbeutel: Halblinge finden überall einen Platz am Feuer.", "bonus": "Verstecken, Schleichen & unauffällig bleiben (GES)", "merk": [["🍀", "Kleeblatt", "1× pro Abend: eine Nat 1 neu würfeln (das neue Ergebnis gilt, auch für Events)."], ["🫣", "Unscheinbar", "Volksbonus +1 auf Verstecken, Schleichen und unauffällig bleiben."]]}, {"id": "drachenkin", "e": "🐉", "n": "Drachenkin", "s": "Drachenkin", "c": "#FF6B6B", "opt": false, "tp": 0, "desc": "Schuppig, stolz und mit Neonglut im Atem: Drachenkin sind Nachfahren der Lichtdrachen über den Brücken des Parks.", "bonus": "Beeindrucken & Auftreten (CHA)", "merk": [["🔥", "Neonatem", "1× pro Abend: Atemstoß auf ein nahes Ziel, W6 Schaden (Ziel kann mit GES SW 12 ausweichen)."], ["👑", "Drachenstolz", "Volksbonus +1 auf Beeindrucken und Auftreten."]]}];const VOLK=Object.fromEntries(VOELKER.map(v=>[v.id,v]));
+const GEN=[['w','♀️','weiblich'],['m','♂️','männlich'],['d','⚧️','divers'],['x','✍️','selbst eintragen']];
+const FIG_VOLK={brann:['zwerg','m'],ari:['dryade','w'],lio:['elf','m'],rika:['gnom','w'],kip:['goblin','d']};
 const FIGS=[
  {id:'brann',name:'Brann Schildglut',ober:'Krieger',unter:'Wächter',st:[15,10,14,8,12,13],inv:[['🛡️','Turmschild mit Leuchtrand'],['🗡️','Übungsschwert (stumpf)'],['🪢','Seil, 10 m'],['🏮','Laterne'],['🥨','Leuchtbrezel',1,1]]},
  {id:'ari',name:'Moos-Ari',ober:'Manabendiger',unter:'Druide',st:[12,10,13,10,15,13],inv:[['🪵','Eichenstab mit Moos'],['🌰','Beutel mit Leuchtsamen'],['🌿','Kräuterbündel'],['🫖','Gießkännchen aus Glas']]},
@@ -554,7 +622,8 @@ const sg=n=>(n>=0?'+':'−')+Math.abs(n);
 function rnd(n){const a=new Uint32Array(1);crypto.getRandomValues(a);return 1+(a[0]%n)}
 function fig(){return S.fig}
 function unterOf(f){return f&&UNTER[f.ober]?UNTER[f.ober].find(u=>u[1]===f.unter):null}
-function maxTp(f){return Math.max(6,OBER[f.ober].tp+mod(f.st[2]))}
+function maxTp(f){return Math.max(6,OBER[f.ober].tp+mod(f.st[2])+volkTp(f))}
+function volkTp(f){const v=f&&VOLK[f.volk];return v?v.tp||0:0}
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function norm(s){return String(s||'').toLowerCase().replace(/[^\p{L}\p{N}\s\-]/gu,' ').replace(/\s+/g,' ').trim()}
 function toks(s){return norm(s).split(/[\s\-]+/).filter(Boolean)}
@@ -570,7 +639,7 @@ function effMods(fx,ai){let m=0;const src=[],R=[],G=[];const a=ATTR[ai][0];(fx||
 /* ---------- Gruppe / Spielstand ---------- */
 function newG(){return {round:1,mode:'frei',order:[],turn:'',figs:[]}}
 function pregenOf(e){return FIGS.find(p=>matchName(p.name,e.name)&&(!e.unter||e.unter===p.unter))}
-function ownEntry(){const f=fig();if(!f)return null;return {name:f.name,full:f.name,av:f.avatar||f.id,ober:f.ober,unter:f.unter,tp:S.tp,max:maxTp(f),funke:S.funke,fx:S.fx||[],st:f.st,own:true,custom:f.id==='eigen'}}
+function ownEntry(){const f=fig();if(!f)return null;return {name:f.name,full:f.name,av:f.avatar||f.id,ober:f.ober,unter:f.unter,tp:S.tp,max:maxTp(f),funke:S.funke,fx:S.fx||[],st:f.st,own:true,custom:f.id==='eigen',volk:f.volk,form:S.form||''}}
 function isOwn(name){const f=fig();return !!(f&&name&&matchName(name,f.name))}
 function groupList(){const o=ownEntry(),G=S.G;if(!G||!G.figs.length)return o?[o]:[];let found=false;const L=G.figs.map(e=>{if(o&&!found&&matchName(e.name,o.name)){found=true;return Object.assign({},o,{name:e.name,ini:e.ini})}return e});if(o&&!found)L.push(Object.assign({},o,{name:o.name.split(' ')[0]}));return L}
 function dispName(e){if(!e)return '?';if(e.own)return e.full;const p=pregenOf(e);return p?p.name:e.name}
@@ -582,7 +651,7 @@ function patchFig(name,p){if(isOwn(name)){if('tp' in p)S.tp=Math.max(0,Math.min(
 function getFx(name){if(name==null||isOwn(name))return S.fx;const e=gEntry(name);return e?(e.fx=e.fx||[]):[]}
 function setFx(name,arr){patchFig(name==null?fig().name:name,{fx:arr})}
 function fxStr(fx){return fx&&fx.length?fx.map(x=>x.n+' '+(x.r==null?'∞':x.r)).join('; '):'-'}
-function figLine(e){const p=[e.name,e.av||(e.npc?'npc':'eigener'),e.npc?(e.cls||'Gegner'):`${e.ober} · ${e.unter}`,`TP ${e.tp}/${e.max}`,e.npc?'-':`Funke ${e.funke?'genutzt':'bereit'}`];if(e.st&&!e.npc&&!pregenOf(e))p.push('Werte '+e.st.join('/'));if(e.ini!=null&&e.ini!=='')p.push('Ini '+e.ini);p.push(fxStr(e.fx));return 'Figur: '+p.join(' | ')}
+function figLine(e){const p=[e.name,e.av||(e.npc?'npc':'eigener'),e.npc?(e.cls||'Gegner'):`${e.ober} · ${e.unter}${volkLabel(e)?' · '+volkLabel(e):''}`,`TP ${e.tp}/${e.max}`,e.npc?'-':`Funke ${e.funke?'genutzt':'bereit'}`];if(e.st&&!e.npc&&!pregenOf(e))p.push('Werte '+e.st.join('/'));if(e.ini!=null&&e.ini!=='')p.push('Ini '+e.ini);p.push(fxStr(e.fx));return 'Figur: '+p.join(' | ')}
 function myLine(){const o=groupList().find(e=>e.own)||ownEntry();return figLine(Object.assign({},o,{ini:S.ini??o.ini}))}
 function genCode(){const G=S.G||newG();const L=groupList();const l=['NP1 Spielstand','Runde: '+G.round,'Modus: '+(G.mode==='kampf'?'Kampf':'Frei')];if(G.order.length)l.push('Reihenfolge: '+G.order.join(', '));if(G.turn)l.push('Dran: '+G.turn);if(S.cr&&S.host)l.push('Chain-Rolls: ?');L.forEach(e=>l.push(figLine(e)));l.push('NP1 Ende');return l.join('\n')}
 function parseClass(f){if(/gegner|nsc|npc|monster|feind|kreatur/i.test(f))return {npc:true,cls:f.replace(/[^\p{L}\p{N}\s\-]/gu,'').trim()||'Gegner'};const k=nk(f);for(const o in UNTER)for(const u of UNTER[o])if(k.includes(nk(u[1])))return {ober:o,unter:u[1]};for(const o in OBER)if(k.includes(nk(o)))return {ober:o,unter:''};return null}
@@ -597,6 +666,7 @@ function parseFig(v,warn){const p=v.split('|').map(s=>s.trim());const name=(p.sh
   if((m=f.match(/^\W*(?:ini|initiative)\s*[:=]?\s*(-?\d+)/i))){e.ini=+m[1];continue}
   if(/^\W*(?:effekte|status|buffs?|debuffs?|zustände)\s*[:=]/i.test(f)){fxs.push(f.replace(/^[^:=]*[:=]/,''));continue}
   if(/^[a-z]+$/.test(fl)&&(AV[fl]||fl==='npc')){e.av=fl;continue}
+  const vk=volkIn(f);if(vk){e.volk=vk[0];e.form=vk[1];if(!parseClass(f))continue}
   const cl=parseClass(f);if(cl&&!e.ober&&!e.npc){Object.assign(e,cl);continue}
   fxs.push(f)}
  e.fx=parseFx(fxs.join(';'));
@@ -605,7 +675,7 @@ function parseFig(v,warn){const p=v.split('|').map(s=>s.trim());const name=(p.sh
  if(!e.av)e.av=e.npc?'npc':'eigener';
  if(!e.npc&&!e.ober&&e.av==='npc')e.npc=true;
  if(!e.npc&&!e.ober)warn.push(name+': Klasse nicht erkannt');
- if(e.max==null){e.max=(e.st&&OBER[e.ober])?Math.max(6,OBER[e.ober].tp+mod(e.st[2])):(e.tp||10)}
+ if(e.max==null){e.max=(e.st&&OBER[e.ober])?Math.max(6,OBER[e.ober].tp+mod(e.st[2])+volkTp(e)):(e.tp||10)}
  if(e.tp==null)e.tp=e.max;return e}
 function upsert(arr,e){const i=arr.findIndex(x=>matchName(x.name,e.name));if(i>=0)arr[i]=Object.assign({},arr[i],e);else arr.push(e)}
 function parseCode(txt){const G=newG(),warn=[];let any=false,modeSet=false;
@@ -635,40 +705,43 @@ let IMG=loadImg();
 function loadImg(){try{return localStorage.getItem(IMGKEY)||null}catch(e){return null}}
 const COST={3:-5,4:-4,5:-3,6:-2,7:-1,8:0,9:1,10:2,11:3,12:4,13:5,14:7,15:9};
 function cost(st){return st.reduce((s,v)=>s+(COST[v]??99),0)}
-const STEPS=['Figur','Name & Avatar','Klasse','Werte','Start-Set','Bereit'];
+const STEPS=['Figur','Name & Avatar','Volk','Klasse','Werte','Start-Set','Bereit'];
 let W=null,wizNote='';
-function validFig(f){return !!(f&&typeof f.name==='string'&&f.name.trim().length>=2&&f.avatar&&AV[f.avatar]&&OBER[f.ober]&&unterOf(f)&&Array.isArray(f.st)&&f.st.length===6&&f.st.every(v=>v>=3&&v<=15)&&cost(f.st)===27&&f.set!=null&&SETS[f.unter]&&SETS[f.unter][f.set])}
-function wizNew(pre){W=Object.assign({mode:'new',step:1,base:'',name:'',av:'',img:IMG,ober:'',unter:'',st:[8,8,8,8,8,8],set:null},pre||{});renderWiz()}
-function wizFromFig(f){const p=FIGS.find(x=>x.id===f.id);return {base:p?p.id:'eigen',name:f.name||'',av:f.avatar||(AV[f.id]?f.id:''),ober:f.ober||'',unter:f.unter||'',st:(f.st||[8,8,8,8,8,8]).slice(),set:(f.set!=null&&SETS[f.unter]&&SETS[f.unter][f.set])?f.set:null}}
+function validFig(f){return validBase(f)&&!!VOLK[f.volk]&&['w','m','d','x'].includes(f.gen)&&(f.gen!=='x'||String(f.genT||'').trim().length>=2)}
+function validBase(f){return !!(f&&typeof f.name==='string'&&f.name.trim().length>=2&&f.avatar&&AV[f.avatar]&&OBER[f.ober]&&unterOf(f)&&Array.isArray(f.st)&&f.st.length===6&&f.st.every(v=>v>=3&&v<=15)&&cost(f.st)===27&&f.set!=null&&SETS[f.unter]&&SETS[f.unter][f.set])}
+function wizNew(pre){W=Object.assign({mode:'new',step:1,base:'',name:'',av:'',img:IMG,ober:'',unter:'',st:[8,8,8,8,8,8],set:null,volk:'',gen:'',genT:'',pron:''},pre||{});renderWiz()}
+function wizFromFig(f){const p=FIGS.find(x=>x.id===f.id);return {base:p?p.id:'eigen',name:f.name||'',av:f.avatar||(AV[f.id]?f.id:''),ober:f.ober||'',unter:f.unter||'',st:(f.st||[8,8,8,8,8,8]).slice(),set:(f.set!=null&&SETS[f.unter]&&SETS[f.unter][f.set])?f.set:null,volk:VOLK[f.volk]?f.volk:'',gen:f.gen||'',genT:f.genT||'',pron:f.pron||''}}
 function missingOf(s){const m=[];
  if(s===1&&!W.base)m.push('eine Figur wählen (fertige Figur oder eigener Charakter)');
- if(s===2){if((W.name||'').trim().length<2)m.push('einen Namen (mind. 2 Zeichen)');if(!W.av)m.push('einen Standard-Avatar (den sehen deine Mitspieler – auch wenn du ein eigenes Bild nutzt)')}
- if(s===3){if(!W.ober)m.push('eine Oberklasse');if(!W.unter)m.push('eine Unterklasse')}
- if(s===4){if(W.st.some(v=>!(v>=3&&v<=15)))m.push('alle Werte zwischen 3 und 15');else{const p=cost(W.st);if(p!==27)m.push(`genau 27 Punkte (aktuell ${p}${p<27?', noch '+(27-p)+' frei':', '+(p-27)+' zu viel'})`)}}
- if(s===5&&(W.set==null||!SETS[W.unter]||!SETS[W.unter][W.set]))m.push('ein Start-Set');
+ if(s===2){if((W.name||'').trim().length<2)m.push('einen Namen (mind. 2 Zeichen)');if(!W.av)m.push('einen Standard-Avatar (den sehen deine Mitspieler – auch wenn du ein eigenes Bild nutzt)');if(!['w','m','d','x'].includes(W.gen))m.push('ein Geschlecht');else if(W.gen==='x'&&String(W.genT||'').trim().length<2)m.push('dein Geschlecht (selbst eintragen, mind. 2 Zeichen)')}
+ if(s===3&&!VOLK[W.volk])m.push('ein Volk');
+ if(s===4){if(!W.ober)m.push('eine Oberklasse');if(!W.unter)m.push('eine Unterklasse')}
+ if(s===5){if(W.st.some(v=>!(v>=3&&v<=15)))m.push('alle Werte zwischen 3 und 15');else{const p=cost(W.st);if(p!==27)m.push(`genau 27 Punkte (aktuell ${p}${p<27?', noch '+(27-p)+' frei':', '+(p-27)+' zu viel'})`)}}
+ if(s===6&&(W.set==null||!SETS[W.unter]||!SETS[W.unter][W.set]))m.push('ein Start-Set');
  return m}
-function firstInvalid(){for(let s=1;s<=5;s++)if(missingOf(s).length)return s;return 6}
-function wizGo(s){if(W.mode==='edit'){W.step=2;renderWiz();return}const old=W.step,fi=firstInvalid();W.step=Math.max(1,Math.min(s,fi,6));if(s>fi&&s>old)snd('err');else if(W.step>old)snd('step');renderWiz()}
-function pickBase(id){if(id==='eigen'){if(W.base!=='eigen'){Object.assign(W,{base:'eigen',name:'',av:'',ober:'',unter:'',st:[8,8,8,8,8,8],set:null})}}else{const p=FIGS.find(x=>x.id===id);if(p&&W.base!==id)Object.assign(W,{base:id,name:p.name,av:p.id,ober:p.ober,unter:p.unter,st:p.st.slice(),set:null})}}
+function firstInvalid(){for(let s=1;s<=6;s++)if(missingOf(s).length)return s;return 7}
+function wizGo(s){if(W.mode==='edit'){W.step=2;renderWiz();return}const old=W.step,fi=firstInvalid();W.step=Math.max(1,Math.min(s,fi,7));if(s>fi&&s>old)snd('err');else if(W.step>old)snd('step');renderWiz()}
+function pickBase(id){if(id==='eigen'){if(W.base!=='eigen'){Object.assign(W,{base:'eigen',name:'',av:'',ober:'',unter:'',st:[8,8,8,8,8,8],set:null,volk:''})}}else{const p=FIGS.find(x=>x.id===id);if(p&&W.base!==id)Object.assign(W,{base:id,name:p.name,av:p.id,ober:p.ober,unter:p.unter,st:p.st.slice(),set:null,volk:(FIG_VOLK[id]||[''])[0],gen:W.gen||(FIG_VOLK[id]||['',''])[1]})}}
 function setBox(s,i,sel){const c=s.c;return `<button class="setc${sel?' sel':''}" data-set="${i}" aria-pressed="${sel}"><b>${s.e} ${esc(s.n)}</b><small>${s.items.map(x=>x[0]+' '+esc(x[1])).join(' · ')}</small><small>${c[0]} ${esc(c[1])} ×2: ${esc(c[4])}</small><small class="sbon">✨ Stil-Bonus +1: ${esc(s.bonus)}</small></button>`}
 function renderWiz(){const el=$('wiz');if(!W)return;const s=W.step,ed=W.mode==='edit';
- let h=ed?`<h2>✏️ Name & Avatar ändern</h2>`:`<ol class="steps" aria-label="Schritte">${STEPS.map((t,i)=>{const n=i+1,ok=n<s||(n<6&&!missingOf(n).length&&n<=firstInvalid());return `<li class="${n===s?'cur':ok?'ok':''}"><button data-step="${n}" ${n===s?'aria-current="step"':''} ${n>firstInvalid()?'disabled':''}>${ok&&n!==s?'✓':n}</button><span>${t}</span></li>`}).join('')}</ol>`;
+ let h=ed?`<h2>✏️ Name & Avatar ändern</h2>`:`<ol class="steps" aria-label="Schritte">${STEPS.map((t,i)=>{const n=i+1,ok=n<s||(n<7&&!missingOf(n).length&&n<=firstInvalid());return `<li class="${n===s?'cur':ok?'ok':''}"><button data-step="${n}" ${n===s?'aria-current="step"':''} ${n>firstInvalid()?'disabled':''}>${ok&&n!==s?'✓':n}</button><span>${t}</span></li>`}).join('')}</ol>`;
  if(wizNote)h+=`<p class="note">${esc(wizNote)}</p>`;
  if(s===1)h+=`<h2>1 · Wer möchtest du sein?</h2><p class="sub">Nimm eine fertige Figur (Name und Avatar kannst du gleich ändern) oder bau deinen eigenen Charakter.</p><div class="cards">${FIGS.map(p=>{const u=unterOf(p);return `<button class="card pick${W.base===p.id?' sel':''}" style="--c:${OBER[p.ober].c}" data-base="${p.id}" aria-pressed="${W.base===p.id}"><img src="${AV[p.id]}" alt=""><b>${esc(p.name)}</b><small>${OBER[p.ober].e} ${p.ober} · ${u[0]} ${p.unter}<br>${u[2]}</small></button>`}).join('')}<button class="card pick${W.base==='eigen'?' sel':''}" style="--c:var(--violet)" data-base="eigen" aria-pressed="${W.base==='eigen'}"><img src="${AV.eigener}" alt=""><b>✍️ Eigener Charakter</b><small>Klasse, Werte und Set selbst wählen</small></button></div>`;
- if(s===2)h+=`${ed?'':'<h2>2 · Name & Avatar</h2>'}<label class="f" for="wName">Name deiner Figur <span class="req">Pflicht</span></label><input type="text" id="wName" maxlength="30" value="${esc(W.name)}" placeholder="z. B. Sola Sternfaden" autocomplete="off"><p class="tip">Fantasy-Name, keine echten Daten.</p>
+ if(s===2)h+=`${ed?'':'<h2>2 · Name & Avatar</h2>'}<label class="f" for="wName">Name deiner Figur <span class="req">Pflicht</span></label><input type="text" id="wName" maxlength="30" value="${esc(W.name)}" placeholder="z. B. Sola Sternfaden" autocomplete="off"><p class="tip">Fantasy-Name, keine echten Daten.</p>${genFields()}
   <label class="f">Standard-Avatar <span class="req">Pflicht</span></label><p class="tip" style="margin:0 0 6px">Den sehen deine Mitspieler und Neon Omina.</p><div class="row" id="wAv">${Object.keys(AV).filter(k=>k!=='npc').map(k=>`<button class="avb${W.av===k?' sel':''}" data-av="${k}" aria-pressed="${W.av===k}" aria-label="Avatar ${k}"><img src="${AV[k]}" alt=""></button>`).join('')}</div>
   <h3>📷 Eigenes Bild (optional)</h3><p class="note">🔒 Dein Bild bleibt nur auf deinem Gerät. Tipp: lieber ein Fantasy-Bild statt eines Fotos von dir.</p>
   <div class="row"><img id="wPrev" class="prev${W.img?'':' hide'}" src="${W.img||''}" alt="Vorschau eigenes Bild"><label class="btn small" style="--c:var(--cyan)" for="wImg">📷 Bild wählen</label><input type="file" id="wImg" accept="image/*" class="vh">${W.img?'<button class="btn small" style="--c:var(--red)" id="wImgDel">🗑️ Bild löschen</button>':''}</div><p class="tip" id="wImgMsg" aria-live="polite">${W.img?'Dein Bild wird nur bei dir angezeigt; Mitspieler sehen den Standard-Avatar. Es wird quadratisch auf 256 px verkleinert, Bild-Metadaten werden entfernt.':'Wird quadratisch zugeschnitten (256 px) und nur in diesem Browser gespeichert – nie gesendet, nie im Spielstand-Code.'}</p>`;
- if(s===3){if(W.base!=='eigen'){const u=unterOf(W);h+=`<h2>3 · Klasse</h2><div class="card" style="--c:${OBER[W.ober].c};text-align:left"><b>${OBER[W.ober].e} ${W.ober} · ${u[0]} ${W.unter}</b><small>${u[2]} · Hauptwert ${u[3]}</small><p>${OBER[W.ober].e} Passiv: ${esc(OBER[W.ober].pas)}<br>✨ Funke „${esc(u[4])}“: ${esc(u[5])}</p></div><p class="tip">🔒 Fertige Figuren haben eine feste Klasse. Andere Klasse? Zurück zu Schritt 1 und „Eigener Charakter“ wählen.</p>`}
-  else{h+=`<h2>3 · Klasse</h2><label class="f" for="wOber">Oberklasse <span class="req">Pflicht</span></label><select id="wOber"><option value="">– bitte wählen –</option>${Object.keys(OBER).map(o=>`<option value="${o}" ${W.ober===o?'selected':''}>${OBER[o].e} ${o}</option>`).join('')}</select>${W.ober?`<p class="tip">${OBER[W.ober].e} Passiv: ${esc(OBER[W.ober].pas)} · TP-Basis ${OBER[W.ober].tp}</p>`:''}
+ if(s===3)h+=volkStep();
+ if(s===4){if(W.base!=='eigen'){const u=unterOf(W);h+=`<h2>4 · Klasse</h2><div class="card" style="--c:${OBER[W.ober].c};text-align:left"><b>${OBER[W.ober].e} ${W.ober} · ${u[0]} ${W.unter}</b><small>${u[2]} · Hauptwert ${u[3]}</small><p>${OBER[W.ober].e} Passiv: ${esc(OBER[W.ober].pas)}<br>✨ Funke „${esc(u[4])}“: ${esc(u[5])}</p></div><p class="tip">🔒 Fertige Figuren haben eine feste Klasse. Andere Klasse? Zurück zu Schritt 1 und „Eigener Charakter“ wählen.</p>`}
+  else{h+=`<h2>4 · Klasse</h2><label class="f" for="wOber">Oberklasse <span class="req">Pflicht</span></label><select id="wOber"><option value="">– bitte wählen –</option>${Object.keys(OBER).map(o=>`<option value="${o}" ${W.ober===o?'selected':''}>${OBER[o].e} ${o}</option>`).join('')}</select>${W.ober?`<p class="tip">${OBER[W.ober].e} Passiv: ${esc(OBER[W.ober].pas)} · TP-Basis ${OBER[W.ober].tp}</p>`:''}
   <label class="f" for="wUnter">Unterklasse <span class="req">Pflicht</span></label><select id="wUnter" ${W.ober?'':'disabled'}><option value="">${W.ober?'– bitte wählen –':'erst Oberklasse wählen'}</option>${W.ober?UNTER[W.ober].map(u=>`<option value="${u[1]}" ${W.unter===u[1]?'selected':''}>${u[0]} ${u[1]} (${u[2]})</option>`).join(''):''}</select>${W.unter&&unterOf(W)?`<p class="tip">Hauptwert ${unterOf(W)[3]} · ✨ Funke „${esc(unterOf(W)[4])}“: ${esc(unterOf(W)[5])}</p>`:''}`}}
- if(s===4){const p=cost(W.st);h+=`<h2>4 · Werte</h2>`;if(W.base!=='eigen')h+=`<p class="tip">🔒 Werte der fertigen Figur (27 Punkte, geprüft).</p><div class="stats">${ATTR.map((a,i)=>`<div class="stat"><span>${a[1]} ${a[2]}</span><b>${W.st[i]}</b><span>Mod ${sg(mod(W.st[i]))}</span></div>`).join('')}</div>`;
+ if(s===5){const p=cost(W.st);h+=`<h2>5 · Werte</h2>`;if(W.base!=='eigen')h+=`<p class="tip">🔒 Werte der fertigen Figur (27 Punkte, geprüft).</p><div class="stats">${ATTR.map((a,i)=>`<div class="stat"><span>${a[1]} ${a[2]}</span><b>${W.st[i]}</b><span>Mod ${sg(mod(W.st[i]))}</span></div>`).join('')}</div>`;
   else h+=`<p class="tip">Alle starten bei 8 · 27 Punkte · Startmaximum 15 · senken bis 3 gibt Punkte zurück. Kosten: 9=1 · 10=2 · 11=3 · 12=4 · 13=5 · 14=7 · 15=9.</p><div class="stats">${ATTR.map((a,i)=>`<div class="stat"><span>${a[1]} ${a[2]}</span><div class="row" style="justify-content:center;gap:4px"><button class="btn small" data-sd="${i}" aria-label="${a[2]} senken">−</button><b style="min-width:28px">${W.st[i]}</b><button class="btn small" data-su="${i}" aria-label="${a[2]} erhöhen">+</button></div><span>Mod ${sg(mod(W.st[i]))}</span></div>`).join('')}</div>`;
-  h+=`<p>Punkte: <b class="pb${p===27?'':' bad'}">${p} / 27</b> · ❤️ TP: <b>${W.ober?Math.max(6,OBER[W.ober].tp+mod(W.st[2])):'–'}</b></p>`}
- if(s===5){const L=SETS[W.unter]||[];h+=`<h2>5 · Start-Set <span class="req">Pflicht</span></h2><p class="sub">Drei Wege, deine ${esc(W.unter)}-Figur zu beginnen – gleich stark, anderer Stil. Wähle eins.</p>${L.map((x,i)=>setBox(x,i,W.set===i)).join('')}`}
- if(s===6){const u=unterOf(W),set=SETS[W.unter][W.set];h+=`<h2>6 · Bereit?</h2><div class="hdr" style="--c:${OBER[W.ober].c}"><img src="${W.img||AV[W.av]}" alt=""><div class="grow"><div class="nm">${esc(W.name.trim())}</div><div class="cl">${OBER[W.ober].e} ${W.ober} · ${u[0]} ${W.unter} — ${u[2]}</div><div class="cl">❤️ ${Math.max(6,OBER[W.ober].tp+mod(W.st[2]))} TP · ${ATTR.map((a,i)=>a[0]+' '+W.st[i]).join(' · ')}</div></div></div>${setBox(set,W.set,true)}${W.img?'<p class="tip">📷 Eigenes Bild nur bei dir · Mitspieler sehen: <img src="'+AV[W.av]+'" width="28" height="28" alt="" style="vertical-align:middle"></p>':''}`}
- const miss=s===6?[1,2,3,4,5].flatMap(missingOf):missingOf(s);const last=ed||s===6;
- h+=`<div class="wfoot">${miss.length?`<p class="miss" role="alert">⚠️ Es fehlt noch: ${miss.map(esc).join(' · ')}</p>`:`<p class="okmsg">✅ ${last?'Alles vollständig.':'Dieser Schritt ist vollständig.'}</p>`}<div class="row">${(s>1&&!ed)?'<button class="btn" style="--c:#ffffff55" id="wBack">← Zurück</button>':''}${ed?'<button class="btn" style="--c:#ffffff55" id="wCancel">Abbrechen</button>':''}<span class="grow"></span><button class="btn big" id="wNext" style="--c:${miss.length?'#777':'var(--green)'}" ${miss.length?'disabled aria-disabled="true"':''}>${ed?'💾 Speichern':s===6?"✅ Fertig – los geht's":'Weiter →'}</button></div></div>`;
+  h+=`<p>Punkte: <b class="pb${p===27?'':' bad'}">${p} / 27</b> · ❤️ TP: <b>${W.ober?Math.max(6,OBER[W.ober].tp+mod(W.st[2])+volkTp(W)):'–'}</b>${volkTp(W)?' <span class="tip">(inkl. +'+volkTp(W)+' Volk)</span>':''}</p>`}
+ if(s===6){const L=SETS[W.unter]||[];h+=`<h2>6 · Start-Set <span class="req">Pflicht</span></h2><p class="sub">Drei Wege, deine ${esc(W.unter)}-Figur zu beginnen – gleich stark, anderer Stil. Wähle eins.</p>${L.map((x,i)=>setBox(x,i,W.set===i)).join('')}`}
+ if(s===7){const u=unterOf(W),set=SETS[W.unter][W.set];h+=`<h2>7 · Bereit?</h2><div class="hdr" style="--c:${OBER[W.ober].c}"><img src="${W.img||AV[W.av]}" alt=""><div class="grow"><div class="nm">${esc(W.name.trim())}</div><div class="cl">${OBER[W.ober].e} ${W.ober} · ${u[0]} ${W.unter} — ${u[2]}</div><div class="cl">${volkLabelW()}</div><div class="cl">❤️ ${Math.max(6,OBER[W.ober].tp+mod(W.st[2])+volkTp(W))} TP · ${ATTR.map((a,i)=>a[0]+' '+W.st[i]).join(' · ')}</div></div></div>${setBox(set,W.set,true)}${W.img?'<p class="tip">📷 Eigenes Bild nur bei dir · Mitspieler sehen: <img src="'+AV[W.av]+'" width="28" height="28" alt="" style="vertical-align:middle"></p>':''}`}
+ const miss=s===7?[1,2,3,4,5,6].flatMap(missingOf):missingOf(s);const last=ed||s===7;
+ h+=`<div class="wfoot">${miss.length?`<p class="miss" role="alert">⚠️ Es fehlt noch: ${miss.map(esc).join(' · ')}</p>`:`<p class="okmsg">✅ ${last?'Alles vollständig.':'Dieser Schritt ist vollständig.'}</p>`}<div class="row">${(s>1&&!ed)?'<button class="btn" style="--c:#ffffff55" id="wBack">← Zurück</button>':''}${ed?'<button class="btn" style="--c:#ffffff55" id="wCancel">Abbrechen</button>':''}<span class="grow"></span><button class="btn big" id="wNext" style="--c:${miss.length?'#777':'var(--green)'}" ${miss.length?'disabled aria-disabled="true"':''}>${ed?'💾 Speichern':s===7?"✅ Fertig – los geht's":'Weiter →'}</button></div></div>`;
  el.innerHTML=h;
  el.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>wizGo(+b.dataset.step));
  el.querySelectorAll('[data-base]').forEach(b=>b.onclick=()=>{pickBase(b.dataset.base);renderWiz()});
@@ -676,35 +749,101 @@ function renderWiz(){const el=$('wiz');if(!W)return;const s=W.step,ed=W.mode==='
  el.querySelectorAll('[data-set]').forEach(b=>b.onclick=()=>{W.set=+b.dataset.set;renderWiz()});
  el.querySelectorAll('[data-su]').forEach(b=>b.onclick=()=>{const i=+b.dataset.su;if(W.st[i]<15){W.st[i]++;renderWiz()}});
  el.querySelectorAll('[data-sd]').forEach(b=>b.onclick=()=>{const i=+b.dataset.sd;if(W.st[i]>3){W.st[i]--;renderWiz()}});
+ const footUpd=()=>{const f=el.querySelector('.wfoot');const m=missingOf(2);const nb=$('wNext');nb.disabled=!!m.length;nb.style.setProperty('--c',m.length?'#777':'var(--green)');f.querySelector('p').outerHTML=m.length?`<p class="miss" role="alert">⚠️ Es fehlt noch: ${m.map(esc).join(' · ')}</p>`:`<p class="okmsg">✅ ${ed?'Alles vollständig.':'Dieser Schritt ist vollständig.'}</p>`};
  const nm=$('wName');if(nm)nm.oninput=()=>{W.name=nm.value.replace(/[\u0000-\u001f<>]/g,'');const f=el.querySelector('.wfoot');const m=missingOf(2);const nb=$('wNext');nb.disabled=!!m.length;nb.style.setProperty('--c',m.length?'#777':'var(--green)');f.querySelector('p').outerHTML=m.length?`<p class="miss" role="alert">⚠️ Es fehlt noch: ${m.map(esc).join(' · ')}</p>`:`<p class="okmsg">✅ ${ed?'Alles vollständig.':'Dieser Schritt ist vollständig.'}</p>`};
  const ob=$('wOber');if(ob)ob.onchange=()=>{if(W.ober!==ob.value){W.ober=ob.value;W.unter='';W.set=null}renderWiz()};
  const ub=$('wUnter');if(ub)ub.onchange=()=>{if(W.unter!==ub.value){W.unter=ub.value;W.set=null}renderWiz()};
  const fi=$('wImg');if(fi)fi.onchange=()=>{const f=fi.files&&fi.files[0];if(!f)return;$('wImgMsg').textContent='⏳ Bild wird verkleinert …';processImage(f).then(d=>{W.img=d;renderWiz()}).catch(e=>{$('wImgMsg').textContent='❌ '+e})};
  const del=$('wImgDel');if(del)del.onclick=()=>{W.img=null;renderWiz()};
  const bk=$('wBack');if(bk)bk.onclick=()=>wizGo(s-1);const cc=$('wCancel');if(cc)cc.onclick=()=>{W=null;show()};
- $('wNext').onclick=()=>{if(ed||s===6)wizFinish();else wizGo(s+1)};
- window.scrollTo(0,0)}
+ $('wNext').onclick=()=>{if(ed||s===7)wizFinish();else wizGo(s+1)};
+ el.querySelectorAll('[data-volk]').forEach(b=>b.onclick=()=>{W.volk=b.dataset.volk;snd('tap');renderWiz();const d=$('vDet');if(d)d.scrollIntoView({block:'nearest'})});
+ el.querySelectorAll('[data-gen]').forEach(b=>b.onclick=()=>{W.gen=b.dataset.gen;renderWiz();const g=$('wGenT');if(g)g.focus()});
+ const gt=$('wGenT');if(gt)gt.oninput=()=>{W.genT=gt.value.replace(/[\u0000-\u001f<>|]/g,'');footUpd()};const pr=$('wPron');if(pr)pr.oninput=()=>{W.pron=pr.value.replace(/[\u0000-\u001f<>|]/g,'')};
+ if(!keepScroll)window.scrollTo(0,0)}
+let keepScroll=false;
 function processImage(file){return new Promise((res,rej)=>{if(!file||!/^image\//.test(file.type||''))return rej('Bitte eine Bilddatei wählen.');if(file.size>15e6)return rej('Das Bild ist zu groß (max. 15 MB).');const url=URL.createObjectURL(file);const im=new Image();im.onload=()=>{try{const w=im.naturalWidth,h=im.naturalHeight,s=Math.min(w,h);const c=document.createElement('canvas');c.width=c.height=256;c.getContext('2d').drawImage(im,(w-s)/2,(h-s)/2,s,s,0,0,256,256);URL.revokeObjectURL(url);res(c.toDataURL('image/jpeg',0.85))}catch(e){rej('Bild konnte nicht verarbeitet werden.')}};im.onerror=()=>{URL.revokeObjectURL(url);rej('Bild konnte nicht gelesen werden.')};im.src=url})}
 function setInv(s){return s.items.map(i=>({e:i[0],n:i[1],uses:null,heal:null})).concat([{e:s.c[0],n:s.c[1],uses:2,heal:s.c[3],d:s.c[4]}])}
-function wizFinish(){const all=W.mode==='edit'?missingOf(2):[1,2,3,4,5].flatMap(missingOf);if(all.length){snd('err');renderWiz();return}snd('bell');
+function wizFinish(){const all=W.mode==='edit'?missingOf(2):[1,2,3,4,5,6].flatMap(missingOf);if(all.length){snd('err');renderWiz();return}snd('bell');
  const name=W.name.trim().slice(0,30);let imgMsg='';
  try{if(W.img)localStorage.setItem(IMGKEY,W.img);else localStorage.removeItem(IMGKEY);IMG=W.img||null}catch(e){IMG=null;imgMsg='Bild konnte nicht gespeichert werden (Speicher voll) – Standard-Avatar wird genutzt.'}
- if(W.mode==='edit'){const old=S.fig.name;if(S.G){const e=gEntry(old);if(e){const on=e.name;e.name=name;e.av=W.av;S.G.order=S.G.order.map(n=>n===on?name:n);if(S.G.turn===on)S.G.turn=name}}S.fig.name=name;S.fig.avatar=W.av;save();W=null;wizNote='';show();if(imgMsg)alert(imgMsg);return}
- const set=SETS[W.unter][W.set];const f={id:W.base,name,avatar:W.av,ober:W.ober,unter:W.unter,st:W.st.slice(),set:W.set,setName:set.n,bonus:set.bonus};
- S={fig:f,tp:maxTp(f),funke:false,inv:setInv(set),log:[],fx:[],ini:null,dice:S.dice,host:S.host,G:S.G||null,appendStatus:!!S.appendStatus,openDone:false};save();W=null;wizNote='';OPMODE=null;show();if(imgMsg)alert(imgMsg)}
-function quickFig(id,si){const p=FIGS.find(x=>x.id===id);if(!p)return;W={mode:'new',step:6,base:id,name:p.name,av:p.id,img:IMG,ober:p.ober,unter:p.unter,st:p.st.slice(),set:si||0};wizFinish()}
+ if(W.mode==='edit'){const old=S.fig.name;if(S.G){const e=gEntry(old);if(e){const on=e.name;e.name=name;e.av=W.av;S.G.order=S.G.order.map(n=>n===on?name:n);if(S.G.turn===on)S.G.turn=name}}S.fig.name=name;S.fig.avatar=W.av;Object.assign(S.fig,genOf(W));save();W=null;wizNote='';show();if(imgMsg)alert(imgMsg);return}
+ const set=SETS[W.unter][W.set];const f=Object.assign({id:W.base,name,avatar:W.av,ober:W.ober,unter:W.unter,st:W.st.slice(),set:W.set,setName:set.n,bonus:set.bonus,volk:W.volk},genOf(W));
+ if(W.mode==='fix'&&S.fig){const keepSet=S.fig.unter===f.unter&&S.fig.set===f.set;Object.assign(S.fig,f);if(S.vd==null)S.vd=dynStart(f.volk);if(!keepSet)S.inv=setInv(set);S.tp=Math.min(S.tp==null?maxTp(f):S.tp,maxTp(f));save();W=null;wizNote='';show();if(imgMsg)alert(imgMsg);return}
+ S={fig:f,tp:maxTp(f),funke:false,inv:setInv(set),log:[],fx:[],ini:null,dice:S.dice,host:S.host,G:S.G||null,appendStatus:!!S.appendStatus,openDone:false,vd:dynStart(f.volk),form:''};save();W=null;wizNote='';OPMODE=null;show();if(imgMsg)alert(imgMsg)}
+function quickFig(id,si){const p=FIGS.find(x=>x.id===id);if(!p)return;W={mode:'new',step:7,base:id,name:p.name,av:p.id,img:IMG,ober:p.ober,unter:p.unter,st:p.st.slice(),set:si||0,volk:(FIG_VOLK[id]||['mensch'])[0],gen:(FIG_VOLK[id]||['',''])[1],genT:'',pron:''};wizFinish()}
+
+
+function genOf(w){return {gen:['w','m','d','x'].includes(w.gen)?w.gen:'',genT:w.gen==='x'?String(w.genT||'').trim().slice(0,24):'',pron:String(w.pron||'').trim().slice(0,20)}}
+function genLabel(f){if(!f)return '';const g=f.gen==='x'?(f.genT||'eigene Angabe'):({w:'weiblich',m:'männlich',d:'divers'})[f.gen]||'';return [g,f.pron?'('+f.pron+')':''].filter(Boolean).join(' ')}
+function genFields(){return `<label class="f">Geschlecht <span class="req">Pflicht</span> <span class="tip">rein kosmetisch – ändert keine Werte</span></label><div class="opts" id="wGen">${GEN.map(g=>`<button aria-pressed="${(W.gen||'')===g[0]}" data-gen="${g[0]}">${g[1]} ${g[2]}</button>`).join('')}</div>${W.gen==='x'?`<input type="text" id="wGenT" maxlength="24" value="${esc(W.genT||'')}" placeholder="selbst eintragen" aria-label="Geschlecht selbst eintragen">`:''}<label class="f" for="wPron">Pronomen <span class="tip">optional</span></label><input type="text" id="wPron" maxlength="20" value="${esc(W.pron||'')}" placeholder="z. B. sie/ihr, er/ihm, they/them" autocomplete="off">`}
+function dynStart(id){const v=VOLK[id];return v&&v.dyn?v.dyn.start:null}
+function VK(f){f=f||fig();return f&&VOLK[f.volk]}
+function volkView(v,form){if(!v)return null;const fm=v.dyn&&v.dyn.form&&form===v.dyn.form.id?v.dyn.form:null;return fm?{e:fm.e,s:fm.s,bonus:fm.bonus,merk:fm.merk,desc:fm.desc,c:v.c,form:true}:{e:v.e,s:v.s,bonus:v.bonus,merk:v.merk,desc:v.desc,c:v.c,form:false}}
+function vView(){return volkView(VK(),S.form)}
+function volkLabel(e){const v=e&&VOLK[e.volk];if(!v)return '';const vv=volkView(v,e.form);return vv.s}
+function volkLabelW(){const v=VOLK[W.volk];return v?`${v.e} ${v.s}${genLabel(genOf(W))?' · '+esc(genLabel(genOf(W))):''}`:''}
+const VOLK_RX={mensch:'mensch(en)?',elf:'elf(e|en|in)?',ork:'ork(s|in)?',goblin:'goblins?',untot:'untot(e|er|en)?',dryade:'dryade(n)?',zwerg:'zwerg(e|in)?',gnom:'gnom(e|in)?',halbling:'halblinge?',drachenkin:'drachenkin'};
+function volkIn(t){const l=String(t).toLowerCase();if(/(^|[^a-zäöüß])satyr([^a-zäöüß]|$)/.test(l))return ['dryade','satyr'];for(const id in VOLK_RX){if(VOLK[id]&&new RegExp('(^|[^a-zäöüß])('+VOLK_RX[id]+')([^a-zäöüß]|$)').test(l))return [id,'']}return null}
+function volkCard(v){return `<button class="vcard${W.volk===v.id?' sel':''}" style="--c:${v.c}" data-volk="${v.id}" aria-pressed="${W.volk===v.id}"><span aria-hidden="true">${v.e}</span><b>${esc(v.s)}</b><small>+1: ${esc(v.bonus)}</small>${v.tp?'<small>❤️ +1 TP</small>':''}${v.dyn?`<small>${v.dyn.e} ${esc(v.dyn.n)}</small>`:''}</button>`}
+function volkDetail(v,form,vd){const vv=volkView(v,form);let h=`<div class="vdet" style="--c:${v.c}"><h3>${vv.e} ${esc(vv.s)}${v.opt?' <span class="vbadge">optional</span>':''}</h3><p>${esc(vv.desc)}</p><ul>${vv.merk.map(m=>`<li>${m[0]} <b>${esc(m[1])}</b> – ${esc(m[2])}</li>`).join('')}</ul>`;
+ if(v.dyn)h+=`<p class="tip">${v.dyn.e} <b>${esc(v.dyn.n)}</b>${vd!=null?' ('+vd+'/'+v.dyn.max+')':''}: ${esc(v.dyn.text)}</p>`;
+ if(v.dyn&&v.dyn.form&&!vv.form)h+=`<p class="tip">${v.dyn.form.e} <b>Satyr-Form</b> (bei voller Korruption): ${v.dyn.form.merk.map(m=>esc(m[1])).join(' · ')}</p>`;
+ return h+'</div>'}
+function volkStep(){const main=VOELKER.filter(v=>!v.opt),opt=VOELKER.filter(v=>v.opt);let h=`<h2>3 · Volk <span class="req">Pflicht</span></h2><p class="sub">Jedes Volk gibt dir einen <b>Volksbonus</b> (+1, wenn er passt – wie der Stil-Bonus) und 1–2 kleine Merkmale. Alle sind gleich stark, nur anders.</p><div class="vcards">${main.map(volkCard).join('')}</div>${opt.length?`<h3>➕ Optionale Völker <span class="vbadge">optional</span></h3><div class="vcards">${opt.map(volkCard).join('')}</div>`:''}`;
+ if(W.base!=='eigen'&&W.base)h+=`<p class="tip">Fertige Figur: Das Volk ist vorgeschlagen – du kannst es frei ändern.</p>`;
+ const v=VOLK[W.volk];h+=v?`<div id="vDet">${volkDetail(v,'',dynStart(v.id))}</div>`:'<p class="tip" id="vDet">Tippe auf ein Volk, um Beschreibung und Merkmale zu sehen.</p>';return h}
+function dynSet(n){const v=VK();if(!v||!v.dyn)return '';const d=v.dyn;const old=S.vd==null?d.start:S.vd;n=Math.max(0,Math.min(d.max,n));S.vd=n;let note='';
+ if(d.id==='korruption'&&n>=d.max&&S.form!=='satyr'){S.form='satyr';note=` 🐐 Die Korruption ist vollständig – ${fig().name} wird zum Satyr!`;snd('chaos')}
+ if(d.id==='erinnerung'){if(n>=d.max){note=' 🕯️ Erinnerung erwacht! Neon erzählt ein Bruchstück – 1× Rückenwind, Leiste zurück auf 3.';S.vd=3;if(!S.fx.some(x=>x.n==='Rückenwind'))S.fx.push({n:'Rückenwind',r:null});renderFxBar();snd('good')}else if(n===0&&old>0)note=' 🌫️ Verfall: Gegenwind auf CHA-Proben, bis Freunde oder eine Rast helfen.'}
+ save();renderVolk();return note}
+function dynTxt(){const v=VK();return v&&v.dyn?`${v.dyn.e} ${v.dyn.n} ${S.vd==null?v.dyn.start:S.vd}/${v.dyn.max}`:''}
+function dynStep(delta){const v=VK();if(!v||!v.dyn)return;const cur=S.vd==null?v.dyn.start:S.vd;const note=dynSet(cur+delta);emit(`${tag()} ${dynTxt()}${delta>0?' (+1)':' (−1)'}${note}`,'')}
+function purify(){S.form='';S.vd=2;save();renderVolk();snd('good');emit(`${tag()} 🌿 Läuterung geschafft – wieder Dryade (${dynTxt()}).`,'')}
+function autoDyn(k){const v=VK();if(!v||!v.dyn)return '';const cur=S.vd==null?v.dyn.start:S.vd;
+ if(v.dyn.id==='korruption'&&k==='chaos'&&S.form!=='satyr'){const n=dynSet(cur+1);return `\n${dynTxt()} (+1 durch Chaos-Event)${n}`}
+ if(v.dyn.id==='erinnerung'&&(k==='chaos'||k==='pech')){const n=dynSet(cur-1);return `\n${dynTxt()} (−1 Verfall)${n}`}return ''}
+function healMod(h){const v=VK();if(!v)return [h,''];if(v.id==='untot')return [Math.ceil(h/2),' · halbiert: Kalte Heilung'];if(v.id==='dryade'&&S.form!=='satyr')return [h+1,' · +1 Blütenheilung'];return [h,'']}
+function renderVolk(){const el=$('gVP');if(!el)return;const f=fig(),v=VK(f);{const vv0=vView(),g=genLabel(f);if($('gVolk'))$('gVolk').textContent=[vv0?vv0.e+' '+vv0.s:'',g].filter(Boolean).join(' · ')}if(!v){el.innerHTML='';el.classList.add('hide');return}el.classList.remove('hide');const vv=vView();el.style.setProperty('--c',v.c);
+ let h=`<h3>${vv.e} Volk: ${esc(vv.s)}${vv.form?' <span class="vbadge">Form</span>':''}</h3><ul>${vv.merk.map(m=>`<li>${m[0]} <b>${esc(m[1])}</b> – ${esc(m[2])}</li>`).join('')}</ul>`;
+ if(v.dyn){const n=S.vd==null?v.dyn.start:S.vd;h+=`<div class="dyn"><b>${v.dyn.e} ${esc(v.dyn.n)}</b><span class="pips" aria-label="${n} von ${v.dyn.max}">${Array.from({length:v.dyn.max},(_,i)=>`<i class="${i<n?'on':''}"></i>`).join('')}</span><b>${n}/${v.dyn.max}</b></div><div class="row" style="margin-top:6px"><button class="btn small" style="--c:var(--red)" id="dynM" aria-label="${esc(v.dyn.n)} senken">➖ 1</button><button class="btn small" style="--c:var(--green)" id="dynP" aria-label="${esc(v.dyn.n)} erhöhen">➕ 1</button>${vv.form?'<button class="btn small" style="--c:var(--green)" id="dynPur">🌿 Läuterung geschafft</button>':''}</div><details class="pdet" style="max-width:none"><summary style="justify-content:flex-start">📜 Regeln: ${esc(v.dyn.n)}</summary><p class="tip">${esc(v.dyn.text)}</p></details>`}
+ el.innerHTML=h;const b=(id,fn)=>{const x=$(id);if(x)x.onclick=fn};b('dynM',()=>dynStep(-1));b('dynP',()=>dynStep(1));b('dynPur',purify)}
+function charSheet(){const f=fig(),u=unterOf(f),v=VK(f),vv=vView();const l=[`${tag()} 📋 Charakterbogen`,`Name: ${f.name}`];
+ if(v)l.push(`Volk: ${vv.e} ${vv.s}${vv.form?' (Dryade, Satyr-Form)':''} – Volksbonus +1: ${vv.bonus}`,`Merkmale: ${vv.merk.map(m=>m[1]).join(', ')}`);
+ const g=genLabel(f);if(g)l.push(`Geschlecht: ${g}`);
+ l.push(`Klasse: ${f.ober} · ${f.unter} (${u[2]}, Hauptwert ${u[3]})`,`Werte: ${ATTR.map((a,i)=>a[0]+' '+f.st[i]).join(' · ')}`,`TP ${S.tp}/${maxTp(f)} · Funke „${u[4]}“ ${S.funke?'genutzt':'bereit'}`);
+ if(f.setName)l.push(`Start-Set: ${f.setName}${f.bonus?' · Stil-Bonus +1: '+f.bonus:''}`);if(v&&v.dyn)l.push(dynTxt());return l.join('\n')}
 
 /* ---------- SPIEL ---------- */
 const TISCH={"status": "offen", "salt": "neonpark-alpha-v1:", "h": ["30b597f1d512859a4c3dc13f133c93d334924191413c6edb94636a8ed5a4534a", "11411b5b86fc406a397421cbd3a101eaa3c434f4428cd891ec5f00b615e41f9f", "4e716097118bf660e75b478731ed585f3090cf079508a538876e56f2a11d95b3", "589ee55a35d49e9d214a4541c37441f24d77d45ec298d229e3225f729d89d8e5", "11a0659700b4a9b312e1cca697895bd0c80d78afb0d7e8cede33dade3f951330"]};const PKEY='neonpark-platz-v1';
 function platzOk(){try{return !!(JSON.parse(localStorage.getItem(PKEY))||{}).ok}catch(e){return false}}
 function hasLocalChar(){if(fig())return true;try{const o=JSON.parse(localStorage.getItem('neonpark-saves-v1'))||{};return !!(o.auto||(o.slots||[]).some(Boolean))}catch(e){return false}}
 function gated(){return TISCH.status==='voll'&&!platzOk()&&!hasLocalChar()}
-function showTisch(){closeAll();['start','game','dock','intro','opening'].forEach(id=>$(id).classList.add('hide'));$('tisch').classList.remove('hide');document.body.dataset.tisch='voll';window.scrollTo(0,0)}
+function showTisch(){closeAll();hideScreens();$('tisch').classList.remove('hide');document.body.dataset.tisch='voll';window.scrollTo(0,0)}
 async function redeem(inp,msg){let c=(inp.value||'').toUpperCase().replace(/\s+/g,'');if(c&&!c.startsWith('NP-'))c='NP-ALPHA-'+c.replace(/^ALPHA-?/,'');
  if(!/^NP-ALPHA-[A-Z0-9]{4}$/.test(c)){msg.textContent='🤔 Das sieht nicht nach einem Platz-Code aus (NP-ALPHA-…).';msg.style.color='var(--orange)';return}
  let h='';try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(TISCH.salt+c));h=[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){msg.textContent='⚠️ Dein Browser kann den Code hier nicht prüfen – bitte über den normalen Link (https) öffnen.';msg.style.color='var(--orange)';return}
- if(TISCH.h.includes(h)){try{localStorage.setItem(PKEY,JSON.stringify({ok:1,t:Date.now()}))}catch(e){}msg.textContent='✅ Willkommen am Tisch! Dein Platz ist auf diesem Gerät gemerkt.';msg.style.color='var(--green)';snd('portal');document.body.dataset.platz='ok';setTimeout(()=>{$('tisch').classList.add('hide');delete document.body.dataset.tisch;INTRO=!fig();show()},900)}
+ if(TISCH.h.includes(h)){try{localStorage.setItem(PKEY,JSON.stringify({ok:1,t:Date.now()}))}catch(e){}msg.textContent='✅ Willkommen am Tisch! Dein Platz ist auf diesem Gerät gemerkt.';msg.style.color='var(--green)';snd('portal');document.body.dataset.platz='ok';setTimeout(()=>{$('tisch').classList.add('hide');delete document.body.dataset.tisch;SCR='join';show()},900)}
  else{msg.textContent='❌ Dieser Code passt leider nicht. Tippfehler? Sonst frag den Host.';msg.style.color='var(--red)';snd('bad')}}
+let SCR=(()=>{try{const v=sessionStorage.getItem('neonpark-scr');return v===null?'menu':v==='spiel'?null:v}catch(e){return 'menu'}})();/* neuer Tab = Hauptmenü, Neu laden = gleiche Ansicht *//* Hauptmenü-Navigation: menu | join | host | null (Spiel/Erstellung) */
+const HKEY='neonpark-host-v1';
+function hideScreens(){['menu','join','host','tisch','start','game','dock','intro','opening'].forEach(id=>$(id).classList.add('hide'))}
+function showMenu(){closeAll();hideScreens();$('menu').classList.remove('hide');const f=fig();
+ $('mCont').innerHTML=f&&validBase(f)?`<button class="mtile wide" style="--c:var(--green)" id="mCont2"><img src="${IMG||AV[f.avatar||f.id]||AV.eigener}" alt="" width="64" height="64" style="border-radius:14px"><span style="font-size:inherit;filter:none">▶️ Weiterspielen<br><small>${esc(f.name)} · ${esc(f.ober)} · ${esc(f.unter)}</small></span></button>`:'';
+ const c=$('mCont2');if(c)c.onclick=()=>{SCR=null;snd('step');show()};
+ $('mSnd').setAttribute('aria-pressed',SND.on);$('mSnd').querySelector('span').textContent=SND.on?'🔊':'🔇';$('mSndL').textContent=SND.on?'Ton an':'Ton aus';document.body.dataset.screen='menu';window.scrollTo(0,0)}
+function showJoin(){closeAll();hideScreens();$('join').classList.remove('hide');const f=fig();
+ $('pcState').textContent=TISCH.status==='lokal'?'Lokale Version: kein Platz-Code nötig.':platzOk()?'✅ Dein Platz ist auf diesem Gerät gemerkt.':TISCH.status==='voll'?'':'Platz-Code vom Host? Unten eingeben (optional, sichert deinen Platz, falls der Tisch voll wird).';
+ $('pcDet').classList.toggle('hide',TISCH.status==='lokal'||platzOk());
+ $('jFig').innerHTML=f&&validBase(f)?`<div class="row" style="margin-bottom:6px"><button class="btn big" style="--c:var(--green)" id="jCont">▶️ Weiterspielen als ${esc(f.name)}</button></div>`:'';
+ const c=$('jCont');if(c)c.onclick=()=>{SCR=null;snd('step');show()};document.body.dataset.screen='join';window.scrollTo(0,0)}
+function hostData(){try{return JSON.parse(localStorage.getItem(HKEY))||{}}catch(e){return {}}}
+function pageLink(){return /^https?:$/.test(location.protocol)?location.origin+location.pathname:'[Link zur Spieler-Seite]'}
+function hostTexts(){const d=hostData(),n=(d.name||'').trim(),w=(d.when||'').trim();
+ $('hInv').textContent=`🌀 Neon Park – ${n||'Alpha-Tisch'}\nIch lade euch zu einem Rollenspiel-Abend im Chat ein: „Das Portalgate der Chaos Queen“. Erzählt wird von der KI-Spielleitung Neon Omina – kein Vorwissen nötig.\n📅 ${w||'[Datum, Uhrzeit]'} · ca. 3–4 Std. · 5 Plätze\n📱 Spieler-Seite: ${pageLink()} → „Spiel beitreten“ → Figur bauen (Volk, Klasse, Werte)\n🔞 Ab 18, nur Fantasy-Namen, keine echten Daten. Die X-Card stoppt jede Szene sofort.\nWer dabei ist, schreibt „Ich bin dabei“ 🎲`;
+ $('hCmd').textContent=`Neon, starte ein Spiel: Das Portalgate der Chaos Queen (setting-erstes-spiel.md)${n?' – Tisch „'+n+'“':''}. Würfle die zwei Zufallswelten und zeig uns die fünf Portale. Poste bitte im Kampf nach jedem Zug den Spielstand im NP1-Format aus neon-statuscode.md. Die Charakterbögen der Mitspieler (mit Volk und Geschlecht) kommen gleich hier im Chat.`}
+function showHost(){closeAll();hideScreens();$('host').classList.remove('hide');const d=hostData();$('hName').value=d.name||'';$('hWhen').value=d.when||'';hostTexts();document.body.dataset.screen='host';window.scrollTo(0,0)}
+function hostSave(){try{localStorage.setItem(HKEY,JSON.stringify({name:$('hName').value.replace(/[\u0000-\u001f<>]/g,'').slice(0,40),when:$('hWhen').value.replace(/[\u0000-\u001f<>]/g,'').slice(0,40)}))}catch(e){}hostTexts()}
 let INTRO=false;
 function showIntro(){const f=fig();closeAll();['start','game','dock','opening'].forEach(id=>$(id).classList.add('hide'));$('intro').classList.remove('hide');$('introGo').textContent=f?'⬅️ Zurück zum Spiel':'✨ Charakter erstellen';$('introHint').textContent=f?'Deine Figur wartet schon auf dich.':'Dauert etwa 5 Minuten – in 6 kleinen Schritten.';window.scrollTo(0,0)}
 
@@ -715,20 +854,22 @@ function showOpening(){closeAll();['start','game','dock','intro'].forEach(id=>$(
  window.scrollTo(0,0)}
 function pickOpening(m){OPMODE=m;snd(m==='lang'?'portal':'pasch');showOpening()}
 function finishOpening(){OPEN=false;OPMODE=null;if(S.fig){S.openDone=true;save()}snd('step');show();window.scrollTo(0,0)}
-function show(){if(gated()){showTisch();return}$('tisch').classList.add('hide');const f=fig();if(INTRO||(!f&&!W)){showIntro();return}$('intro').classList.add('hide');
+function show(){['menu','join','host','tisch'].forEach(id=>$(id).classList.add('hide'));try{sessionStorage.setItem('neonpark-scr',SCR===null?'spiel':SCR)}catch(e){}delete document.body.dataset.screen;
+ if(SCR==='menu'){showMenu();return}if(SCR==='host'){showHost();return}if(SCR==='join'&&!gated()){showJoin();return}
+ if(gated()){showTisch();return}const f=fig();if(INTRO||(!f&&!W)){showIntro();return}$('intro').classList.add('hide');
  if(OPEN||(f&&!W&&S.openDone===false)){showOpening();return}$('opening').classList.add('hide');
- if(f&&!W&&!validFig(f)){const pre=wizFromFig(f);W=Object.assign({mode:'new',step:1,img:IMG},pre);W.step=firstInvalid();const m=[1,2,3,4,5].flatMap(missingOf);wizNote='Deine Figur ist noch nicht vollständig. Bitte ergänze: '+m.join(' · ')}
+ if(f&&!W&&!validFig(f)){const pre=wizFromFig(f);W=Object.assign({mode:'fix',step:1,img:IMG},pre);W.step=firstInvalid();const m=[1,2,3,4,5,6].flatMap(missingOf);wizNote='Deine Figur ist noch nicht vollständig. Bitte ergänze: '+m.join(' · ')}
  const wz=!f||!!W;closeAll();
  $('start').classList.toggle('hide',!wz);$('game').classList.toggle('hide',wz);$('dock').classList.toggle('hide',wz);
  if(wz){if(!W)wizNew();else renderWiz();return}
  const o=OBER[f.ober],u=unterOf(f);
  $('hdr').style.setProperty('--c',o.c);
  $('gAv').src=IMG||AV[f.avatar||f.id]||AV.eigener;$('gAv').alt='Avatar '+f.name;
- $('gName').textContent=f.name;$('gClass').textContent=`${o.e} ${f.ober} · ${u[0]} ${f.unter} — ${u[2]}`;
+ $('gName').textContent=f.name;$('gClass').textContent=`${o.e} ${f.ober} · ${u[0]} ${f.unter} — ${u[2]}`;{const vv=vView(),g=genLabel(f);$('gVolk').textContent=[vv?vv.e+' '+vv.s:'',g].filter(Boolean).join(' · ')}
  $('appSt').checked=!!S.appendStatus;
  refresh();
 }
-function refresh(){if(!fig())return;renderTp();renderFunke();renderFxBar();renderStats();renderLog();renderRound();
+function refresh(){if(!fig())return;renderTp();renderFunke();renderFxBar();renderStats();renderLog();renderRound();renderVolk();
  if($('grp').classList.contains('open'))renderGroup();if($('st').classList.contains('open'))renderStatus(stTarget);if($('gm').classList.contains('open'))renderGM()}
 function renderStats(){const f=fig(),u=unterOf(f);$('gStats').innerHTML=ATTR.map((a,i)=>{const em=effMods(S.fx,i),b=mod(f.st[i]);return `<div class="stat"><span>${a[1]} ${a[2]}</span><b>${f.st[i]}</b><span>Mod ${sg(b+em.mod)}${em.mod?' ('+em.src.map(s=>s[0]+' '+sg(s[1])).join(', ')+')':''}${em.wind==='Rückenwind'?' · 🌬️':em.wind==='Gegenwind'?' · 🌫️':''}${a[0]===u[3]?' · Hauptwert':''}</span></div>`}).join('')}
 function renderTp(){const m=maxTp(fig());S.tp=Math.max(0,Math.min(m,S.tp));$('gTpTxt').textContent=S.tp+' / '+m+(S.tp===0?' · erschöpft':'');$('gBar').style.width=(100*S.tp/m)+'%';$('gBarWrap').setAttribute('aria-valuenow',S.tp);$('gBarWrap').setAttribute('aria-valuemax',m);save()}
@@ -787,8 +928,9 @@ function getSel(box,g){const b=box.querySelector(`[data-group="${g}"] [aria-pres
 function setSel(box,g,v){const gr=box.querySelector(`[data-group="${g}"]`);if(gr)gr.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.v===v))}
 function wireGroups(box,onCh){box.querySelectorAll('[data-group]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.onclick=()=>{g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));if(onCh)onCh(g.dataset.group)}))}
 function autoWind(box){const ai=+getSel(box,'attr');if(isNaN(ai))return;const em=effMods(S.fx,ai);setSel(box,'wind',em.wind);const h=$('windHint');if(h)h.textContent=em.wind?`· automatisch durch ${(em.wind==='Rückenwind'?em.R:em.G).map(d=>d.e+' '+d.n).join(', ')}`:(em.R.length&&em.G.length?'· Rückenwind und Gegenwind heben sich auf':'')}
-function styleRow(){const f=fig();return f&&f.bonus?`<label class="row sbrow"><input type="checkbox" id="sStyle"> ✨ Stil-Bonus passt (+1: ${esc(f.bonus)})</label>`:''}
-function styleVal(){const c=$('sStyle');return c&&c.checked?1:0}
+function styleRow(){const f=fig(),vv=vView();return (f&&f.bonus?`<label class="row sbrow"><input type="checkbox" id="sStyle"> ✨ Stil-Bonus passt (+1: ${esc(f.bonus)})</label>`:'')+(vv?`<label class="row sbrow"><input type="checkbox" id="sVolk"> ${vv.e} Volksbonus passt (+1: ${esc(vv.bonus)})</label>`:'')}
+function styleVal(){const c=$('sStyle'),v=$('sVolk');return (c&&c.checked?1:0)+(v&&v.checked?1:0)}
+function styleName(){const c=$('sStyle'),v=$('sVolk');return [c&&c.checked?'Stil':'',v&&v.checked?'Volk':''].filter(Boolean).join(' + ')}
 function hauptIdx(){return ATTR.findIndex(a=>a[0]===unterOf(fig())[3])}
 function iniBonus(){return fig().ober==='Athlet'?1:0}
 function openSub(k){const a=ACTS.find(x=>x.k===k),box=$('subm'),f=fig(),u=unterOf(f);box.style.setProperty('--c',a.c);box.classList.remove('hide');
@@ -796,7 +938,7 @@ function openSub(k){const a=ACTS.find(x=>x.k===k),box=$('subm'),f=fig(),u=unterO
  if(k==='att')h+=`<label class="f" for="sTarget">Ziel</label><input type="text" id="sTarget" placeholder="z. B. den Schattenwolf">${attrRow(f.st[0]>=f.st[1]?0:1)}${windRow()}${styleRow()}${go('🎲 Angreifen – würfeln!','var(--red)')}`;
  if(k==='def')h+=`<div class="opts" data-group="dv"><button aria-pressed="true" data-v="geht in Deckung">🧱 Deckung suchen</button><button aria-pressed="false" data-v="weicht aus">💨 Ausweichen (GES)</button><button aria-pressed="false" data-v="stellt sich schützend vor">🛡️ Jemanden schützen</button></div><label class="f" for="sWho">Wen? (optional)</label><input type="text" id="sWho" placeholder="z. B. Lio">${go('🛡️ Ansagen','var(--gold)')}`;
  if(k==='fun')h+=`<p><b>${u[0]} ${esc(u[4])}</b> – ${esc(u[5])}</p>${FUNKE_FX[f.unter]?`<p class="tip">Wird automatisch als Effekt „${FUNKE_FX[f.unter][0]}“ in deinen Status eingetragen.</p>`:''}<p class="tip">${S.funke?'Heute schon genutzt. „🌙 Neuer Abend“ setzt ihn zurück.':'Bereit!'}</p><label class="f" for="sWho">Ziel / Wie? (optional)</label><input type="text" id="sWho" placeholder="z. B. auf den Torwächter"><button class="btn full" id="sGo" style="margin-top:10px;--c:var(--gold)" ${S.funke?'disabled':''}>✨ Funke zünden</button>`;
- if(k==='pro')h+=attrRow(hauptIdx())+windRow()+`<label class="f" for="sBon">Berufsbonus (optional)</label><select id="sBon"><option value="0">kein Beruf passt</option><option value="1">Kenner +1</option><option value="2">Virtuose +2</option><option value="3">Legende +3</option></select><label class="f" for="sSw">SW, falls Neon ihn genannt hat (optional)</label><input type="number" id="sSw" min="5" max="25" placeholder="z. B. 13"><label class="f" for="sWhat">Wofür? (optional)</label><input type="text" id="sWhat" placeholder="z. B. Schloss knacken">${styleRow()}${go('🎲 Würfeln!','var(--violet)')}`;
+ if(k==='pro')h+=attrRow(hauptIdx())+windRow()+`<label class="f" for="sBon">Berufsbonus (optional) <span class="tip">· Volk + Stil + Beruf zusammen max. +3</span></label><select id="sBon"><option value="0">kein Beruf passt</option><option value="1">Kenner +1</option><option value="2">Virtuose +2</option><option value="3">Legende +3</option></select><label class="f" for="sSw">SW, falls Neon ihn genannt hat (optional)</label><input type="number" id="sSw" min="5" max="25" placeholder="z. B. 13"><label class="f" for="sWhat">Wofür? (optional)</label><input type="text" id="sWhat" placeholder="z. B. Schloss knacken">${styleRow()}${go('🎲 Würfeln!','var(--violet)')}`;
  if(k==='itm')h+=S.inv.length?`<div class="opts" data-group="it">${S.inv.map((it,i)=>`<button aria-pressed="${i===0}" data-v="${i}">${it.e} ${esc(it.n)}${it.uses!=null?' ('+it.uses+')':''}</button>`).join('')}</div><label class="f" for="sWho">Wie / bei wem? (optional)</label><input type="text" id="sWho" placeholder="z. B. schenke ich Nixi">${go('🎒 Benutzen','var(--orange)')}`:'<p>Dein Inventar ist leer.</p>';
  if(k==='tal')h+=`<div class="opts" data-group="tv"><button aria-pressed="true" data-v="5|versucht zu überzeugen">🤝 Überzeugen (CHA)</button><button aria-pressed="false" data-v="5|versucht zu beruhigen">🕊️ Beruhigen (CHA)</button><button aria-pressed="false" data-v="4|hört genau zu und fragt nach">👂 Zuhören & fragen (WEI)</button><button aria-pressed="false" data-v="-1|sagt">💬 Einfach etwas sagen</button></div><label class="f" for="sWho">Zu wem?</label><input type="text" id="sWho" placeholder="z. B. Tante Lumi"><label class="f" for="sWhat">Was sagst du? (optional)</label><input type="text" id="sWhat" placeholder="„Wir helfen dir, versprochen!“">${styleRow()}${go('🗣️ Sprechen (🎲 falls Probe)','var(--pink)')}`;
  if(k==='inv')h+=`<div class="opts" data-group="iv"><button aria-pressed="true" data-v="3|untersucht die Umgebung">🔎 Umgebung (INT)</button><button aria-pressed="false" data-v="3|untersucht genau">🧩 Gegenstand (INT)</button><button aria-pressed="false" data-v="4|spürt nach Stimmung und Spuren">🦉 Spuren & Gefühl (WEI)</button></div><label class="f" for="sWhat">Was genau? (optional)</label><input type="text" id="sWhat" placeholder="z. B. den flackernden Ring">${styleRow()}${go('🔍 Untersuchen – 🎲 würfeln!','var(--cyan)')}`;
@@ -809,15 +951,15 @@ function openSub(k){const a=ACTS.find(x=>x.k===k),box=$('subm'),f=fig(),u=unterO
  box.innerHTML=h;wireGroups(box,g=>{if(g==='attr')autoWind(box)});if(box.querySelector('[data-group="wind"]'))autoWind(box);
  const b=$('sGo');if(b)b.onclick=()=>doAct(k,box);box.scrollIntoView({behavior:'smooth',block:'nearest'})}
 const val=id=>{const e=$(id);return e?e.value.trim():''};
-function doAct(k,box){const f=fig(),u=unterOf(f),T=tag();let txt='',cls='';const wind=getSel(box,'wind');lastD=null;const sv=styleVal();const SX={extra:sv,extraName:'Stil'};
+function doAct(k,box){const f=fig(),u=unterOf(f),T=tag();let txt='',cls='';const wind=getSel(box,'wind');lastD=null;const sv=styleVal();const SX={extra:sv,extraName:styleName()};
  if(k==='att'){const r=roll(+getSel(box,'attr'),Object.assign({wind},SX));txt=`${T} ⚔️ greift ${val('sTarget')||'das Ziel'} an: ${r.txt}`;cls=r.cls;if(r.total!=null&&r.d!==1)txt+=` · Schaden falls Treffer: W6 = ${rnd(6)}${S.fx.some(x=>x.n==='Runenglut')?' +2 (Runenglut)':''}`}
  if(k==='def'){const v=getSel(box,'dv');const w=val('sWho');txt=`${T} 🛡️ ${v}${w?' ('+w+')':''}.`;if(v==='weicht aus'){const r=roll(1,{});txt+=' '+r.txt;cls=r.cls}}
  if(k==='fun'){S.funke=true;snd('bell');const ff=FUNKE_FX[f.unter];if(ff){S.fx=S.fx.filter(x=>x.n!==ff[0]).concat({n:ff[0],r:ff[1]})}save();renderFunke();renderFxBar();renderStats();const w=val('sWho');txt=`${T} ✨ zündet den Klassen-Funken „${u[4]}“${w?' – '+w:''}: ${u[5]}.`;cls='nat20'}
- if(k==='pro'){const bo=+$('sBon').value;const r=roll(+getSel(box,'attr'),Object.assign({wind,bonus:bo,sw:+$('sSw').value||0},SX));const w=val('sWhat');txt=`${T} 🎲 Probe${w?' – '+w:''}: ${r.txt}`;cls=r.cls}
- if(k==='itm'){const i=+getSel(box,'it');const it=S.inv[i];const w=val('sWho');txt=`${T} 🎒 benutzt ${it.e} ${it.n}${w?' – '+w:''}`;if(it.heal){const h=it.heal==='W6'?rnd(6):it.heal==='W4'?rnd(4):+it.heal;S.tp=Math.min(maxTp(f),S.tp+h);txt+=` (+${h} TP${/^W/.test(it.heal)?', '+it.heal:''})`;renderTp()}if(it.uses!=null){it.uses--;txt+=` · noch ${it.uses}`;if(it.uses<=0)S.inv.splice(i,1)}txt+='.';save();renderInv()}
+ if(k==='pro'){const bo=+$('sBon').value;const cap=Math.min(SX.extra,Math.max(0,3-bo));const SXc=cap<SX.extra?{extra:cap,extraName:SX.extraName+', Deckel max +3'}:SX;const r=roll(+getSel(box,'attr'),Object.assign({wind,bonus:bo,sw:+$('sSw').value||0},SXc));const w=val('sWhat');txt=`${T} 🎲 Probe${w?' – '+w:''}: ${r.txt}`;cls=r.cls}
+ if(k==='itm'){const i=+getSel(box,'it');const it=S.inv[i];const w=val('sWho');txt=`${T} 🎒 benutzt ${it.e} ${it.n}${w?' – '+w:''}`;if(it.heal){const h0=it.heal==='W6'?rnd(6):it.heal==='W4'?rnd(4):+it.heal;const [h,hn]=healMod(h0);S.tp=Math.min(maxTp(f),S.tp+h);txt+=` (+${h} TP${/^W/.test(it.heal)?', '+it.heal+' '+h0:''}${hn})`;renderTp()}if(it.uses!=null){it.uses--;txt+=` · noch ${it.uses}`;if(it.uses<=0)S.inv.splice(i,1)}txt+='.';save();renderInv()}
  if(k==='tal'||k==='inv'||k==='mov'){const g={tal:'tv',inv:'iv',mov:'mv'}[k];const [ai,verb]=getSel(box,g).split('|');const who=val('sWho'),what=val('sWhat');const e={tal:'🗣️',inv:'🔍',mov:'🏃'}[k];txt=`${T} ${e} ${verb}${who?' ('+who+')':''}${what?(k==='tal'?': '+what:' – '+what):''}`;if(+ai>=0){const r=roll(+ai,SX);txt+=' · '+r.txt;cls=r.cls}else txt+='.'}
  if(k==='hlp')txt=`${T} ❤️ hilft ${val('sWho')||'jemandem'}${val('sWhat')?': '+val('sWhat'):''} (Rückenwind für die Person?).`;
- if(k==='ini'){const ib=iniBonus();const r=roll(1,{wind:'',extra:ib+sv,extraName:[ib?'Flinke Füße':'',sv?'Stil':''].filter(Boolean).join(' + ')});txt=`${T} 🔄 Initiative: ${r.txt}`;cls=r.cls;if(r.total!=null){S.ini=r.total;if(gEntry(f.name))gEntry(f.name).ini=r.total;save()}}
+ if(k==='ini'){const ib=iniBonus();const r=roll(1,{wind:'',extra:ib+sv,extraName:[ib?'Flinke Füße':'',styleName()].filter(Boolean).join(' + ')});txt=`${T} 🔄 Initiative: ${r.txt}`;cls=r.cls;if(r.total!=null){S.ini=r.total;if(gEntry(f.name))gEntry(f.name).ini=r.total;save()}}
  if(k==='end'){endTurn();return}
  if(k==='chn'){doChain(val('sWhat'));return}
  if(k==='x'){txt='🟥 X';cls='nat1'}
@@ -887,7 +1029,7 @@ async function doSecond(){if(!DR)return;const {first,base}=DR;DR=null;const d=d2
  $('evBox').innerHTML=`<div class="evdice"><div class="die sm" id="evD1">?</div></div><h2 id="evH">🎲 Zweiter Wurf …</h2>`;await spinIn('#evD1',[d],900);
  const k=secondKind(first,d),K=EVK[k],ev=K.tab?evRoll(K.tab,K.die):null;
  const line=`${tag()} 🎲 Zweiter Wurf (nach Nat ${first}): ${d} → ${K.t}${ev?` (W${K.die}: ${ev.i} – ${ev.e[0]} „${ev.e[1]}“) – Neon, erzähl!`:''}`;
- evResult(k,[d],K,ev);emit(base+'\n'+line,/lucky|bonus|crit/.test(k)?'nat20':'nat1')}
+ evResult(k,[d],K,ev);const dn=autoDyn(k);emit(base+'\n'+line+dn,/lucky|bonus|crit/.test(k)?'nat20':'nat1')}
 function lootItem(l){S.inv.push({e:l[0],n:l[1],uses:l[2]?(l[3]||1):(l[3]>1?l[3]:null),heal:l[2]||null});save();renderInv()}
 function evResult(k,dice,K,ev){document.body.dataset.ev=k;snd({lucky:'nat20',bonus:'good',crit:'good',pech:'bad',patzer:'bad',chaos:'chaos',pasch:'pasch',key:'portal'}[k]||'tap');const L=ev&&ev.e[3];
  evOpen('k-'+k+' done',`${k==='key'?'<div class="portal" aria-hidden="true"><i></i><i></i><i></i></div>':''}<div class="evdice${dice.length>1?' two':''}">${dice.map(x=>`<div class="die sm">${x}</div>`).join('')}</div>${k==='key'?'<div class="k1111" aria-hidden="true">11:11</div>':''}<h2 id="evH">${K.t}</h2><p>${esc(K.s)}</p>`+
@@ -1049,15 +1191,15 @@ function svThumb(x){const im=x.img&&svImgs()[x.img];return im||AV[x.meta.av]||AV
 function worldTxt(m){const w=WORLDS.find(x=>x[0]===m.world);return (w?w[1]:'🌆 Park-Universum')+(m.worldTxt?' – '+m.worldTxt:'')}
 function svSave(i,auto){if(!fig())return false;const SV=svLoad();const x=svSnapshot();const add=x._img;delete x._img;if(auto)SV.auto=x;else SV.slots[i]=x;const ok=svWrite(SV,add);if(!auto){if(ok)snd('save');else snd('err')}return ok}
 function autoSave(){try{if(fig())svSave(0,true)}catch(e){}}
-function svApply(x,img){if(!x||!x.data||!validFig(x.data.fig))throw 'Spielstand ist unvollständig oder beschädigt.';
+function svApply(x,img){if(!x||!x.data||!validBase(x.data.fig))throw 'Spielstand ist unvollständig oder beschädigt.';
  S=JSON.parse(JSON.stringify(x.data));S.fx=S.fx||[];S.inv=S.inv||[];save();
  try{if(img){localStorage.setItem(IMGKEY,img);IMG=img}else{localStorage.removeItem(IMGKEY);IMG=null}}catch(e){IMG=null}
- W=null;INTRO=false;wasMine=false;show();refresh();snd('step')}
+ W=null;INTRO=false;SCR=null;wasMine=false;show();if(validFig(fig()))refresh();snd('step')}
 function svFile(x,withImg){const imgs=svImgs();const out={format:'npsave',v:1,app:'Neon Park Spieler-Seite',t:x.t,meta:x.meta,data:x.data};if(withImg&&x.img&&imgs[x.img])out.img=imgs[x.img];
  const name=`neonpark-${fileSafe(x.meta.name)}-${(d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}-${String(d.getHours()).padStart(2,'0')}${String(d.getMinutes()).padStart(2,'0')}`)(new Date(x.t))}.npsave`;return new File([JSON.stringify(out)],name,{type:'application/json'})}
 function svDownload(file){const a=document.createElement('a');a.href=URL.createObjectURL(file);a.download=file.name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
 async function svImport(file){if(!file)throw 'Keine Datei gewählt.';if(file.size>1.5e6)throw 'Datei zu groß (max. 1,5 MB).';let o;try{o=JSON.parse(await file.text())}catch(e){throw 'Das ist keine gültige .npsave-Datei.'}
- if(!o||o.format!=='npsave'||!o.data||!validFig(o.data.fig))throw 'Das ist keine gültige Neon-Park-Spielstand-Datei.';
+ if(!o||o.format!=='npsave'||!o.data||!validBase(o.data.fig))throw 'Das ist keine gültige Neon-Park-Spielstand-Datei.';
  const meta={name:cleanName(o.data.fig.name),av:AV[o.meta&&o.meta.av]?o.meta.av:o.data.fig.avatar,world:WORLDS.some(w=>w[0]===(o.meta||{}).world)?o.meta.world:'park',worldTxt:String((o.meta||{}).worldTxt||'').slice(0,60),akt:String((o.meta||{}).akt||'').slice(0,60),abend:Math.max(1,Math.min(999,parseInt((o.meta||{}).abend,10)||1)),note:String((o.meta||{}).note||'').slice(0,300)};
  let add=null;if(typeof o.img==='string'&&/^data:image\/(png|jpeg|webp);base64,/.test(o.img)&&o.img.length<800000){const im=await loadImage(o.img);const d=drawSq(im,256).toDataURL('image/jpeg',0.85);add=[hashStr(d),d]}/* Bild säubern: neu zeichnen */
  const SV=svLoad();const i=SV.slots.findIndex(s=>!s);if(i<0)throw 'Alle 5 Plätze sind belegt – bitte erst einen löschen.';
@@ -1092,14 +1234,25 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
 $('tpMinus').onclick=()=>{S.tp--;renderTp();renderRound()};$('tpPlus').onclick=()=>{S.tp++;renderTp();renderRound()};
 $('funkeBtn').onclick=()=>{openSheet('acts');openSub('fun')};
 $('newEve').onclick=()=>{if(confirm('Neuer Abend: Funke und alle TP zurücksetzen, Effekte löschen?')){S.funke=false;S.tp=maxTp(fig());S.fx=[];const M=svMeta();M.abend=(+M.abend||1)+1;save();refresh();emit(tag()+' 🌙 startet einen neuen Abend (lange Rast): alle TP und der Funke sind zurück.');autoSave()}};
-$('switchFig').onclick=()=>{if(confirm('Neue Figur erstellen? Der aktuelle Stand auf diesem Gerät wird beim Fertigstellen ersetzt.')){closeAll();wizNote='';wizNew()}show()};
+$('switchFig').onclick=()=>{SCR=null;if(confirm('Neue Figur erstellen? Der aktuelle Stand auf diesem Gerät wird beim Fertigstellen ersetzt.')){closeAll();wizNote='';wizNew()}show()};
 $('editNA').onclick=()=>{const f=fig();W={mode:'edit',step:2,base:f.id,name:f.name,av:f.avatar||'',img:IMG,ober:f.ober,unter:f.unter,st:f.st.slice(),set:f.set};wizNote='';show()};
 $('pcGo').onclick=()=>redeem($('pcIn'),$('pcMsg'));$('pcIn').onkeydown=e=>{if(e.key==='Enter')$('pcGo').click()};
 $('pcGo2').onclick=()=>redeem($('pcIn2'),$('pcMsg2'));$('pcIn2').onkeydown=e=>{if(e.key==='Enter')$('pcGo2').click()};
 if(TISCH.status!=='lokal'&&!platzOk())$('pcDet').classList.remove('hide');
-$('introGo').onclick=()=>{snd('step');INTRO=false;if(!fig()&&!W)wizNew();show();window.scrollTo(0,0)};
-document.querySelectorAll('[data-intro]').forEach(b=>b.onclick=()=>{INTRO=true;show()});
-document.querySelectorAll('[data-opening]').forEach(b=>b.onclick=()=>{OPEN=true;OPMODE=null;INTRO=false;snd('step');show()});
+document.querySelectorAll('[data-menu]').forEach(b=>b.onclick=()=>{SCR='menu';W=W&&W.mode==='edit'?null:W;snd('step');show()});
+$('mJoin').onclick=()=>{SCR='join';snd('step');show()};$('mHost').onclick=()=>{SCR='host';snd('step');show()};
+$('mSaves').onclick=()=>openSheet('sv');$('mHelp').onclick=()=>openSheet('help');$('mIntro').onclick=()=>{SCR=null;INTRO=true;snd('step');show()};
+$('mSnd').onclick=()=>{SND.on=!SND.on;sndApply();if(SND.on)snd('step');showMenu()};
+$('jNew').onclick=()=>{if(fig()&&!confirm('Neue Figur erstellen? Der aktuelle Stand auf diesem Gerät wird beim Fertigstellen ersetzt (vorher ggf. 💾 speichern).'))return;SCR=null;wizNote='';wizNew({base:'eigen',step:2});snd('step');show()};
+$('jPre').onclick=()=>{if(fig()&&!confirm('Fertige Figur wählen? Der aktuelle Stand auf diesem Gerät wird beim Fertigstellen ersetzt (vorher ggf. 💾 speichern).'))return;SCR=null;wizNote='';wizNew();snd('step');show()};
+$('jLoad').onclick=()=>openSheet('sv');$('jIntro').onclick=()=>{SCR=null;INTRO=true;snd('step');show()};
+$('hName').oninput=hostSave;$('hWhen').oninput=hostSave;
+$('hInvCp').onclick=async()=>{const ok=await copyText($('hInv').textContent);$('hInvOk').textContent=ok?'✅ Kopiert':'Bitte markieren und kopieren';snd(ok?'copy':'err')};
+$('hCmdCp').onclick=async()=>{const ok=await copyText($('hCmd').textContent);$('hCmdOk').textContent=ok?'✅ Kopiert':'Bitte markieren und kopieren';snd(ok?'copy':'err')};
+$('mySheet').onclick=()=>{snd('tap');emit(charSheet(),'')};
+$('introGo').onclick=()=>{SCR=null;snd('step');INTRO=false;if(!fig()&&!W)wizNew();show();window.scrollTo(0,0)};
+document.querySelectorAll('[data-intro]').forEach(b=>b.onclick=()=>{SCR=null;INTRO=true;show()});
+document.querySelectorAll('[data-opening]').forEach(b=>b.onclick=()=>{SCR=null;OPEN=true;OPMODE=null;INTRO=false;snd('step');show()});
 $('opLang').onclick=()=>pickOpening('lang');$('opKurz').onclick=()=>pickOpening('kurz');$('opSkip').onclick=()=>finishOpening();
 $('opGo').onclick=()=>finishOpening();$('opBack').onclick=()=>{OPMODE=null;snd('tap');showOpening()};
 $('sndTgl').onclick=()=>{SND.on=!SND.on;sndApply();if(SND.on)snd('step')};
@@ -1117,7 +1270,7 @@ $('impClear').onclick=()=>{if(confirm('Spielstand (Gruppe, Reihenfolge) von dies
 async function copyText(t){let ok=false;try{await navigator.clipboard.writeText(t);ok=true}catch(e){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{ok=document.execCommand('copy')}catch(_){}ta.remove()}return ok}
 $('copyBtn').onclick=async()=>{const ok=await copyText($('outTxt').textContent);$('copyOk').textContent=ok?'✅ Kopiert – jetzt im Chat einfügen':'Bitte Text markieren und kopieren'};
 
-(function(){const h=new URLSearchParams(location.hash.slice(1));if(gated()){show();return}if(h.get('fig')){const f=FIGS.find(x=>x.id===h.get('fig'));if(f&&(!S.fig||S.fig.id!==f.id||!validFig(S.fig)))quickFig(f.id,+(h.get('set')||0))}show();
+(function(){const h=new URLSearchParams(location.hash.slice(1));if(h.get('screen'))SCR=h.get('screen')==='spiel'?null:h.get('screen');else if([...h.keys()].length)SCR=null;if(gated()){show();return}if(h.get('fig')){const f=FIGS.find(x=>x.id===h.get('fig'));if(f&&(!S.fig||S.fig.id!==f.id||!validFig(S.fig)))quickFig(f.id,+(h.get('set')||0))}show();
  if(h.get('wiz')){wizNote='';wizNew();pickBase(h.get('wiz'));if(h.get('wname')!==null)W.name=h.get('wname');if(h.get('wav'))W.av=h.get('wav');if(h.get('wober')){W.ober=h.get('wober');W.unter=h.get('wunter')||''}if(h.get('wst'))W.st=h.get('wst').split(',').map(Number);if(h.get('wset'))W.set=+h.get('wset');show();wizGo(+(h.get('step')||1))}
  if(!PUBLIC&&h.get('force'))FORCE=h.get('force').split(',').map(Number).filter(n=>n>=1&&n<=20);if(!PUBLIC&&h.get('ft'))FORCE_T=h.get('ft').split(',').map(Number);if(!PUBLIC&&h.get('cr')){S.cr={n:+h.get('cr')||2,u:0,show:false}}
  if(h.get('fig')&&!h.get('opening')&&S.fig&&S.openDone===false){S.openDone=true;save();show()}
