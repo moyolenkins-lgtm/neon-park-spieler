@@ -250,9 +250,40 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
 .vpanel h3{margin:0 0 6px;color:var(--c)}.vpanel ul{margin:4px 0;padding-left:0;list-style:none}.vpanel li{margin:4px 0;font-size:14.5px;line-height:1.35}
 .dyn{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}.dyn .pips{display:flex;gap:5px}.dyn .pips i{width:20px;height:20px;border-radius:50%;border:2px solid var(--c);display:inline-block}.dyn .pips i.on{background:var(--c);box-shadow:0 0 8px var(--c)}
 .dyn .btn{min-width:44px;min-height:44px}
+
+/* Titelbildschirm & Zum Startmenü */
+.title{position:fixed;inset:0;z-index:60;display:flex;align-items:stretch;justify-content:center;background:#07021a;overflow:hidden;cursor:pointer}
+.title.hide{display:none}
+.tbg{position:absolute;inset:-30px;background:url(img/anzra-titel.webp) center/cover;filter:blur(26px) brightness(.45) saturate(1.2)}
+.tpic{position:relative;height:100%;width:100%;max-width:calc(100vh * 9 / 16);margin:0 auto}
+.tpic img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 12%}
+.tpic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#07021a00 45%,#07021acc 72%,#07021a 100%);pointer-events:none}
+.tbox{position:absolute;left:0;right:0;bottom:0;z-index:1;text-align:center;padding:0 16px calc(28px + env(safe-area-inset-bottom))}
+.tlogo{margin:0;font:900 clamp(52px,16vw,92px)/.95 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.04em;text-transform:uppercase;background:none;-webkit-text-fill-color:initial}
+.tlogo span{display:block}
+.tlogo .n1{color:#ffe1f8;text-shadow:0 0 4px #fff,0 0 12px var(--pink),0 0 26px var(--pink),0 0 48px #b23cff}
+.tlogo .n2{color:#fff6c8;text-shadow:0 0 4px #fff,0 0 12px var(--gold),0 0 26px #ffb800,0 0 48px #b23cff}
+.tsub{margin:10px 0 18px;font-size:clamp(18px,5vw,24px);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#e6d8ff;text-shadow:0 0 10px #a78bfa,0 0 22px #7a3cff}
+.tgo{min-height:60px;min-width:240px;padding:12px 26px;border-radius:999px;border:3px solid var(--gold);background:#1a0c3acc;color:#fff;font-size:21px;font-weight:800;box-shadow:0 0 18px #ff4fd8aa,inset 0 0 12px #ffd34d55;display:inline-flex;align-items:center;justify-content:center;gap:10px}
+.tgo:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.tnote{margin:12px 0 0;font-size:13px;color:#c9bde6}
+.title .n1,.title .n2{animation:tglow 3.2s ease-in-out infinite alternate}.title .n2{animation-delay:.8s}.tgo{animation:tpulse 2.6s ease-in-out infinite}
+@keyframes tglow{0%{opacity:.88;filter:brightness(.95)}100%{opacity:1;filter:brightness(1.12)}}
+@keyframes tpulse{50%{box-shadow:0 0 28px #ff4fd8,inset 0 0 14px #ffd34d88}}
+@media (prefers-reduced-motion: reduce){.title .n1,.title .n2,.tgo{animation:none}}
+.homebtn{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;margin:8px 0 14px;padding:10px 16px;border-radius:18px;border:3px solid var(--cyan);background:linear-gradient(160deg,#3de7ff26,#a78bfa1a);color:#fff;font-weight:800;font-size:19px;text-align:left;box-shadow:0 0 14px #3de7ff55}
+.homebtn>span{font-size:32px;line-height:1;filter:drop-shadow(0 0 8px var(--cyan))}.homebtn small{display:block;font-weight:500;font-size:13px;color:var(--muted)}
+.homebtn:hover{background:linear-gradient(160deg,#3de7ff3a,#a78bfa2a)}.homebtn:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.homebtn.compact{min-height:52px;font-size:17px;margin:4px 0 8px;width:auto}.homebtn.compact>span{font-size:26px}
 </style>
 </head>
 <body data-errors="0">
+<div class="title hide" id="title" role="dialog" aria-modal="true" aria-labelledby="tH" aria-describedby="tSub">
+  <div class="tbg" aria-hidden="true"></div>
+  <div class="tpic"><img src="img/anzra-titel.webp" alt="Anzra mit verschränkten Armen am Neon-Strand von Neon Park" width="1080" height="1920" decoding="async" fetchpriority="high"></div>
+  <div class="tbox"><h1 class="tlogo" id="tH"><span class="n1">Neon</span><span class="n2">Park</span></h1><p class="tsub" id="tSub">Das Rollenspiel</p>
+  <button class="tgo" id="tGo"><span aria-hidden="true">▶️</span>Tippen zum Starten</button><p class="tnote">Test · alles bleibt auf diesem Gerät</p></div>
+</div>
 <div class="banner">TEST · Neon Park · nur Beispieldaten · alles bleibt auf diesem Gerät</div>
 
 
@@ -351,6 +382,7 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
 
 
 <main class="wrap" id="start">
+  <div class="backrow"><button class="homebtn compact" data-home><span aria-hidden="true">🏠</span><b>Zum Startmenü</b></button></div>
   <h1>⚡ Neon Park</h1>
   <div id="wiz"></div>
 </main>
@@ -409,6 +441,7 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
   <p class="tip">Tipp auf eine Aktion. Unten erscheinen die Möglichkeiten. Keine Angst vor Fehlern – Neon hilft dir.</p>
   <div class="acts" id="actGrid"></div>
   <div class="subm hide" id="subm"></div>
+  <button class="homebtn" data-home><span aria-hidden="true">🏠</span><b>Zum Startmenü<small>Spiel beitreten · Spiel erstellen – deine Figur bleibt gespeichert</small></b></button>
  </div>
 </div>
 
@@ -444,6 +477,7 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
 <div class="sheet" id="more" role="dialog" aria-modal="true" aria-labelledby="moreH" style="--c:var(--violet)">
  <div class="box menu">
   <div class="top"><h2 id="moreH">⚙️ Mehr</h2><button class="x" data-close aria-label="Schließen">✕</button></div>
+  <button class="homebtn" data-home><span aria-hidden="true">🏠</span><b>Zum Startmenü<small>Spiel beitreten · Spiel erstellen – deine Figur bleibt gespeichert</small></b></button>
   <button class="btn" style="--c:var(--green)" data-open="sv">💾 Spielstände (Speichern & Laden)</button>
   <button class="btn" style="--c:var(--cyan)" data-open="imp">📥 Spielstand einfügen (Code von Neon)</button>
   <button class="btn" style="--c:var(--pink)" data-intro>🌆 Einleitung ansehen</button>
@@ -463,7 +497,6 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
   <button class="btn" style="--c:var(--cyan)" data-open="avs">📤 Mein Avatar-Bild teilen</button>
   <button class="btn" style="--c:var(--green)" data-open="avr">📥 Avatar von Mitspielern empfangen</button>
   <button class="btn" style="--c:#ffffff55" id="switchFig">👤 Neue Figur erstellen</button>
-  <button class="btn" style="--c:var(--cyan)" data-menu>🏠 Hauptmenü</button>
  </div>
 </div>
 
@@ -1269,6 +1302,15 @@ $('impClip').onclick=async()=>{try{const t=await navigator.clipboard.readText();
 $('impClear').onclick=()=>{if(confirm('Spielstand (Gruppe, Reihenfolge) von diesem Gerät löschen?')){S.G=null;save();refresh();$('impMsg').textContent='Spielstand gelöscht.'}};
 async function copyText(t){let ok=false;try{await navigator.clipboard.writeText(t);ok=true}catch(e){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{ok=document.execCommand('copy')}catch(_){}ta.remove()}return ok}
 $('copyBtn').onclick=async()=>{const ok=await copyText($('outTxt').textContent);$('copyOk').textContent=ok?'✅ Kopiert – jetzt im Chat einfügen':'Bitte Text markieren und kopieren'};
+
+/* ---------- TITELBILDSCHIRM & ZUM STARTMENÜ ---------- */
+function unsavedInput(){if(W&&W.mode==='edit')return true;return [...document.querySelectorAll('.sheet.open input[type=text],.sheet.open textarea')].some(i=>i.value.trim()!=='')}
+function goHome(){if(unsavedInput()&&!confirm('Zum Startmenü? Nicht übernommene Eingaben gehen verloren.\nDeine Figur und Spielstände bleiben auf diesem Gerät gespeichert.'))return;SCR='menu';W=W&&W.mode==='edit'?null:W;closeAll();snd('step');show()}
+document.querySelectorAll('[data-home]').forEach(b=>b.onclick=goHome);
+(function(){const t=$('title');let seen=false;try{seen=sessionStorage.getItem('neonpark-title')==='1'}catch(e){}if(seen||location.hash.length>1)return;
+ const others=[...document.body.children].filter(e=>e!==t&&e.tagName!=='SCRIPT');others.forEach(e=>e.inert=true);t.classList.remove('hide');document.body.dataset.title='on';
+ const go=()=>{if(t.classList.contains('hide'))return;try{sessionStorage.setItem('neonpark-title','1')}catch(e){}t.classList.add('hide');others.forEach(e=>e.inert=false);delete document.body.dataset.title;snd('step');const h=document.querySelector('main:not(.hide) h1');if(h){h.tabIndex=-1;h.focus({preventScroll:true})}};
+ t.onclick=go;t.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}});setTimeout(()=>$('tGo').focus({preventScroll:true}),50)})();
 
 (function(){const h=new URLSearchParams(location.hash.slice(1));if(h.get('screen'))SCR=h.get('screen')==='spiel'?null:h.get('screen');else if([...h.keys()].length)SCR=null;if(gated()){show();return}if(h.get('fig')){const f=FIGS.find(x=>x.id===h.get('fig'));if(f&&(!S.fig||S.fig.id!==f.id||!validFig(S.fig)))quickFig(f.id,+(h.get('set')||0))}show();
  if(h.get('wiz')){wizNote='';wizNew();pickBase(h.get('wiz'));if(h.get('wname')!==null)W.name=h.get('wname');if(h.get('wav'))W.av=h.get('wav');if(h.get('wober')){W.ober=h.get('wober');W.unter=h.get('wunter')||''}if(h.get('wst'))W.st=h.get('wst').split(',').map(Number);if(h.get('wset'))W.set=+h.get('wset');show();wizGo(+(h.get('step')||1))}
