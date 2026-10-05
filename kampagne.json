@@ -6,267 +6,1060 @@
  "kurz": "Der große Funkenbrunnen der Neon Plaza ist verstummt – mitten im Laternenfest. Eine kleine Heldengruppe folgt der Glitzerspur durch Schrottgassen, Haine und über die Lichterbrücke.",
  "dauer": "ca. 45–90 Minuten",
  "start": "plaza",
- "erzaehler": {"n": "Neon Omina", "e": "🔮"},
+ "erzaehler": {
+  "n": "Neon Omina",
+  "e": "🔮"
+ },
  "begruessung": [
   "🔮 *Ein Summen wie von tausend Neonröhren.* Willkommen, ihr Lieben. Ich bin Neon Omina – heute erzähle ich direkt aus diesem Gerät, ganz ohne Chat. Lehnt euch zurück: Neon Park leuchtet für euch."
  ],
  "regeln": "W20 + Wert-Modifikator gegen den Schwierigkeitswert (SW). Erreicht oder übertroffen = ✅ Erfolg. Bis zu 4 darunter = ◐ Teilerfolg (es klappt, aber mit Haken). Darunter = ✖ Fehlschlag (eine neue Wendung). Nat 20 = immer Erfolg mit Extra, Nat 1 = lustiges Missgeschick.",
  "szenen": [
   {
-   "id": "plaza", "t": "Das Fest ohne Funken", "ort": "Neon Plaza", "oe": "🎡",
+   "id": "plaza",
+   "t": "Das Fest ohne Funken",
+   "ort": "Neon Plaza",
+   "oe": "🎡",
    "intro": [
     "Die Neon Plaza ist voller Laternen, Zuckerwatte in Leuchtfarben und Musik aus schwebenden Lautsprechern. Doch mitten auf dem Platz steht der große Funkenbrunnen – still. Kein Sprühen, kein Glitzern. Nur ein leises, trauriges Knistern. Um euch herum tuscheln die Festgäste.",
     "Heute ist Laternenfest, und eigentlich sollte der Funkenbrunnen um Mitternacht einen Regenbogen aus Licht in den Himmel schießen. Stattdessen: Stille. Am Brunnenrand glitzert eine feine Spur aus Funkenstaub, die in Richtung der Schrottgassen führt."
    ],
-   "goal": {"id": "g_brunnen", "t": "Herausfinden, warum der Funkenbrunnen schweigt"},
-   "need": 3, "next": "gasse", "enc": 0.2,
-   "exit": ["Die Hinweise passen zusammen: Jemand hat die Funken aus dem Brunnen *abgezapft* – vorsichtig, fast liebevoll. Die Glitzerspur führt eindeutig in die Schrottgassen der Goblins. Die Festgäste jubeln euch Mut zu, als ihr aufbrecht."],
+   "goal": {
+    "id": "g_brunnen",
+    "t": "Herausfinden, warum der Funkenbrunnen schweigt"
+   },
+   "need": 3,
+   "next": "gasse",
+   "enc": 0.2,
+   "exit": [
+    "Die Hinweise passen zusammen: Jemand hat die Funken aus dem Brunnen *abgezapft* – vorsichtig, fast liebevoll. Die Glitzerspur führt eindeutig in die Schrottgassen der Goblins. Die Festgäste jubeln euch Mut zu, als ihr aufbrecht."
+   ],
    "opts": [
-    {"id": "brunnen", "e": "⚙️", "l": "Brunnen untersuchen", "a": "INT", "sw": 12, "tag": "technik",
-     "ok": ["{n} öffnet eine kleine Wartungsklappe und findet saubere Schnittspuren an der Funkenleitung. Kein Unfall – hier hat jemand mit sehr kleinen, sehr geschickten Händen gearbeitet."],
-     "part": ["{n} findet die Wartungsklappe, aber ein Funkenschlag zwickt in die Finger. Immerhin: Die Leitung wurde absichtlich angezapft."],
-     "fail": ["Die Klappe klemmt. {n} zieht – und plötzlich spritzt ein Schwall kalter Glitzerstaub ins Gesicht. Hübsch, aber nicht hilfreich."],
-     "partFx": {"hp": -1}},
-    {"id": "gaeste", "e": "🗣️", "l": "Festgäste befragen", "a": "CHA", "sw": 11, "tag": "sozial",
-     "ok": ["Eine alte Zuckerwatte-Verkäuferin erinnert sich: „Ein kleines Licht ist kurz vor Sonnenuntergang über den Platz gehuscht – wie ein Glühwürmchen mit Rucksack!“ Sie schenkt {n} zum Dank eine Leuchtbrezel."],
-     "part": ["Die Gäste reden alle durcheinander. {n} schnappt auf: etwas Kleines, Leuchtendes, Richtung Schrottgassen. Mehr nicht."],
-     "fail": ["Ein Festgast hält {n} für den Ansager und will unbedingt einen Liedwunsch loswerden. Das dauert."],
-     "okFx": {"item": ["🥨", "Leuchtbrezel"]}},
-    {"id": "spur", "e": "✨", "l": "Glitzerspur lesen", "a": "WEI", "sw": 12, "tag": "natur",
-     "ok": ["{n} kniet sich hin. Die Glitzerspur ist frisch und hüpft in kleinen Sprüngen – wer auch immer das war, ist leicht wie eine Feder und hat es eilig."],
-     "part": ["Die Spur ist zertrampelt, aber {n} erkennt die Richtung: Schrottgassen."],
-     "fail": ["{n} folgt der Spur zielsicher – direkt zu einem Glitzer-Bonbonstand. Lecker, aber falsch."]},
-    {"id": "buehne", "e": "🧗", "l": "Auf die Bühne klettern und Überblick verschaffen", "a": "GES", "sw": 11, "tag": "mut",
-     "ok": ["Von der Bühne aus sieht {n} es deutlich: Eine Linie aus erloschenen Laternen zieht sich vom Brunnen bis in die Gassen – als hätte jemand unterwegs Licht genascht."],
-     "part": ["{n} kommt hoch, wackelt aber bedenklich. Ein kurzer Blick reicht: Die Laternen Richtung Gassen sind dunkel."],
-     "fail": ["{n} landet beim Klettern mitten im Konfetti-Kanonen-Kasten. *Puff.* Die Plaza applaudiert begeistert."],
-     "failFx": {"hp": -1}}
+    {
+     "id": "brunnen",
+     "e": "⚙️",
+     "l": "Brunnen untersuchen",
+     "a": "INT",
+     "sw": 12,
+     "tag": "technik",
+     "ok": [
+      "{n} öffnet eine kleine Wartungsklappe und findet saubere Schnittspuren an der Funkenleitung. Kein Unfall – hier hat jemand mit sehr kleinen, sehr geschickten Händen gearbeitet."
+     ],
+     "part": [
+      "{n} findet die Wartungsklappe, aber ein Funkenschlag zwickt in die Finger. Immerhin: Die Leitung wurde absichtlich angezapft."
+     ],
+     "fail": [
+      "Die Klappe klemmt. {n} zieht – und plötzlich spritzt ein Schwall kalter Glitzerstaub ins Gesicht. Hübsch, aber nicht hilfreich."
+     ],
+     "partFx": {
+      "hp": -1
+     }
+    },
+    {
+     "id": "gaeste",
+     "e": "🗣️",
+     "l": "Festgäste befragen",
+     "a": "CHA",
+     "sw": 11,
+     "tag": "sozial",
+     "ok": [
+      "Eine alte Zuckerwatte-Verkäuferin erinnert sich: „Ein kleines Licht ist kurz vor Sonnenuntergang über den Platz gehuscht – wie ein Glühwürmchen mit Rucksack!“ Sie schenkt {n} zum Dank eine Leuchtbrezel."
+     ],
+     "part": [
+      "Die Gäste reden alle durcheinander. {n} schnappt auf: etwas Kleines, Leuchtendes, Richtung Schrottgassen. Mehr nicht."
+     ],
+     "fail": [
+      "Ein Festgast hält {n} für den Ansager und will unbedingt einen Liedwunsch loswerden. Das dauert."
+     ],
+     "okFx": {
+      "item": [
+       "🥨",
+       "Leuchtbrezel"
+      ]
+     }
+    },
+    {
+     "id": "spur",
+     "e": "✨",
+     "l": "Glitzerspur lesen",
+     "a": "WEI",
+     "sw": 12,
+     "tag": "natur",
+     "ok": [
+      "{n} kniet sich hin. Die Glitzerspur ist frisch und hüpft in kleinen Sprüngen – wer auch immer das war, ist leicht wie eine Feder und hat es eilig."
+     ],
+     "part": [
+      "Die Spur ist zertrampelt, aber {n} erkennt die Richtung: Schrottgassen."
+     ],
+     "fail": [
+      "{n} folgt der Spur zielsicher – direkt zu einem Glitzer-Bonbonstand. Lecker, aber falsch."
+     ]
+    },
+    {
+     "id": "buehne",
+     "e": "🧗",
+     "l": "Auf die Bühne klettern und Überblick verschaffen",
+     "a": "GES",
+     "sw": 11,
+     "tag": "mut",
+     "ok": [
+      "Von der Bühne aus sieht {n} es deutlich: Eine Linie aus erloschenen Laternen zieht sich vom Brunnen bis in die Gassen – als hätte jemand unterwegs Licht genascht."
+     ],
+     "part": [
+      "{n} kommt hoch, wackelt aber bedenklich. Ein kurzer Blick reicht: Die Laternen Richtung Gassen sind dunkel."
+     ],
+     "fail": [
+      "{n} landet beim Klettern mitten im Konfetti-Kanonen-Kasten. *Puff.* Die Plaza applaudiert begeistert."
+     ],
+     "failFx": {
+      "hp": -1
+     }
+    }
    ]
   },
   {
-   "id": "gasse", "t": "Kabelsalat in den Schrottgassen", "ort": "Schrottgassen", "oe": "🔧",
+   "id": "gasse",
+   "t": "Kabelsalat in den Schrottgassen",
+   "ort": "Schrottgassen",
+   "oe": "🔧",
    "intro": [
     "Die Schrottgassen summen. Kabel hängen wie Lianen zwischen Wellblechdächern, Goblin-Werkstätten blinken in allen Farben, und irgendwo zischt eine Kaffeemaschine, die eindeutig zu viel Macht hat. Die Glitzerspur verliert sich in einem riesigen Kabelknäuel."
    ],
-   "goal": {"id": "g_spur", "t": "Der Glitzerspur durch die Schrottgassen folgen"},
-   "need": 3, "next": "hain", "enc": 0.3,
-   "exit": ["Am Ende der Gassen liegt ein angekokelter Mini-Rucksack – gefüllt mit Funkenresten und einem gepressten Blatt aus dem Laternenhain. Der Dieb wollte offenbar dorthin. Die Goblins winken euch fröhlich hinterher."],
+   "goal": {
+    "id": "g_spur",
+    "t": "Der Glitzerspur durch die Schrottgassen folgen"
+   },
+   "need": 3,
+   "next": "hain",
+   "enc": 0.3,
+   "exit": [
+    "Am Ende der Gassen liegt ein angekokelter Mini-Rucksack – gefüllt mit Funkenresten und einem gepressten Blatt aus dem Laternenhain. Der Dieb wollte offenbar dorthin. Die Goblins winken euch fröhlich hinterher."
+   ],
    "opts": [
-    {"id": "kabel", "e": "🔌", "l": "Kabelknäuel entwirren und Licht machen", "a": "INT", "sw": 12, "tag": "technik",
-     "ok": ["Mit ein paar geschickten Handgriffen bringt {n} die Gassenbeleuchtung zurück. Im neuen Licht leuchtet die Glitzerspur wieder klar auf!"],
-     "part": ["Das Licht geht an – flackernd, mit einem kleinen Stromschlag als Dankeschön. Die Spur ist wieder sichtbar."],
-     "fail": ["Alle Lichter der Gasse gehen gleichzeitig aus. Aus einer Werkstatt ruft jemand: „Das warst DU, oder?“"],
-     "partFx": {"hp": -1}},
-    {"id": "haendlerin", "e": "🛒", "l": "Mit der Goblin-Händlerin Zibbel verhandeln", "a": "CHA", "sw": 12, "tag": "sozial",
-     "ok": ["Zibbel grinst mit allen Zähnen. „Freundlich gefragt, gern gesagt!“ Sie zeigt euch den Weg und schenkt {n} eine kleine Tropfenglocke – „läutet, wenn's ruhig werden soll“."],
-     "part": ["Zibbel verlangt erst ein Kompliment für ihre Schrauben-Sammlung. {n} liefert. Sie deutet grob Richtung Osten."],
-     "fail": ["Zibbel versteht „Funken“ als „Funkenbrötchen“ und verkauft {n} eins. Es ist leider aus Kupfer."],
-     "okFx": {"item": ["🔔", "Tropfenglocke"]}},
-    {"id": "daecher", "e": "🏃", "l": "Über die Wellblechdächer abkürzen", "a": "GES", "sw": 13, "tag": "mut",
-     "ok": ["{n} springt von Dach zu Dach wie in einem Neon-Videospiel und entdeckt oben die Glitzerspur, die unten niemand gesehen hätte."],
-     "part": ["{n} kommt durch – mit einem kleinen Ausrutscher und einer Beule. Aber die Spur ist gefunden."],
-     "fail": ["Ein Dach war eigentlich ein sehr großes Trampolin eines Goblin-Kindes. {n} fliegt eine Ehrenrunde."],
-     "partFx": {"hp": -1}, "failFx": {"hp": -1}},
-    {"id": "riechen", "e": "👃", "l": "Den Ozon-Duft der Funken erspüren", "a": "WEI", "sw": 12, "tag": "natur",
-     "ok": ["Zwischen Öl und Kaffeeduft riecht {n} es: frisches Gewitter. Die Funken waren hier – vor nicht mal einer Stunde."],
-     "part": ["{n} schnuppert sich durch. Viel Öl, viel Kaffee, aber irgendwo auch Ozon. Weiter Richtung Osten!"],
-     "fail": ["{n} riecht vor allem die übermächtige Kaffeemaschine und bekommt spontan sehr viel Energie, aber keine Spur."]}
+    {
+     "id": "kabel",
+     "e": "🔌",
+     "l": "Kabelknäuel entwirren und Licht machen",
+     "a": "INT",
+     "sw": 12,
+     "tag": "technik",
+     "ok": [
+      "Mit ein paar geschickten Handgriffen bringt {n} die Gassenbeleuchtung zurück. Im neuen Licht leuchtet die Glitzerspur wieder klar auf!"
+     ],
+     "part": [
+      "Das Licht geht an – flackernd, mit einem kleinen Stromschlag als Dankeschön. Die Spur ist wieder sichtbar."
+     ],
+     "fail": [
+      "Alle Lichter der Gasse gehen gleichzeitig aus. Aus einer Werkstatt ruft jemand: „Das warst DU, oder?“"
+     ],
+     "partFx": {
+      "hp": -1
+     }
+    },
+    {
+     "id": "haendlerin",
+     "e": "🛒",
+     "l": "Mit der Goblin-Händlerin Zibbel verhandeln",
+     "a": "CHA",
+     "sw": 12,
+     "tag": "sozial",
+     "ok": [
+      "Zibbel grinst mit allen Zähnen. „Freundlich gefragt, gern gesagt!“ Sie zeigt euch den Weg und schenkt {n} eine kleine Tropfenglocke – „läutet, wenn's ruhig werden soll“."
+     ],
+     "part": [
+      "Zibbel verlangt erst ein Kompliment für ihre Schrauben-Sammlung. {n} liefert. Sie deutet grob Richtung Osten."
+     ],
+     "fail": [
+      "Zibbel versteht „Funken“ als „Funkenbrötchen“ und verkauft {n} eins. Es ist leider aus Kupfer."
+     ],
+     "okFx": {
+      "item": [
+       "🔔",
+       "Tropfenglocke"
+      ]
+     }
+    },
+    {
+     "id": "daecher",
+     "e": "🏃",
+     "l": "Über die Wellblechdächer abkürzen",
+     "a": "GES",
+     "sw": 13,
+     "tag": "mut",
+     "ok": [
+      "{n} springt von Dach zu Dach wie in einem Neon-Videospiel und entdeckt oben die Glitzerspur, die unten niemand gesehen hätte."
+     ],
+     "part": [
+      "{n} kommt durch – mit einem kleinen Ausrutscher und einer Beule. Aber die Spur ist gefunden."
+     ],
+     "fail": [
+      "Ein Dach war eigentlich ein sehr großes Trampolin eines Goblin-Kindes. {n} fliegt eine Ehrenrunde."
+     ],
+     "partFx": {
+      "hp": -1
+     },
+     "failFx": {
+      "hp": -1
+     }
+    },
+    {
+     "id": "riechen",
+     "e": "👃",
+     "l": "Den Ozon-Duft der Funken erspüren",
+     "a": "WEI",
+     "sw": 12,
+     "tag": "natur",
+     "ok": [
+      "Zwischen Öl und Kaffeeduft riecht {n} es: frisches Gewitter. Die Funken waren hier – vor nicht mal einer Stunde."
+     ],
+     "part": [
+      "{n} schnuppert sich durch. Viel Öl, viel Kaffee, aber irgendwo auch Ozon. Weiter Richtung Osten!"
+     ],
+     "fail": [
+      "{n} riecht vor allem die übermächtige Kaffeemaschine und bekommt spontan sehr viel Energie, aber keine Spur."
+     ]
+    }
    ]
   },
   {
-   "id": "hain", "t": "Der flüsternde Laternenhain", "ort": "Laternenhain", "oe": "🌳",
+   "id": "hain",
+   "t": "Der flüsternde Laternenhain",
+   "ort": "Laternenhain",
+   "oe": "🌳",
    "intro": [
     "Der Laternenhain ist normalerweise ein Ort voller sanftem Licht: Bäume mit Laternenfrüchten, moosige Wege, Glühpilze. Heute hängen die Laternenfrüchte dunkel und schlaff. Die Bäume flüstern unruhig – sie haben Angst vor der Dunkelheit."
    ],
-   "goal": {"id": "g_hain", "t": "Den Laternenhain beruhigen und erfahren, wohin der Dieb ging"},
-   "need": 3, "next": "bruecke", "enc": 0.25,
-   "exit": ["Die alte Laternenweide raschelt: „Ein kleiner Funkengeist war hier. Er hatte solche Angst vor der Nacht, dass er unser Licht mitnahm. Er flog zur Lichterbrücke.“ Ein Leuchtsetzling schmiegt sich an eure Hände – ein Geschenk des Hains."],
-   "exitFx": {"itemAll": ["🌱", "Leuchtsetzling"]},
+   "goal": {
+    "id": "g_hain",
+    "t": "Den Laternenhain beruhigen und erfahren, wohin der Dieb ging"
+   },
+   "need": 3,
+   "next": "bruecke",
+   "enc": 0.25,
+   "exit": [
+    "Die alte Laternenweide raschelt: „Ein kleiner Funkengeist war hier. Er hatte solche Angst vor der Nacht, dass er unser Licht mitnahm. Er flog zur Lichterbrücke.“ Ein Leuchtsetzling schmiegt sich an eure Hände – ein Geschenk des Hains."
+   ],
+   "exitFx": {
+    "itemAll": [
+     "🌱",
+     "Leuchtsetzling"
+    ]
+   },
    "opts": [
-    {"id": "zuhoeren", "e": "🌿", "l": "Den Bäumen zuhören", "a": "WEI", "sw": 12, "tag": "natur",
-     "ok": ["{n} legt die Hand an die Rinde der alten Laternenweide. Ein warmes Summen: Die Bäume erinnern sich an ein ängstliches, kleines Licht."],
-     "part": ["Die Bäume flüstern durcheinander. {n} versteht nur: „klein … ängstlich … hell“."],
-     "fail": ["{n} lauscht konzentriert – und hört nur ein Eichhörnchen, das über Nussverträge schimpft."]},
-    {"id": "lied", "e": "🎵", "l": "Ein beruhigendes Lied anstimmen", "a": "CHA", "sw": 11, "tag": "musik",
-     "ok": ["{n} singt leise, und eine Laternenfrucht nach der anderen glimmt wieder auf. Der ganze Hain atmet aus. Alle fühlen sich gestärkt (Rückenwind für die nächste Probe)."],
-     "part": ["Das Lied wackelt etwas, aber es wirkt: Ein paar Laternen glimmen auf."],
-     "fail": ["{n} trifft den Ton nicht ganz. Ein Glühpilz verzieht empört das Gesicht. Haben Pilze Gesichter?"],
-     "okFx": {"wind": "all"}},
-    {"id": "wasser", "e": "💧", "l": "Das Wurzelwasser zu den Bäumen umleiten", "a": "STÄ", "sw": 12, "tag": "schutz",
-     "ok": ["{n} wuchtet einen umgestürzten Ast beiseite, und das Leuchtwasser fließt wieder zu den Wurzeln. Die Bäume seufzen dankbar."],
-     "part": ["Der Ast bewegt sich, aber erst nach einer Zerrung. Das Wasser fließt wieder."],
-     "fail": ["Der Ast bewegt sich nicht. Dafür bewegt sich {n} – rückwärts in eine Pfütze."],
-     "partFx": {"hp": -1}},
-    {"id": "pilze", "e": "🍄", "l": "Die Glühpilze analysieren", "a": "INT", "sw": 13, "tag": "analyse",
-     "ok": ["{n} erkennt: Die Pilze leuchten in einem Rhythmus – ein Muster, das von der Lichterbrücke zurückgeworfen wird. Dort muss der Dieb sein!"],
-     "part": ["Die Pilze blinken in einem Muster. {n} ist nicht ganz sicher, aber es zeigt Richtung Fluss."],
-     "fail": ["{n} notiert sorgfältig 47 Blinkmuster. Keines davon ergibt Sinn. Eines ist vielleicht ein Witz."]}
+    {
+     "id": "zuhoeren",
+     "e": "🌿",
+     "l": "Den Bäumen zuhören",
+     "a": "WEI",
+     "sw": 12,
+     "tag": "natur",
+     "ok": [
+      "{n} legt die Hand an die Rinde der alten Laternenweide. Ein warmes Summen: Die Bäume erinnern sich an ein ängstliches, kleines Licht."
+     ],
+     "part": [
+      "Die Bäume flüstern durcheinander. {n} versteht nur: „klein … ängstlich … hell“."
+     ],
+     "fail": [
+      "{n} lauscht konzentriert – und hört nur ein Eichhörnchen, das über Nussverträge schimpft."
+     ]
+    },
+    {
+     "id": "lied",
+     "e": "🎵",
+     "l": "Ein beruhigendes Lied anstimmen",
+     "a": "CHA",
+     "sw": 11,
+     "tag": "musik",
+     "ok": [
+      "{n} singt leise, und eine Laternenfrucht nach der anderen glimmt wieder auf. Der ganze Hain atmet aus. Alle fühlen sich gestärkt (Rückenwind für die nächste Probe)."
+     ],
+     "part": [
+      "Das Lied wackelt etwas, aber es wirkt: Ein paar Laternen glimmen auf."
+     ],
+     "fail": [
+      "{n} trifft den Ton nicht ganz. Ein Glühpilz verzieht empört das Gesicht. Haben Pilze Gesichter?"
+     ],
+     "okFx": {
+      "wind": "all"
+     }
+    },
+    {
+     "id": "wasser",
+     "e": "💧",
+     "l": "Das Wurzelwasser zu den Bäumen umleiten",
+     "a": "STÄ",
+     "sw": 12,
+     "tag": "schutz",
+     "ok": [
+      "{n} wuchtet einen umgestürzten Ast beiseite, und das Leuchtwasser fließt wieder zu den Wurzeln. Die Bäume seufzen dankbar."
+     ],
+     "part": [
+      "Der Ast bewegt sich, aber erst nach einer Zerrung. Das Wasser fließt wieder."
+     ],
+     "fail": [
+      "Der Ast bewegt sich nicht. Dafür bewegt sich {n} – rückwärts in eine Pfütze."
+     ],
+     "partFx": {
+      "hp": -1
+     }
+    },
+    {
+     "id": "pilze",
+     "e": "🍄",
+     "l": "Die Glühpilze analysieren",
+     "a": "INT",
+     "sw": 13,
+     "tag": "analyse",
+     "ok": [
+      "{n} erkennt: Die Pilze leuchten in einem Rhythmus – ein Muster, das von der Lichterbrücke zurückgeworfen wird. Dort muss der Dieb sein!"
+     ],
+     "part": [
+      "Die Pilze blinken in einem Muster. {n} ist nicht ganz sicher, aber es zeigt Richtung Fluss."
+     ],
+     "fail": [
+      "{n} notiert sorgfältig 47 Blinkmuster. Keines davon ergibt Sinn. Eines ist vielleicht ein Witz."
+     ]
+    }
    ]
   },
   {
-   "id": "bruecke", "t": "Sirrah auf der Lichterbrücke", "ort": "Lichterbrücke", "oe": "🌉",
+   "id": "bruecke",
+   "t": "Sirrah auf der Lichterbrücke",
+   "ort": "Lichterbrücke",
+   "oe": "🌉",
    "intro": [
     "Die Lichterbrücke spannt sich in Regenbogenbögen über den Neonfluss. Auf dem höchsten Bogen liegt Sirrah, die Brückendrachin – schuppig, gewaltig und gerade sehr, sehr schlecht gelaunt. „Wer stiehlt die Funken MEINER Brücke?“, grollt sie, und ihr Atem färbt die Luft violett."
    ],
-   "goal": {"id": "g_sirrah", "t": "Sirrah beruhigen und über die Brücke gelangen"},
-   "need": 3, "next": "turm", "enc": 0.15,
-   "exit": ["Sirrah legt den Kopf schief und lacht ein grollendes Drachenlachen. „Ihr seid keine Diebe. Ihr seid Funkensucher. Der Kleine ist in den Funkenwerk-Turm geflogen. Seid freundlich zu ihm – er ist noch ein Kind.“ Sie schenkt euch eine Leuchtthermoskanne mit warmem Drachentee."],
-   "exitFx": {"itemFirst": ["☕", "Leuchtthermoskanne"]},
+   "goal": {
+    "id": "g_sirrah",
+    "t": "Sirrah beruhigen und über die Brücke gelangen"
+   },
+   "need": 3,
+   "next": "turm",
+   "enc": 0.15,
+   "exit": [
+    "Sirrah legt den Kopf schief und lacht ein grollendes Drachenlachen. „Ihr seid keine Diebe. Ihr seid Funkensucher. Der Kleine ist in den Funkenwerk-Turm geflogen. Seid freundlich zu ihm – er ist noch ein Kind.“ Sie schenkt euch eine Leuchtthermoskanne mit warmem Drachentee."
+   ],
+   "exitFx": {
+    "itemFirst": [
+     "☕",
+     "Leuchtthermoskanne"
+    ]
+   },
    "opts": [
-    {"id": "beruhigen", "e": "🕊️", "l": "Sirrah freundlich beruhigen", "a": "CHA", "sw": 13, "tag": "sozial",
-     "ok": ["{n} spricht ruhig und ehrlich. Sirrahs Schuppen glühen von Violett zu einem weichen Gold. „Hm. Ihr wollt helfen?“"],
-     "part": ["Sirrah hört zu, schnaubt aber noch einmal heißen Dampf. {n} bekommt leicht angesengte Augenbrauen."],
-     "fail": ["{n} nennt Sirrah versehentlich „kleine Eidechse“. Ein Moment sehr unangenehmer Stille."],
-     "partFx": {"hp": -1}, "failFx": {"hp": -2}},
-    {"id": "standhalten", "e": "🛡️", "l": "Standhaft bleiben und die Gruppe schützen", "a": "KON", "sw": 12, "tag": "schutz",
-     "ok": ["Sirrah faucht einen Funkenschwall – und {n} steht einfach da, Arme ausgebreitet vor der Gruppe. Die Drachin ist beeindruckt."],
-     "part": ["{n} hält stand, wenn auch mit wackeligen Knien und rußigem Gesicht."],
-     "fail": ["{n} hält stand … bis der Funkenschwall kitzelt. Hysterisches Lachen ist keine Verteidigung."],
-     "partFx": {"hp": -1}, "failFx": {"hp": -2}},
-    {"id": "raetsel", "e": "🧩", "l": "Das Brückenrätsel an den Pfeilern lösen", "a": "INT", "sw": 13, "tag": "analyse",
-     "ok": ["Auf den Pfeilern steht: „Was wird größer, je mehr man teilt?“ – {n} antwortet: „Licht. Und Freude.“ Die Brücke leuchtet auf, und Sirrah hebt überrascht den Kopf."],
-     "part": ["{n} braucht drei Anläufe, aber die Antwort stimmt am Ende: Licht."],
-     "fail": ["{n} rät „Schulden“. Die Brücke summt missbilligend."]},
-    {"id": "staub", "e": "✨", "l": "Die fliegenden Funkenreste einfangen", "a": "GES", "sw": 12, "tag": "mut",
-     "ok": ["{n} fängt die umhertanzenden Funken behutsam in den Händen und bringt sie Sirrah zurück. Die Drachin blinzelt gerührt."],
-     "part": ["{n} erwischt ein paar Funken – und ein paar Funken erwischen {n}."],
-     "fail": ["{n} hechtet nach den Funken und landet in Sirrahs Schwanzspitze. Sie ist kitzlig."],
-     "partFx": {"hp": -1}}
+    {
+     "id": "beruhigen",
+     "e": "🕊️",
+     "l": "Sirrah freundlich beruhigen",
+     "a": "CHA",
+     "sw": 13,
+     "tag": "sozial",
+     "ok": [
+      "{n} spricht ruhig und ehrlich. Sirrahs Schuppen glühen von Violett zu einem weichen Gold. „Hm. Ihr wollt helfen?“"
+     ],
+     "part": [
+      "Sirrah hört zu, schnaubt aber noch einmal heißen Dampf. {n} bekommt leicht angesengte Augenbrauen."
+     ],
+     "fail": [
+      "{n} nennt Sirrah versehentlich „kleine Eidechse“. Ein Moment sehr unangenehmer Stille."
+     ],
+     "partFx": {
+      "hp": -1
+     },
+     "failFx": {
+      "hp": -2
+     }
+    },
+    {
+     "id": "standhalten",
+     "e": "🛡️",
+     "l": "Standhaft bleiben und die Gruppe schützen",
+     "a": "KON",
+     "sw": 12,
+     "tag": "schutz",
+     "ok": [
+      "Sirrah faucht einen Funkenschwall – und {n} steht einfach da, Arme ausgebreitet vor der Gruppe. Die Drachin ist beeindruckt."
+     ],
+     "part": [
+      "{n} hält stand, wenn auch mit wackeligen Knien und rußigem Gesicht."
+     ],
+     "fail": [
+      "{n} hält stand … bis der Funkenschwall kitzelt. Hysterisches Lachen ist keine Verteidigung."
+     ],
+     "partFx": {
+      "hp": -1
+     },
+     "failFx": {
+      "hp": -2
+     }
+    },
+    {
+     "id": "raetsel",
+     "e": "🧩",
+     "l": "Das Brückenrätsel an den Pfeilern lösen",
+     "a": "INT",
+     "sw": 13,
+     "tag": "analyse",
+     "ok": [
+      "Auf den Pfeilern steht: „Was wird größer, je mehr man teilt?“ – {n} antwortet: „Licht. Und Freude.“ Die Brücke leuchtet auf, und Sirrah hebt überrascht den Kopf."
+     ],
+     "part": [
+      "{n} braucht drei Anläufe, aber die Antwort stimmt am Ende: Licht."
+     ],
+     "fail": [
+      "{n} rät „Schulden“. Die Brücke summt missbilligend."
+     ]
+    },
+    {
+     "id": "staub",
+     "e": "✨",
+     "l": "Die fliegenden Funkenreste einfangen",
+     "a": "GES",
+     "sw": 12,
+     "tag": "mut",
+     "ok": [
+      "{n} fängt die umhertanzenden Funken behutsam in den Händen und bringt sie Sirrah zurück. Die Drachin blinzelt gerührt."
+     ],
+     "part": [
+      "{n} erwischt ein paar Funken – und ein paar Funken erwischen {n}."
+     ],
+     "fail": [
+      "{n} hechtet nach den Funken und landet in Sirrahs Schwanzspitze. Sie ist kitzlig."
+     ],
+     "partFx": {
+      "hp": -1
+     }
+    }
    ]
   },
   {
-   "id": "turm", "t": "Der Rostwächter im Funkenwerk", "ort": "Funkenwerk-Turm", "oe": "🗼",
+   "id": "turm",
+   "t": "Der Rostwächter im Funkenwerk",
+   "ort": "Funkenwerk-Turm",
+   "oe": "🗼",
    "intro": [
     "Der alte Funkenwerk-Turm ragt schief in den Himmel. Drinnen: Zahnräder, Messingrohre, und ganz oben ein zitterndes, warmes Licht. Doch vor der Treppe stampft der Rostwächter – ein uralter Wartungsroboter, der jeden Eindringling „zur Inspektion“ festhalten will. Seine Augen blinken rot."
    ],
-   "goal": {"id": "g_turm", "t": "Am Rostwächter vorbei zum Funkendieb gelangen"},
-   "need": 3, "next": "glimm", "enc": 0,
-   "enemy": {"n": "Rostwächter", "e": "🤖", "hp": 14},
-   "exit": ["Der Rostwächter piept, dreht sich zweimal im Kreis und setzt sich dann zufrieden hin. „Inspektion … bestanden.“ Die Treppe nach oben ist frei."],
+   "goal": {
+    "id": "g_turm",
+    "t": "Am Rostwächter vorbei zum Funkendieb gelangen"
+   },
+   "need": 3,
+   "next": "glimm",
+   "enc": 0,
+   "enemy": {
+    "n": "Rostwächter",
+    "e": "🤖",
+    "hp": 14
+   },
+   "exit": [
+    "Der Rostwächter piept, dreht sich zweimal im Kreis und setzt sich dann zufrieden hin. „Inspektion … bestanden.“ Die Treppe nach oben ist frei."
+   ],
    "opts": [
-    {"id": "angriff", "e": "⚔️", "l": "Den Rostwächter ausbremsen (Angriff)", "a": "STÄ", "sw": 12, "tag": "kampf", "dmg": 6,
-     "ok": ["{n} trifft die rostige Kniekehle des Wächters. Es scheppert gewaltig, Funken sprühen!"],
-     "part": ["{n} trifft, kassiert aber einen Stups vom Greifarm."],
-     "fail": ["Der Rostwächter weicht mit überraschender Eleganz aus und stempelt {n} „ZUR INSPEKTION“ auf die Stirn."],
-     "partFx": {"hp": -1}, "failFx": {"hp": -2}},
-    {"id": "hacken", "e": "🔧", "l": "Die Wartungsklappe öffnen und umprogrammieren", "a": "INT", "sw": 13, "tag": "technik", "dmg": 8,
-     "ok": ["{n} findet die Wartungsklappe und dreht an der Schraube mit der Aufschrift „Laune“. Der Rostwächter summt plötzlich ein Liedchen."],
-     "part": ["Die Klappe geht auf, ein Funke springt über. Der Rostwächter wird langsamer."],
-     "fail": ["{n} drückt den falschen Knopf. Der Rostwächter spielt jetzt sehr laut Fahrstuhlmusik."],
-     "partFx": {"hp": -1}},
-    {"id": "inspektion", "e": "📋", "l": "Sich höflich „inspizieren“ lassen", "a": "CHA", "sw": 12, "tag": "sozial", "dmg": 7,
-     "ok": ["{n} stellt sich gerade hin und sagt: „Bitte inspizieren Sie mich, werter Herr.“ Der Rostwächter ist so gerührt, dass er fast vergisst zu blinken."],
-     "part": ["Der Rostwächter inspiziert {n} sehr gründlich. Sehr. Gründlich. Aber er wird freundlicher."],
-     "fail": ["{n} hat leider keinen gültigen Inspektionsausweis. Der Rostwächter ist zutiefst enttäuscht."],
-     "failFx": {"hp": -1}},
-    {"id": "ausweichen", "e": "🌀", "l": "Ihn umtänzeln und verwirren", "a": "GES", "sw": 12, "tag": "mut", "dmg": 5,
-     "ok": ["{n} wirbelt um den Rostwächter herum, bis dessen Kopf sich dreimal dreht und er verwirrt piept."],
-     "part": ["{n} verwirrt den Wächter – und ein bisschen auch sich selbst."],
-     "fail": ["{n} tänzelt. Der Rostwächter tänzelt zurück. Es ist ein Unentschieden mit blauen Flecken."],
-     "failFx": {"hp": -1}}
+    {
+     "id": "angriff",
+     "e": "⚔️",
+     "l": "Den Rostwächter ausbremsen (Angriff)",
+     "a": "STÄ",
+     "sw": 12,
+     "tag": "kampf",
+     "dmg": 6,
+     "ok": [
+      "{n} trifft die rostige Kniekehle des Wächters. Es scheppert gewaltig, Funken sprühen!"
+     ],
+     "part": [
+      "{n} trifft, kassiert aber einen Stups vom Greifarm."
+     ],
+     "fail": [
+      "Der Rostwächter weicht mit überraschender Eleganz aus und stempelt {n} „ZUR INSPEKTION“ auf die Stirn."
+     ],
+     "partFx": {
+      "hp": -1
+     },
+     "failFx": {
+      "hp": -2
+     }
+    },
+    {
+     "id": "hacken",
+     "e": "🔧",
+     "l": "Die Wartungsklappe öffnen und umprogrammieren",
+     "a": "INT",
+     "sw": 13,
+     "tag": "technik",
+     "dmg": 8,
+     "ok": [
+      "{n} findet die Wartungsklappe und dreht an der Schraube mit der Aufschrift „Laune“. Der Rostwächter summt plötzlich ein Liedchen."
+     ],
+     "part": [
+      "Die Klappe geht auf, ein Funke springt über. Der Rostwächter wird langsamer."
+     ],
+     "fail": [
+      "{n} drückt den falschen Knopf. Der Rostwächter spielt jetzt sehr laut Fahrstuhlmusik."
+     ],
+     "partFx": {
+      "hp": -1
+     }
+    },
+    {
+     "id": "inspektion",
+     "e": "📋",
+     "l": "Sich höflich „inspizieren“ lassen",
+     "a": "CHA",
+     "sw": 12,
+     "tag": "sozial",
+     "dmg": 7,
+     "ok": [
+      "{n} stellt sich gerade hin und sagt: „Bitte inspizieren Sie mich, werter Herr.“ Der Rostwächter ist so gerührt, dass er fast vergisst zu blinken."
+     ],
+     "part": [
+      "Der Rostwächter inspiziert {n} sehr gründlich. Sehr. Gründlich. Aber er wird freundlicher."
+     ],
+     "fail": [
+      "{n} hat leider keinen gültigen Inspektionsausweis. Der Rostwächter ist zutiefst enttäuscht."
+     ],
+     "failFx": {
+      "hp": -1
+     }
+    },
+    {
+     "id": "ausweichen",
+     "e": "🌀",
+     "l": "Ihn umtänzeln und verwirren",
+     "a": "GES",
+     "sw": 12,
+     "tag": "mut",
+     "dmg": 5,
+     "ok": [
+      "{n} wirbelt um den Rostwächter herum, bis dessen Kopf sich dreimal dreht und er verwirrt piept."
+     ],
+     "part": [
+      "{n} verwirrt den Wächter – und ein bisschen auch sich selbst."
+     ],
+     "fail": [
+      "{n} tänzelt. Der Rostwächter tänzelt zurück. Es ist ein Unentschieden mit blauen Flecken."
+     ],
+     "failFx": {
+      "hp": -1
+     }
+    }
    ]
   },
   {
-   "id": "glimm", "t": "Glimm, der kleine Funkengeist", "ort": "Turmspitze", "oe": "💫",
+   "id": "glimm",
+   "t": "Glimm, der kleine Funkengeist",
+   "ort": "Turmspitze",
+   "oe": "💫",
    "intro": [
     "Ganz oben im Turm, zwischen gestapelten Funken in Einmachgläsern, sitzt ein winziges, flackerndes Wesen: Glimm, ein Funkengeist, kaum größer als eine Teetasse. Er drückt sich an die Gläser. „Bitte nicht wegnehmen! Wenn es dunkel wird, bin ich ganz allein …“"
    ],
-   "goal": {"id": "g_glimm", "t": "Glimm die Angst vor der Dunkelheit nehmen"},
-   "need": 3, "next": "finale", "enc": 0,
-   "exit": ["Glimm schnieft, dann leuchtet er heller als je zuvor. „Ihr … ihr bleibt meine Freunde? Auch im Dunkeln?“ Gemeinsam tragt ihr die Funkengläser die Treppe hinunter. Glimm sitzt auf einer Schulter und summt."],
+   "goal": {
+    "id": "g_glimm",
+    "t": "Glimm die Angst vor der Dunkelheit nehmen"
+   },
+   "need": 3,
+   "next": "finale",
+   "enc": 0,
+   "exit": [
+    "Glimm schnieft, dann leuchtet er heller als je zuvor. „Ihr … ihr bleibt meine Freunde? Auch im Dunkeln?“ Gemeinsam tragt ihr die Funkengläser die Treppe hinunter. Glimm sitzt auf einer Schulter und summt."
+   ],
    "opts": [
-    {"id": "trosten", "e": "💗", "l": "Glimm trösten", "a": "WEI", "sw": 11, "tag": "heilen",
-     "ok": ["{n} setzt sich ganz ruhig neben Glimm. „Dunkelheit ist nur die Zeit, in der man die Sterne sieht.“ Glimm hört auf zu zittern."],
-     "part": ["Glimm lässt {n} näherkommen, behält aber ein Glas fest im Arm."],
-     "fail": ["{n} sagt „Buh!“, um das Eis zu brechen. Das war … keine gute Idee."]},
-    {"id": "geschenk", "e": "🎁", "l": "Glimm ein eigenes Licht schenken", "a": "CHA", "sw": 12, "tag": "sozial",
-     "ok": ["{n} bietet Glimm etwas Leuchtendes an – einen eigenen kleinen Schatz. Glimm strahlt: „Für mich? Ganz allein für mich?“"],
-     "part": ["Glimm schaut das Geschenk misstrauisch an, nimmt es dann aber doch."],
-     "fail": ["Glimm denkt, das Geschenk sei ein Tausch, und will dafür alle Funken behalten. Missverständnis!"]},
-    {"id": "sternlicht", "e": "🔭", "l": "Glimm die Sterne durchs Turmfenster zeigen", "a": "INT", "sw": 12, "tag": "analyse",
-     "ok": ["{n} öffnet die Turmluke und erklärt die Sternbilder über Neon Park. Glimm staunt: „Die Nacht ist ja gar nicht dunkel!“"],
-     "part": ["Die Luke klemmt erst, aber dann sieht Glimm ein paar Sterne."],
-     "fail": ["Es ist bewölkt. Natürlich ist es bewölkt."]},
-    {"id": "lied2", "e": "🪕", "l": "Ein Gute-Nacht-Lied für Glimm", "a": "CHA", "sw": 11, "tag": "musik",
-     "ok": ["{n} stimmt ein sanftes Lied an. Glimm flackert im Takt, und die Funken in den Gläsern tanzen mit. Alle bekommen Rückenwind."],
-     "part": ["Das Lied ist etwas schief, aber Glimm summt mit."],
-     "fail": ["{n} vergisst mitten im Lied den Text und summt stattdessen eine Werbemelodie."],
-     "okFx": {"wind": "all"}}
+    {
+     "id": "trosten",
+     "e": "💗",
+     "l": "Glimm trösten",
+     "a": "WEI",
+     "sw": 11,
+     "tag": "heilen",
+     "ok": [
+      "{n} setzt sich ganz ruhig neben Glimm. „Dunkelheit ist nur die Zeit, in der man die Sterne sieht.“ Glimm hört auf zu zittern."
+     ],
+     "part": [
+      "Glimm lässt {n} näherkommen, behält aber ein Glas fest im Arm."
+     ],
+     "fail": [
+      "{n} sagt „Buh!“, um das Eis zu brechen. Das war … keine gute Idee."
+     ]
+    },
+    {
+     "id": "geschenk",
+     "e": "🎁",
+     "l": "Glimm ein eigenes Licht schenken",
+     "a": "CHA",
+     "sw": 12,
+     "tag": "sozial",
+     "ok": [
+      "{n} bietet Glimm etwas Leuchtendes an – einen eigenen kleinen Schatz. Glimm strahlt: „Für mich? Ganz allein für mich?“"
+     ],
+     "part": [
+      "Glimm schaut das Geschenk misstrauisch an, nimmt es dann aber doch."
+     ],
+     "fail": [
+      "Glimm denkt, das Geschenk sei ein Tausch, und will dafür alle Funken behalten. Missverständnis!"
+     ]
+    },
+    {
+     "id": "sternlicht",
+     "e": "🔭",
+     "l": "Glimm die Sterne durchs Turmfenster zeigen",
+     "a": "INT",
+     "sw": 12,
+     "tag": "analyse",
+     "ok": [
+      "{n} öffnet die Turmluke und erklärt die Sternbilder über Neon Park. Glimm staunt: „Die Nacht ist ja gar nicht dunkel!“"
+     ],
+     "part": [
+      "Die Luke klemmt erst, aber dann sieht Glimm ein paar Sterne."
+     ],
+     "fail": [
+      "Es ist bewölkt. Natürlich ist es bewölkt."
+     ]
+    },
+    {
+     "id": "lied2",
+     "e": "🪕",
+     "l": "Ein Gute-Nacht-Lied für Glimm",
+     "a": "CHA",
+     "sw": 11,
+     "tag": "musik",
+     "ok": [
+      "{n} stimmt ein sanftes Lied an. Glimm flackert im Takt, und die Funken in den Gläsern tanzen mit. Alle bekommen Rückenwind."
+     ],
+     "part": [
+      "Das Lied ist etwas schief, aber Glimm summt mit."
+     ],
+     "fail": [
+      "{n} vergisst mitten im Lied den Text und summt stattdessen eine Werbemelodie."
+     ],
+     "okFx": {
+      "wind": "all"
+     }
+    }
    ]
   },
   {
-   "id": "finale", "t": "Mitternacht am Funkenbrunnen", "ort": "Neon Plaza", "oe": "⛲",
+   "id": "finale",
+   "t": "Mitternacht am Funkenbrunnen",
+   "ort": "Neon Plaza",
+   "oe": "⛲",
    "intro": [
     "Zurück auf der Neon Plaza. Es ist kurz vor Mitternacht. Die Festgäste halten den Atem an, als ihr mit den Funkengläsern und Glimm zum stillen Brunnen tretet. Jetzt muss alles zusammenpassen: Funken zurück, Leitung flicken, und Glimm braucht Mut für den großen Moment."
    ],
-   "goal": {"id": "g_finale", "t": "Den Funkenbrunnen um Mitternacht neu entzünden"},
-   "need": 4, "next": "ende", "enc": 0,
-   "exit": ["*Zwölf Glockenschläge.* Glimm fliegt mitten in den Brunnen, und mit einem gewaltigen ZISCH schießt ein Regenbogen aus Funken in den Himmel über Neon Park. Die Plaza jubelt, Sirrah brüllt vor Freude von der Brücke, und der Rostwächter tanzt im Hintergrund. Glimm ist ab heute offizieller Brunnengeist – und nie wieder allein."],
+   "goal": {
+    "id": "g_finale",
+    "t": "Den Funkenbrunnen um Mitternacht neu entzünden"
+   },
+   "need": 4,
+   "next": "ende",
+   "enc": 0,
+   "exit": [
+    "*Zwölf Glockenschläge.* Glimm fliegt mitten in den Brunnen, und mit einem gewaltigen ZISCH schießt ein Regenbogen aus Funken in den Himmel über Neon Park. Die Plaza jubelt, Sirrah brüllt vor Freude von der Brücke, und der Rostwächter tanzt im Hintergrund. Glimm ist ab heute offizieller Brunnengeist – und nie wieder allein."
+   ],
    "opts": [
-    {"id": "leitung", "e": "⚙️", "l": "Die Funkenleitung flicken", "a": "INT", "sw": 13, "tag": "technik",
-     "ok": ["{n} verbindet die letzte Leitung. Ein tiefes Brummen geht durch den Brunnen."],
-     "part": ["Die Leitung hält – mit Klebeband und Hoffnung."],
-     "fail": ["Die Leitung zischt und spuckt Glitzer. Noch nicht."]},
-    {"id": "glaeser", "e": "🫙", "l": "Die Funkengläser behutsam leeren", "a": "GES", "sw": 12, "tag": "mut",
-     "ok": ["Glas für Glas gießt {n} die Funken zurück in den Brunnen – kein einziger geht verloren."],
-     "part": ["Ein paar Funken entwischen und tanzen über die Plaza. Die Kinder freuen sich."],
-     "fail": ["Ein Glas rutscht. Funken überall! Sehr hübsch, sehr chaotisch."]},
-    {"id": "mutmachen", "e": "🎤", "l": "Glimm und der Plaza Mut zurufen", "a": "CHA", "sw": 12, "tag": "sozial",
-     "ok": ["{n} ruft: „Für Glimm!“ – und die ganze Plaza ruft mit. Glimm leuchtet so hell wie nie."],
-     "part": ["Ein paar Leute rufen mit. Glimm flackert tapfer."],
-     "fail": ["Das Mikrofon pfeift. Alle halten sich die Ohren zu."]},
-    {"id": "halten", "e": "🛡️", "l": "Den Brunnen gegen den Funkendruck stabilisieren", "a": "STÄ", "sw": 12, "tag": "schutz",
-     "ok": ["{n} stemmt sich gegen das vibrierende Brunnenbecken. Es hält!"],
-     "part": ["Das Becken wackelt, {n} auch, aber beide halten."],
-     "fail": ["Der Brunnen bebt, {n} rutscht aus – ein nasser, glitzernder Moment."],
-     "failFx": {"hp": -1}}
+    {
+     "id": "leitung",
+     "e": "⚙️",
+     "l": "Die Funkenleitung flicken",
+     "a": "INT",
+     "sw": 13,
+     "tag": "technik",
+     "ok": [
+      "{n} verbindet die letzte Leitung. Ein tiefes Brummen geht durch den Brunnen."
+     ],
+     "part": [
+      "Die Leitung hält – mit Klebeband und Hoffnung."
+     ],
+     "fail": [
+      "Die Leitung zischt und spuckt Glitzer. Noch nicht."
+     ]
+    },
+    {
+     "id": "glaeser",
+     "e": "🫙",
+     "l": "Die Funkengläser behutsam leeren",
+     "a": "GES",
+     "sw": 12,
+     "tag": "mut",
+     "ok": [
+      "Glas für Glas gießt {n} die Funken zurück in den Brunnen – kein einziger geht verloren."
+     ],
+     "part": [
+      "Ein paar Funken entwischen und tanzen über die Plaza. Die Kinder freuen sich."
+     ],
+     "fail": [
+      "Ein Glas rutscht. Funken überall! Sehr hübsch, sehr chaotisch."
+     ]
+    },
+    {
+     "id": "mutmachen",
+     "e": "🎤",
+     "l": "Glimm und der Plaza Mut zurufen",
+     "a": "CHA",
+     "sw": 12,
+     "tag": "sozial",
+     "ok": [
+      "{n} ruft: „Für Glimm!“ – und die ganze Plaza ruft mit. Glimm leuchtet so hell wie nie."
+     ],
+     "part": [
+      "Ein paar Leute rufen mit. Glimm flackert tapfer."
+     ],
+     "fail": [
+      "Das Mikrofon pfeift. Alle halten sich die Ohren zu."
+     ]
+    },
+    {
+     "id": "halten",
+     "e": "🛡️",
+     "l": "Den Brunnen gegen den Funkendruck stabilisieren",
+     "a": "STÄ",
+     "sw": 12,
+     "tag": "schutz",
+     "ok": [
+      "{n} stemmt sich gegen das vibrierende Brunnenbecken. Es hält!"
+     ],
+     "part": [
+      "Das Becken wackelt, {n} auch, aber beide halten."
+     ],
+     "fail": [
+      "Der Brunnen bebt, {n} rutscht aus – ein nasser, glitzernder Moment."
+     ],
+     "failFx": {
+      "hp": -1
+     }
+    }
    ]
   },
   {
-   "id": "ende", "t": "Epilog: Ein neuer Funke", "ort": "Neon Plaza", "oe": "🌈", "end": true,
+   "id": "ende",
+   "t": "Epilog: Ein neuer Funke",
+   "ort": "Neon Plaza",
+   "oe": "🌈",
+   "end": true,
    "intro": [
     "Das Laternenfest geht bis zum Morgengrauen. Ihr werdet gefeiert, bekommt so viele Leuchtbrezeln, wie ihr tragen könnt, und Glimm schreibt eure Namen mit Funken in den Himmel. Neon Park ist ein bisschen heller geworden – wegen euch. ✨ *Ende des Abenteuers. Danke fürs Spielen!*"
    ],
-   "goal": null, "need": 0, "opts": []
+   "goal": null,
+   "need": 0,
+   "opts": []
   }
  ],
  "begegnungen": [
-  {"id": "waschbaer", "t": "Die Neon-Waschbär-Bande", "e": "🦝",
-   "intro": ["Drei Waschbären mit LED-Brillen springen aus einer Mülltonne und schnappen sich den Proviantbeutel!"],
+  {
+   "id": "waschbaer",
+   "t": "Die Neon-Waschbär-Bande",
+   "e": "🦝",
+   "intro": [
+    "Drei Waschbären mit LED-Brillen springen aus einer Mülltonne und schnappen sich den Proviantbeutel!"
+   ],
    "opts": [
-    {"id": "fangen", "e": "🏃", "l": "Hinterher!", "a": "GES", "sw": 12, "tag": "mut", "ok": ["{n} erwischt den Beutel am Riemen. Die Waschbären salutieren respektvoll und verschwinden."], "part": ["{n} bekommt den Beutel zurück – minus einen Keks."], "fail": ["Die Waschbären sind schneller. Sie winken."]},
-    {"id": "tauschen", "e": "🍪", "l": "Einen Tausch anbieten", "a": "CHA", "sw": 11, "tag": "sozial", "ok": ["{n} bietet einen glänzenden Knopf. Deal! Die Bande gibt alles zurück und legt sogar eine Leuchtbrezel dazu."], "part": ["Der Tausch klappt – die Waschbären behalten aber die Serviette."], "fail": ["Die Waschbären verhandeln härter als jede Goblin-Händlerin."], "okFx": {"item": ["🥨", "Leuchtbrezel"]}}
-   ]},
-  {"id": "glitzerregen", "t": "Glitzerregen", "e": "🌧️",
-   "intro": ["Ein warmer, schimmernder Regen fällt aus einer verirrten Festwolke. Er kitzelt und fühlt sich an wie eine Umarmung."],
+    {
+     "id": "fangen",
+     "e": "🏃",
+     "l": "Hinterher!",
+     "a": "GES",
+     "sw": 12,
+     "tag": "mut",
+     "ok": [
+      "{n} erwischt den Beutel am Riemen. Die Waschbären salutieren respektvoll und verschwinden."
+     ],
+     "part": [
+      "{n} bekommt den Beutel zurück – minus einen Keks."
+     ],
+     "fail": [
+      "Die Waschbären sind schneller. Sie winken."
+     ]
+    },
+    {
+     "id": "tauschen",
+     "e": "🍪",
+     "l": "Einen Tausch anbieten",
+     "a": "CHA",
+     "sw": 11,
+     "tag": "sozial",
+     "ok": [
+      "{n} bietet einen glänzenden Knopf. Deal! Die Bande gibt alles zurück und legt sogar eine Leuchtbrezel dazu."
+     ],
+     "part": [
+      "Der Tausch klappt – die Waschbären behalten aber die Serviette."
+     ],
+     "fail": [
+      "Die Waschbären verhandeln härter als jede Goblin-Händlerin."
+     ],
+     "okFx": {
+      "item": [
+       "🥨",
+       "Leuchtbrezel"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "glitzerregen",
+   "t": "Glitzerregen",
+   "e": "🌧️",
+   "intro": [
+    "Ein warmer, schimmernder Regen fällt aus einer verirrten Festwolke. Er kitzelt und fühlt sich an wie eine Umarmung."
+   ],
    "opts": [
-    {"id": "geniessen", "e": "😌", "l": "Kurz innehalten und genießen", "a": "WEI", "sw": 8, "tag": "heilen", "ok": ["Alle atmen durch. Jede Figur erhält 2 TP zurück."], "part": ["Ein kurzer, schöner Moment – jede Figur erhält 1 TP zurück."], "fail": ["{n} bekommt Glitzer in die Nase und niest dreimal. Trotzdem schön."], "okFx": {"hpAll": 2}, "partFx": {"hpAll": 1}},
-    {"id": "sammeln", "e": "🫙", "l": "Glitzertropfen sammeln", "a": "GES", "sw": 11, "tag": "technik", "ok": ["{n} fängt eine Handvoll Tropfen in einer Flasche: ein Glitzertrank (heilt 1W6)."], "part": ["Ein paar Tropfen landen in der Flasche."], "fail": ["Die Flasche fängt vor allem Luft."], "okFx": {"item": ["🧪", "Glitzertrank"]}}
-   ]},
-  {"id": "kabelschlange", "t": "Die Kabelschlange", "e": "🐍", "enemy": {"n": "Kabelschlange", "e": "🐍", "hp": 8},
-   "intro": ["Ein loses Starkstromkabel windet sich zischend wie eine Schlange über den Boden und versperrt den Weg!"],
+    {
+     "id": "geniessen",
+     "e": "😌",
+     "l": "Kurz innehalten und genießen",
+     "a": "WEI",
+     "sw": 8,
+     "tag": "heilen",
+     "ok": [
+      "Alle atmen durch. Jede Figur erhält 2 TP zurück."
+     ],
+     "part": [
+      "Ein kurzer, schöner Moment – jede Figur erhält 1 TP zurück."
+     ],
+     "fail": [
+      "{n} bekommt Glitzer in die Nase und niest dreimal. Trotzdem schön."
+     ],
+     "okFx": {
+      "hpAll": 2
+     },
+     "partFx": {
+      "hpAll": 1
+     }
+    },
+    {
+     "id": "sammeln",
+     "e": "🫙",
+     "l": "Glitzertropfen sammeln",
+     "a": "GES",
+     "sw": 11,
+     "tag": "technik",
+     "ok": [
+      "{n} fängt eine Handvoll Tropfen in einer Flasche: ein Glitzertrank (heilt 1W6)."
+     ],
+     "part": [
+      "Ein paar Tropfen landen in der Flasche."
+     ],
+     "fail": [
+      "Die Flasche fängt vor allem Luft."
+     ],
+     "okFx": {
+      "item": [
+       "🧪",
+       "Glitzertrank"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "kabelschlange",
+   "t": "Die Kabelschlange",
+   "e": "🐍",
+   "enemy": {
+    "n": "Kabelschlange",
+    "e": "🐍",
+    "hp": 8
+   },
+   "intro": [
+    "Ein loses Starkstromkabel windet sich zischend wie eine Schlange über den Boden und versperrt den Weg!"
+   ],
    "opts": [
-    {"id": "packen", "e": "🧤", "l": "Kabel packen und festhalten", "a": "STÄ", "sw": 12, "tag": "kampf", "dmg": 5, "ok": ["{n} packt das Kabel am isolierten Ende. Es zappelt, wird aber ruhiger."], "part": ["{n} hält fest – und bekommt einen kleinen Schlag."], "fail": ["Das Kabel schlängelt davon und zwickt {n} in den Knöchel."], "partFx": {"hp": -1}, "failFx": {"hp": -1}},
-    {"id": "abschalten", "e": "🔌", "l": "Den Stecker suchen", "a": "INT", "sw": 12, "tag": "technik", "dmg": 8, "ok": ["{n} findet den Stecker. *Klick.* Die Kabelschlange schläft ein."], "part": ["Der Stecker wackelt – die Schlange wird träge."], "fail": ["{n} zieht den Stecker einer Waffelmaschine. Ein Goblin weint."]}
-   ]},
-  {"id": "quirin", "t": "Wanderhändler Quirin", "e": "🧳",
-   "intro": ["Ein schlaksiger Händler mit einem Koffer voller blinkender Dinge stellt sich in den Weg. „Nur heute! Nur für Heldinnen und Helden!“"],
+    {
+     "id": "packen",
+     "e": "🧤",
+     "l": "Kabel packen und festhalten",
+     "a": "STÄ",
+     "sw": 12,
+     "tag": "kampf",
+     "dmg": 5,
+     "ok": [
+      "{n} packt das Kabel am isolierten Ende. Es zappelt, wird aber ruhiger."
+     ],
+     "part": [
+      "{n} hält fest – und bekommt einen kleinen Schlag."
+     ],
+     "fail": [
+      "Das Kabel schlängelt davon und zwickt {n} in den Knöchel."
+     ],
+     "partFx": {
+      "hp": -1
+     },
+     "failFx": {
+      "hp": -1
+     }
+    },
+    {
+     "id": "abschalten",
+     "e": "🔌",
+     "l": "Den Stecker suchen",
+     "a": "INT",
+     "sw": 12,
+     "tag": "technik",
+     "dmg": 8,
+     "ok": [
+      "{n} findet den Stecker. *Klick.* Die Kabelschlange schläft ein."
+     ],
+     "part": [
+      "Der Stecker wackelt – die Schlange wird träge."
+     ],
+     "fail": [
+      "{n} zieht den Stecker einer Waffelmaschine. Ein Goblin weint."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quirin",
+   "t": "Wanderhändler Quirin",
+   "e": "🧳",
+   "intro": [
+    "Ein schlaksiger Händler mit einem Koffer voller blinkender Dinge stellt sich in den Weg. „Nur heute! Nur für Heldinnen und Helden!“"
+   ],
    "opts": [
-    {"id": "feilschen", "e": "🗣️", "l": "Freundlich plaudern", "a": "CHA", "sw": 11, "tag": "sozial", "ok": ["Quirin mag euch. Er schenkt {n} einen Mut-Kristall: Rückenwind für die ganze Gruppe."], "part": ["Quirin erzählt sehr lange Geschichten. Am Ende gibt's einen Tipp: Der Weg ist frei."], "fail": ["Quirin verkauft {n} eine Karte zu einem Ort, der eindeutig erfunden ist."], "okFx": {"wind": "all"}},
-    {"id": "pruefen", "e": "🔍", "l": "Die Waren genau prüfen", "a": "INT", "sw": 12, "tag": "analyse", "ok": ["{n} entdeckt zwischen dem Plunder eine echte Kompassnadel aus Sternstahl – Quirin gibt sie zum Freundschaftspreis: umsonst."], "part": ["Viel Plunder, aber ein hübscher Glitzerstein."], "fail": ["Alles Plunder. Quirin ist beleidigt."], "okFx": {"item": ["🧭", "Sternstahl-Kompassnadel"]}}
-   ]},
-  {"id": "leuchtkind", "t": "Ein verirrtes Leuchtkind", "e": "🧒",
-   "intro": ["Ein kleines Kind mit Leuchtohren steht weinend unter einer Laterne. „Ich finde meine Eltern nicht …“"],
+    {
+     "id": "feilschen",
+     "e": "🗣️",
+     "l": "Freundlich plaudern",
+     "a": "CHA",
+     "sw": 11,
+     "tag": "sozial",
+     "ok": [
+      "Quirin mag euch. Er schenkt {n} einen Mut-Kristall: Rückenwind für die ganze Gruppe."
+     ],
+     "part": [
+      "Quirin erzählt sehr lange Geschichten. Am Ende gibt's einen Tipp: Der Weg ist frei."
+     ],
+     "fail": [
+      "Quirin verkauft {n} eine Karte zu einem Ort, der eindeutig erfunden ist."
+     ],
+     "okFx": {
+      "wind": "all"
+     }
+    },
+    {
+     "id": "pruefen",
+     "e": "🔍",
+     "l": "Die Waren genau prüfen",
+     "a": "INT",
+     "sw": 12,
+     "tag": "analyse",
+     "ok": [
+      "{n} entdeckt zwischen dem Plunder eine echte Kompassnadel aus Sternstahl – Quirin gibt sie zum Freundschaftspreis: umsonst."
+     ],
+     "part": [
+      "Viel Plunder, aber ein hübscher Glitzerstein."
+     ],
+     "fail": [
+      "Alles Plunder. Quirin ist beleidigt."
+     ],
+     "okFx": {
+      "item": [
+       "🧭",
+       "Sternstahl-Kompassnadel"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "leuchtkind",
+   "t": "Ein verirrtes Leuchtkind",
+   "e": "🧒",
+   "intro": [
+    "Ein kleines Kind mit Leuchtohren steht weinend unter einer Laterne. „Ich finde meine Eltern nicht …“"
+   ],
    "opts": [
-    {"id": "suchen", "e": "👀", "l": "Gemeinsam die Eltern suchen", "a": "WEI", "sw": 11, "tag": "schutz", "ok": ["{n} entdeckt zwei aufgeregt leuchtende Ohrenpaare in der Menge. Wiedersehen! Die Eltern schenken euch eine Leuchtthermoskanne-Füllung: alle +1 TP."], "part": ["Nach einer Weile finden sich alle. Großes Winken."], "fail": ["{n} bringt das Kind zur falschen Familie. Die freut sich trotzdem über den Besuch. Dann klärt sich alles."], "okFx": {"hpAll": 1}},
-    {"id": "aufheitern", "e": "🤡", "l": "Das Kind aufheitern", "a": "CHA", "sw": 10, "tag": "musik", "ok": ["{n} macht so lustige Grimassen, dass das Kind lacht – und seine Ohren leuchten so hell, dass die Eltern es sofort finden."], "part": ["Das Kind kichert. Immerhin."], "fail": ["Das Kind findet {n} gruselig. Fair."]}
-   ]},
-  {"id": "musikantin", "t": "Die Straßenmusikantin", "e": "🎻",
-   "intro": ["Eine Musikantin mit einer Geige aus Glas spielt eine Melodie, die sich anfühlt wie Rückenwind."],
+    {
+     "id": "suchen",
+     "e": "👀",
+     "l": "Gemeinsam die Eltern suchen",
+     "a": "WEI",
+     "sw": 11,
+     "tag": "schutz",
+     "ok": [
+      "{n} entdeckt zwei aufgeregt leuchtende Ohrenpaare in der Menge. Wiedersehen! Die Eltern schenken euch eine Leuchtthermoskanne-Füllung: alle +1 TP."
+     ],
+     "part": [
+      "Nach einer Weile finden sich alle. Großes Winken."
+     ],
+     "fail": [
+      "{n} bringt das Kind zur falschen Familie. Die freut sich trotzdem über den Besuch. Dann klärt sich alles."
+     ],
+     "okFx": {
+      "hpAll": 1
+     }
+    },
+    {
+     "id": "aufheitern",
+     "e": "🤡",
+     "l": "Das Kind aufheitern",
+     "a": "CHA",
+     "sw": 10,
+     "tag": "musik",
+     "ok": [
+      "{n} macht so lustige Grimassen, dass das Kind lacht – und seine Ohren leuchten so hell, dass die Eltern es sofort finden."
+     ],
+     "part": [
+      "Das Kind kichert. Immerhin."
+     ],
+     "fail": [
+      "Das Kind findet {n} gruselig. Fair."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "musikantin",
+   "t": "Die Straßenmusikantin",
+   "e": "🎻",
+   "intro": [
+    "Eine Musikantin mit einer Geige aus Glas spielt eine Melodie, die sich anfühlt wie Rückenwind."
+   ],
    "opts": [
-    {"id": "mitspielen", "e": "🎶", "l": "Mitsingen oder mittanzen", "a": "CHA", "sw": 10, "tag": "musik", "ok": ["Die ganze Gruppe tanzt mit. Alle bekommen Rückenwind."], "part": ["Ein schöner Moment. {n} bekommt Rückenwind."], "fail": ["{n} tanzt im falschen Takt. Die Musikantin passt sich lächelnd an."], "okFx": {"wind": "all"}, "partFx": {"wind": "self"}},
-    {"id": "fragen", "e": "❓", "l": "Nach Neuigkeiten fragen", "a": "WEI", "sw": 11, "tag": "analyse", "ok": ["„Ich habe ein kleines Licht weinen hören“, sagt sie. Ein wertvoller Hinweis!"], "part": ["Sie zuckt mit den Schultern, aber summt eine Melodie, die Mut macht."], "fail": ["Sie spielt einfach weiter. Musik ist auch eine Antwort."], "okFx": {"prog": 1}}
-   ]}
+    {
+     "id": "mitspielen",
+     "e": "🎶",
+     "l": "Mitsingen oder mittanzen",
+     "a": "CHA",
+     "sw": 10,
+     "tag": "musik",
+     "ok": [
+      "Die ganze Gruppe tanzt mit. Alle bekommen Rückenwind."
+     ],
+     "part": [
+      "Ein schöner Moment. {n} bekommt Rückenwind."
+     ],
+     "fail": [
+      "{n} tanzt im falschen Takt. Die Musikantin passt sich lächelnd an."
+     ],
+     "okFx": {
+      "wind": "all"
+     },
+     "partFx": {
+      "wind": "self"
+     }
+    },
+    {
+     "id": "fragen",
+     "e": "❓",
+     "l": "Nach Neuigkeiten fragen",
+     "a": "WEI",
+     "sw": 11,
+     "tag": "analyse",
+     "ok": [
+      "„Ich habe ein kleines Licht weinen hören“, sagt sie. Ein wertvoller Hinweis!"
+     ],
+     "part": [
+      "Sie zuckt mit den Schultern, aber summt eine Melodie, die Mut macht."
+     ],
+     "fail": [
+      "Sie spielt einfach weiter. Musik ist auch eine Antwort."
+     ],
+     "okFx": {
+      "prog": 1
+     }
+    }
+   ]
+  }
  ],
  "stimmung": [
   "Ein Hologramm-Koi schwimmt durch die Luft und blubbert Neonblasen.",
@@ -276,5 +1069,1140 @@
   "Über den Dächern zieht ein kleiner Lichtdrache seine Kreise.",
   "Ein Straßenschild ändert seine Farbe, als ihr vorbeigeht, von Pink zu Türkis.",
   "Ein Goblin auf einem Einrad überholt euch und hupt fröhlich."
+ ],
+ "kurzquests": [
+  {
+   "id": "waschbaer-coup",
+   "e": "🦝",
+   "titel": "Der Neon-Waschbär-Coup",
+   "kurz": "Drei Waschbären mit LED-Brillen haben die Festlaternen der Plaza gestohlen. Holt das Licht zurück – bevor die Mitternachtsparty im Dunkeln tanzt.",
+   "dauer": "ca. 15–20 Min.",
+   "schwierigkeit": "leicht",
+   "tags": [
+    "Diebstahl",
+    "Humor",
+    "Stadt"
+   ],
+   "begruessung": [
+    "🔮 *Ein kleines Quietschen, ein Klirren.* Willkommen zurück, ihr Lieben. Heute wird’s kurz und knackig: Die Neon-Waschbären sind wieder unterwegs."
+   ],
+   "start": "platz",
+   "szenen": [
+    {
+     "id": "platz",
+     "t": "Laternen? Welche Laternen?",
+     "ort": "Neon Plaza",
+     "oe": "🎡",
+     "intro": [
+      "Auf der Neon Plaza ist es verdächtig dunkel. Wo gestern noch Laternenketten hingen, baumeln nur noch leere Haken. Eine Zuckerwatte-Verkäuferin zeigt auf die Schrottgassen: „Drei Maskierte. Mit Streifen. Und Brillen. Und … Beuteln.“"
+     ],
+     "goal": {
+      "id": "g_laternen",
+      "t": "Die gestohlenen Festlaternen finden"
+     },
+     "need": 2,
+     "next": "bau",
+     "enc": 0.15,
+     "exit": [
+      "Ihr findet eine Spur aus LED-Brillen-Glitzern und zerknüllten Servietten. Die führt geradeswegs zu einer Mülltonnen-Festung."
+     ],
+     "opts": [
+      {
+       "id": "zeugen",
+       "e": "🗣️",
+       "l": "Zeugen befragen",
+       "a": "CHA",
+       "sw": 10,
+       "tag": "sozial",
+       "ok": [
+        "{n} bekommt eine klare Beschreibung: drei Waschbären, Richtung Schrottgassen, Beutel voller Licht."
+       ],
+       "part": [
+        "Die Zeugen widersprechen sich – aber Richtung Gassen ist klar."
+       ],
+       "fail": [
+        "Ein Zeuge hält {n} für den Dieb. Peinlich."
+       ]
+      },
+      {
+       "id": "spur",
+       "e": "🔍",
+       "l": "Glitzerspur lesen",
+       "a": "WEI",
+       "sw": 11,
+       "tag": "analyse",
+       "ok": [
+        "Die Spur hüpft typisch waschbärig: drei Sprünge, eine Pause, ein Triumph-Quietschen."
+       ],
+       "part": [
+        "Spur gefunden – etwas zertrampelt."
+       ],
+       "fail": [
+        "{n} folgt einer Glitzer-Bonbon-Spur. Lecker, falsch."
+       ]
+      },
+      {
+       "id": "dach",
+       "e": "🏃",
+       "l": "Über die Dächer spähen",
+       "a": "GES",
+       "sw": 11,
+       "tag": "mut",
+       "ok": [
+        "Von oben sieht {n} die Mülltonnen-Festung blinken."
+       ],
+       "part": [
+        "Kurzer Blick, knappe Knie – aber die Richtung stimmt."
+       ],
+       "fail": [
+        "{n} landet in einem Trampolin. Applaus."
+       ],
+       "failFx": {
+        "hp": -1
+       }
+      }
+     ]
+    },
+    {
+     "id": "bau",
+     "t": "Die Mülltonnen-Festung",
+     "ort": "Schrottgassen",
+     "oe": "🗑️",
+     "intro": [
+      "Drei Waschbären thronen auf gestapelten Tonnen, umgeben von gestohlenen Laternen. Der Anführer tippt an seine LED-Brille: „Tribut oder … mehr Streifen!“"
+     ],
+     "goal": {
+      "id": "g_deal",
+      "t": "Die Laternen zurückholen – mit Verstand oder Mut"
+     },
+     "need": 2,
+     "next": "ende",
+     "enc": 0,
+     "exit": [
+      "Die Laternen sind zurück. Die Waschbären behalten eine als „Ehrenlaterne“. Die Plaza leuchtet wieder."
+     ],
+     "opts": [
+      {
+       "id": "verhandeln",
+       "e": "🍪",
+       "l": "Mit Snacks verhandeln",
+       "a": "CHA",
+       "sw": 11,
+       "tag": "sozial",
+       "ok": [
+        "{n} bietet Leuchtbrezeln. Deal! Laternen zurück, plus eine Brezel-Allianz."
+       ],
+       "part": [
+        "Deal mit Abstrichen: eine Laterne bleibt als Pfand."
+       ],
+       "fail": [
+        "Die Waschbären wollen die Brezeln *und* die Laternen."
+       ],
+       "okFx": {
+        "item": [
+         "🥨",
+         "Leuchtbrezel"
+        ]
+       }
+      },
+      {
+       "id": "ablenken",
+       "e": "🎭",
+       "l": "Ablenkung & Blitzraub",
+       "a": "GES",
+       "sw": 12,
+       "tag": "mut",
+       "ok": [
+        "Während zwei tanzen, schnappt {n} die Laternen. Elegant."
+       ],
+       "part": [
+        "Halb geschafft – ein Beutel bleibt."
+       ],
+       "fail": [
+        "Erwischt. Ein Waschbär zwickt {n} in den Ärmel."
+       ],
+       "failFx": {
+        "hp": -1
+       }
+      },
+      {
+       "id": "technik",
+       "e": "🔧",
+       "l": "LED-Brillen kurzschließen",
+       "a": "INT",
+       "sw": 12,
+       "tag": "technik",
+       "ok": [
+        "*Klick.* Die Brillen blinken SOS. Die Bande ist verwirrt – Laternen frei."
+       ],
+       "part": [
+        "Eine Brille spinnt. Genug Chaos für den Zugriff."
+       ],
+       "fail": [
+        "Falscher Draht. Statt Brillen leuchten jetzt die Tonnen."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ende",
+     "t": "Licht wieder an",
+     "ort": "Neon Plaza",
+     "oe": "✨",
+     "end": true,
+     "intro": [
+      "Die Laternenketten leuchten wieder. Irgendwo quietscht ein Waschbär zufrieden. Kurzes Abenteuer, großes Leuchten. ✨"
+     ],
+     "goal": null,
+     "need": 0,
+     "opts": []
+    }
+   ]
+  },
+  {
+   "id": "lichtbruecke",
+   "e": "🌉",
+   "titel": "Die schlafende Lichtbrücke",
+   "kurz": "Die Lichterbrücke nach Halcyon-Ost flackert und droht einzuschlafen. Weckt sie – bevor der Abendverkehr im Neon-Nebel hängt.",
+   "dauer": "ca. 15–25 Min.",
+   "schwierigkeit": "mittel",
+   "tags": [
+    "Technik",
+    "Reise",
+    "Stadt"
+   ],
+   "begruessung": [
+    "🔮 Die Brücke summt heute falsch. Hört ihr das? Ein Abenteuer für flinke Hände und ruhige Nerven."
+   ],
+   "start": "rampe",
+   "szenen": [
+    {
+     "id": "rampe",
+     "t": "Flackern am Rampenkopf",
+     "ort": "Lichtbrücke",
+     "oe": "🌉",
+     "intro": [
+      "Autos aus Licht und echte Fahrräder stehen im Stau. Die Brückenlaternen atmen nur noch alle paar Sekunden. Ein Wartungsschild blinkt: „Seele braucht Stimme.“"
+     ],
+     "goal": {
+      "id": "g_diagnose",
+      "t": "Herausfinden, warum die Brücke schläft"
+     },
+     "need": 2,
+     "next": "herz",
+     "enc": 0.2,
+     "exit": [
+      "Diagnose klar: Der Brückengeist hat den Takt verloren. Das Herzstück liegt in der Mittelkabine."
+     ],
+     "opts": [
+      {
+       "id": "panel",
+       "e": "⚙️",
+       "l": "Wartungsklappe öffnen",
+       "a": "INT",
+       "sw": 12,
+       "tag": "technik",
+       "ok": [
+        "{n} liest den Fehlercode: RHYTHMUS_0. Das Herz braucht einen neuen Beat."
+       ],
+       "part": [
+        "Klappe auf, Funken raus – Hinweis Richtung Mitte."
+       ],
+       "fail": [
+        "Die Klappe klemmt und spuckt Glitzer."
+       ]
+      },
+      {
+       "id": "fragen",
+       "e": "🗣️",
+       "l": "Pendler befragen",
+       "a": "CHA",
+       "sw": 11,
+       "tag": "sozial",
+       "ok": [
+        "Eine Drachenreiterin sagt: „Seit dem Synth-Sturm summt sie falsch.“"
+       ],
+       "part": [
+        "Viele Meinungen, eine Richtung: Mitte der Brücke."
+       ],
+       "fail": [
+        "Alle wollen nur wissen, wann es weitergeht."
+       ]
+      },
+      {
+       "id": "lauschen",
+       "e": "👂",
+       "l": "Dem Brummen lauschen",
+       "a": "WEI",
+       "sw": 11,
+       "tag": "natur",
+       "ok": [
+        "{n} hört den fehlenden Takt: drei Schläge, Pause, drei Schläge."
+       ],
+       "part": [
+        "Fast – der Takt ist unregelmäßig."
+       ],
+       "fail": [
+        "{n} hört vor allem Hupen."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "herz",
+     "t": "Herzstück der Brücke",
+     "ort": "Mittelkabine",
+     "oe": "💜",
+     "intro": [
+      "In der Kabine schwebt ein violetter Kern aus Glas und Kabeln. Er flackert müde. Ein Schild: „Bitte klopfen. Oder singen. Oder beides.“"
+     ],
+     "goal": {
+      "id": "g_wecken",
+      "t": "Den Brückengeist wieder in Takt bringen"
+     },
+     "need": 2,
+     "next": "ende",
+     "enc": 0,
+     "exit": [
+      "Die Laternen atmen wieder im Takt. Der Stau löst sich in Applaus auf."
+     ],
+     "opts": [
+      {
+       "id": "klopfen",
+       "e": "🥁",
+       "l": "Den Takt klopfen",
+       "a": "GES",
+       "sw": 12,
+       "tag": "musik",
+       "ok": [
+        "{n} klopft den richtigen Beat. Der Kern leuchtet auf."
+       ],
+       "part": [
+        "Fast im Takt – der Kern wacht halb auf."
+       ],
+       "fail": [
+        "Falscher Beat. Die Kabine wackelt."
+       ],
+       "failFx": {
+        "hp": -1
+       }
+      },
+      {
+       "id": "singen",
+       "e": "🎤",
+       "l": "Ein Wecklied singen",
+       "a": "CHA",
+       "sw": 11,
+       "tag": "musik",
+       "ok": [
+        "Die ganze Gruppe summt mit. Rückenwind für alle!"
+       ],
+       "part": [
+        "Schief, aber liebevoll. Der Kern lächelt (soweit Glas lächeln kann)."
+       ],
+       "fail": [
+        "{n} vergisst den Text."
+       ],
+       "okFx": {
+        "wind": "all"
+       }
+      },
+      {
+       "id": "kabel",
+       "e": "🔌",
+       "l": "Taktgeber neu verdrahten",
+       "a": "INT",
+       "sw": 13,
+       "tag": "technik",
+       "ok": [
+        "Saubere Arbeit. Der Kern summt im Neon-Walzer."
+       ],
+       "part": [
+        "Hält mit Klebeband und Hoffnung."
+       ],
+       "fail": [
+        "Kurzschluss. Kurz. Schöner Funke."
+       ],
+       "partFx": {
+        "hp": -1
+       }
+      }
+     ]
+    },
+    {
+     "id": "ende",
+     "t": "Brücke wach",
+     "ort": "Lichtbrücke",
+     "oe": "🌈",
+     "end": true,
+     "intro": [
+      "Die Lichtbrücke leuchtet wieder von Ost nach West. Irgendwo hupt jemand im Takt. Auftrag erledigt. ✨"
+     ],
+     "goal": null,
+     "need": 0,
+     "opts": []
+    }
+   ]
+  },
+  {
+   "id": "sirrah-hut",
+   "e": "🐉",
+   "titel": "Sirrahs verlorener Hut",
+   "kurz": "Sirrah, der freundliche Lichtdrache über der Brücke, hat seinen Lieblingshut im Laternenhain verloren. Ohne Hut: dramatische Traurigkeit. Mit Hut: Glitzerregen.",
+   "dauer": "ca. 15–20 Min.",
+   "schwierigkeit": "leicht",
+   "tags": [
+    "Suche",
+    "Natur",
+    "Drache"
+   ],
+   "begruessung": [
+    "🔮 *Ein dramatischer Seufzer aus den Wolken.* Sirrah braucht euch. Und seinen Hut."
+   ],
+   "start": "bruecke",
+   "szenen": [
+    {
+     "id": "bruecke",
+     "t": "Trauer über der Brücke",
+     "ort": "Lichterbrücke",
+     "oe": "🐉",
+     "intro": [
+      "Sirrah hängt kopfüber an einem Träger und schnieft Neontränen. „Mein Hut … der mit dem Stern … er ist … *weg*.“ Ein Windstoß deutet Richtung Laternenhain."
+     ],
+     "goal": {
+      "id": "g_spur",
+      "t": "Die Hut-Spur finden"
+     },
+     "need": 2,
+     "next": "hain",
+     "enc": 0.15,
+     "exit": [
+      "Federn aus Sternenstaub und ein leises „Hut?“ der Bäume – klarer Weg in den Hain."
+     ],
+     "opts": [
+      {
+       "id": "troesten",
+       "e": "💗",
+       "l": "Sirrah trösten",
+       "a": "CHA",
+       "sw": 10,
+       "tag": "sozial",
+       "ok": [
+        "Sirrah lächelt schwach und gibt {n} eine Feder als Kompass."
+       ],
+       "part": [
+        "Sirrah schnieft weniger."
+       ],
+       "fail": [
+        "Sirrah weint lauter. Die Brücke wird rutschig."
+       ],
+       "okFx": {
+        "item": [
+         "🪶",
+         "Sternfeder"
+        ]
+       }
+      },
+      {
+       "id": "wind",
+       "e": "🌬️",
+       "l": "Den Wind lesen",
+       "a": "WEI",
+       "sw": 11,
+       "tag": "natur",
+       "ok": [
+        "Der Wind trägt Hutduft: Moos und Glitzer, Richtung Hain."
+       ],
+       "part": [
+        "Ungefähr Osten."
+       ],
+       "fail": [
+        "{n} riecht vor allem Waffeln."
+       ]
+      },
+      {
+       "id": "suche",
+       "e": "👀",
+       "l": "Geländer absuchen",
+       "a": "GES",
+       "sw": 11,
+       "tag": "analyse",
+       "ok": [
+        "Hutband-Rest am Geländer – frisch."
+       ],
+       "part": [
+        "Ein Faden, mehr nicht."
+       ],
+       "fail": [
+        "{n} findet drei Fremde Hüte. Keiner passt."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "hain",
+     "t": "Hut im Moos",
+     "ort": "Laternenhain",
+     "oe": "🌳",
+     "intro": [
+      "Im Hain sitzt der Hut auf einem Moospolster – und ein Glühpilz hat ihn als Krone adoptiert. Der Pilz will nicht teilen."
+     ],
+     "goal": {
+      "id": "g_hut",
+      "t": "Den Hut friedlich zurückholen"
+     },
+     "need": 2,
+     "next": "ende",
+     "enc": 0,
+     "exit": [
+      "Hut gesichert. Sirrah kreist jubelnd und regnet Glitzer auf euch."
+     ],
+     "opts": [
+      {
+       "id": "bitten",
+       "e": "🙏",
+       "l": "Den Pilz höflich bitten",
+       "a": "CHA",
+       "sw": 11,
+       "tag": "sozial",
+       "ok": [
+        "Der Pilz nickt (irgendwie) und gibt den Hut frei."
+       ],
+       "part": [
+        "Tausch gegen ein Kompliment."
+       ],
+       "fail": [
+        "Der Pilz schrumpft beleidigt."
+       ]
+      },
+      {
+       "id": "tausch",
+       "e": "🎁",
+       "l": "Eine neue Krone anbieten",
+       "a": "INT",
+       "sw": 12,
+       "tag": "technik",
+       "ok": [
+        "{n} flicht eine Glitzerkrone. Der Pilz ist begeistert."
+       ],
+       "part": [
+        "Die Krone ist schief, aber akzeptiert."
+       ],
+       "fail": [
+        "Die Ersatzkrone zerfällt."
+       ]
+      },
+      {
+       "id": "locken",
+       "e": "🎵",
+       "l": "Mit Musik ablenken",
+       "a": "CHA",
+       "sw": 10,
+       "tag": "musik",
+       "ok": [
+        "Der Pilz tanzt. Hut frei. Alle +1 TP."
+       ],
+       "part": [
+        "Kurzer Tanz, Hut halb frei."
+       ],
+       "fail": [
+        "Falsche Melodie. Der Pilz schläft ein – auf dem Hut."
+       ],
+       "okFx": {
+        "hpAll": 1
+       }
+      }
+     ]
+    },
+    {
+     "id": "ende",
+     "t": "Hut auf dem Drachen",
+     "ort": "Lichterbrücke",
+     "oe": "🎩",
+     "end": true,
+     "intro": [
+      "Sirrah setzt den Hut auf und verneigt sich so tief, dass Funken regnen. Mission Hut: Erfolg. ✨"
+     ],
+     "goal": null,
+     "need": 0,
+     "opts": []
+    }
+   ]
+  },
+  {
+   "id": "cafe-chrom",
+   "e": "☕",
+   "titel": "Chaos im Café Chrom",
+   "kurz": "Im Café Chrom kocht die Synth-Espressomaschine über – buchstäblich. Rettet die Gäste vor der Schaumflut, bevor die Plaza klebrig wird.",
+   "dauer": "ca. 15–20 Min.",
+   "schwierigkeit": "mittel",
+   "tags": [
+    "Technik",
+    "Chaos",
+    "Stadt"
+   ],
+   "begruessung": [
+    "🔮 *Zisch. Blubb. Alarm in Moll.* Café Chrom braucht Heldinnen und Helden mit Handtuch-Affinität."
+   ],
+   "start": "eingang",
+   "szenen": [
+    {
+     "id": "eingang",
+     "t": "Schaum vor der Tür",
+     "ort": "Café Chrom",
+     "oe": "☕",
+     "intro": [
+      "Aus der Tür quillt pinker Milchschaum. Drinnen quietschen Stühle, eine Goblin-Barista ruft: „DIE MASCHINE HAT GEFÜHLE!“"
+     ],
+     "goal": {
+      "id": "g_lage",
+      "t": "Die Lage im Café einschätzen"
+     },
+     "need": 2,
+     "next": "maschine",
+     "enc": 0.1,
+     "exit": [
+      "Klar: Die Maschine „Chromina“ will Aufmerksamkeit – und einen Filterwechsel."
+     ],
+     "opts": [
+      {
+       "id": "gaeste",
+       "e": "🛟",
+       "l": "Gäste in Sicherheit bringen",
+       "a": "STÄ",
+       "sw": 11,
+       "tag": "schutz",
+       "ok": [
+        "{n} schleppt Tische beiseite. Alle raus, niemand nass."
+       ],
+       "part": [
+        "Die meisten sind draußen – ein paar Socken tropfen."
+       ],
+       "fail": [
+        "{n} rutscht aus. Schaumdusche!"
+       ],
+       "failFx": {
+        "hp": -1
+       }
+      },
+      {
+       "id": "barista",
+       "e": "🗣️",
+       "l": "Die Barista befragen",
+       "a": "CHA",
+       "sw": 10,
+       "tag": "sozial",
+       "ok": [
+        "„Chromina will den alten Filter zurück – den mit dem Glitzer!“"
+       ],
+       "part": [
+        "Hint: Filter. Mehr nicht."
+       ],
+       "fail": [
+        "Die Barista weint in den Schaum."
+       ]
+      },
+      {
+       "id": "lesen",
+       "e": "📟",
+       "l": "Display der Maschine lesen",
+       "a": "INT",
+       "sw": 12,
+       "tag": "technik",
+       "ok": [
+        "Fehler: FILTER_MISSING · MOOD=DRAMATIC"
+       ],
+       "part": [
+        "Display flackert: FILTER…"
+       ],
+       "fail": [
+        "Display zeigt nur Kaffee-Emoji."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "maschine",
+     "t": "Chromina beruhigen",
+     "ort": "Café Chrom",
+     "oe": "🔧",
+     "intro": [
+      "Chromina zischt, blinkt und schreibt in Dampf: „ICH WILL GLITZERFILTER.“ Daneben liegt der alte Filter – unter einer Schaumlawine."
+     ],
+     "goal": {
+      "id": "g_filter",
+      "t": "Filter wechseln und Chromina beruhigen"
+     },
+     "need": 2,
+     "next": "ende",
+     "enc": 0,
+     "exit": [
+      "Espresso fließt wieder. Die Gäste applaudieren. Die Plaza bleibt trocken."
+     ],
+     "opts": [
+      {
+       "id": "filter",
+       "e": "🧰",
+       "l": "Glitzerfilter einsetzen",
+       "a": "INT",
+       "sw": 12,
+       "tag": "technik",
+       "ok": [
+        "Klick. Chromina summt glücklich."
+       ],
+       "part": [
+        "Filter sitzt schief, hält aber."
+       ],
+       "fail": [
+        "Falsch herum. Noch mehr Schaum."
+       ]
+      },
+      {
+       "id": "beruhigen",
+       "e": "🎶",
+       "l": "Beruhigungsmelodie",
+       "a": "CHA",
+       "sw": 11,
+       "tag": "musik",
+       "ok": [
+        "Chromina tanzt im Takt. Druck fällt."
+       ],
+       "part": [
+        "Etwas ruhiger."
+       ],
+       "fail": [
+        "Falsche Playlist: Techno. Druck steigt."
+       ]
+      },
+      {
+       "id": "ventil",
+       "e": "🔓",
+       "l": "Überdruckventil öffnen",
+       "a": "GES",
+       "sw": 12,
+       "tag": "mut",
+       "ok": [
+        "Sauberer Dampfstoß. Sicher."
+       ],
+       "part": [
+        "Ventil klemmt, dann geht’s."
+       ],
+       "fail": [
+        "Heißer Schaum auf {n}."
+       ],
+       "failFx": {
+        "hp": -1
+       },
+       "okFx": {
+        "item": [
+         "🧪",
+         "Glitzertrank"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "ende",
+     "t": "Espresso für alle",
+     "ort": "Café Chrom",
+     "oe": "✨",
+     "end": true,
+     "intro": [
+      "Chromina spendiert eine Runde Synth-Espresso. Die Plaza riecht nach Sieg und Vanille. ✨"
+     ],
+     "goal": null,
+     "need": 0,
+     "opts": []
+    }
+   ]
+  },
+  {
+   "id": "synth-chor",
+   "e": "🎶",
+   "titel": "Der stumme Synth-Chor",
+   "kurz": "Der Straßenchor an der Neon Plaza hat die Stimme verloren – buchstäblich. Findet den gestohlenen Harmonie-Kristall, bevor das Laternenfest ohne Soundtrack tanzt.",
+   "dauer": "ca. 15–25 Min.",
+   "schwierigkeit": "mittel",
+   "tags": [
+    "Musik",
+    "Diebstahl",
+    "Stadt"
+   ],
+   "begruessung": [
+    "🔮 Stille, wo Musik sein sollte. Der Synth-Chor braucht euch."
+   ],
+   "start": "buehne",
+   "szenen": [
+    {
+     "id": "buehne",
+     "t": "Bühne ohne Sound",
+     "ort": "Neon Plaza",
+     "oe": "🎤",
+     "intro": [
+      "Die Chorsängerinnen öffnen den Mund – nichts kommt. Ein leerer Sockel, wo sonst der Harmonie-Kristall glüht."
+     ],
+     "goal": {
+      "id": "g_kristall",
+      "t": "Spuren des Harmonie-Kristalls finden"
+     },
+     "need": 2,
+     "next": "dach",
+     "enc": 0.15,
+     "exit": [
+      "Fußspuren aus Noten-Glitzer führen auf die Dächer der Schrottgassen."
+     ],
+     "opts": [
+      {
+       "id": "chor",
+       "e": "🗣️",
+       "l": "Den Chor befragen",
+       "a": "CHA",
+       "sw": 10,
+       "tag": "sozial",
+       "ok": [
+        "„Etwas Kleines, Leuchtendes – hat den Kristall geklaut und ist hoch!“"
+       ],
+       "part": [
+        "Richtung Dächer."
+       ],
+       "fail": [
+        "Pantomime-Chaos."
+       ]
+      },
+      {
+       "id": "sockel",
+       "e": "🔍",
+       "l": "Sockel untersuchen",
+       "a": "INT",
+       "sw": 11,
+       "tag": "analyse",
+       "ok": [
+        "Kratzer von kleinen Krallen, Notenstaub nach oben."
+       ],
+       "part": [
+        "Kratzer. Unklar."
+       ],
+       "fail": [
+        "{n} aktiviert versehentlich die Nebelmaschine."
+       ]
+      },
+      {
+       "id": "lauschen",
+       "e": "👂",
+       "l": "Nach Echo lauschen",
+       "a": "WEI",
+       "sw": 11,
+       "tag": "natur",
+       "ok": [
+        "Ein fernes Summen von den Dächern."
+       ],
+       "part": [
+        "Irgendwo oben."
+       ],
+       "fail": [
+        "Nur Straßenlärm."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "dach",
+     "t": "Kristall auf dem Dach",
+     "ort": "Schrottgassen-Dächer",
+     "oe": "🏠",
+     "intro": [
+      "Auf einem Wellblechdach sitzt ein Leuchtkobold und singt *falsch* in den Kristall. Die Noten flattern panisch."
+     ],
+     "goal": {
+      "id": "g_zurueck",
+      "t": "Den Kristall zurückholen"
+     },
+     "need": 2,
+     "next": "ende",
+     "enc": 0,
+     "exit": [
+      "Kristall zurück. Der Chor trifft den ersten Akkord – die Plaza tanzt."
+     ],
+     "opts": [
+      {
+       "id": "unterricht",
+       "e": "🎼",
+       "l": "Dem Kobold das richtige Lied beibringen",
+       "a": "CHA",
+       "sw": 12,
+       "tag": "musik",
+       "ok": [
+        "Der Kobold strahlt und gibt den Kristall als Dank."
+       ],
+       "part": [
+        "Fast richtig – Kristall wackelt frei."
+       ],
+       "fail": [
+        "Noch schiefer. Die Fenster zittern."
+       ],
+       "okFx": {
+        "wind": "all"
+       }
+      },
+      {
+       "id": "tausch",
+       "e": "🎁",
+       "l": "Gegen ein Glitzer-Mikro tauschen",
+       "a": "INT",
+       "sw": 11,
+       "tag": "sozial",
+       "ok": [
+        "Deal! Kobold happy, Chor happy."
+       ],
+       "part": [
+        "Harter Handel, Kristall halb."
+       ],
+       "fail": [
+        "Kobold will auch noch eure Schuhe."
+       ]
+      },
+      {
+       "id": "sprint",
+       "e": "🏃",
+       "l": "Blitzschnell greifen",
+       "a": "GES",
+       "sw": 13,
+       "tag": "mut",
+       "ok": [
+        "{n} hascht den Kristall. Der Kobold applaudiert widerwillig."
+       ],
+       "part": [
+        "Knapp – ein Kratzer."
+       ],
+       "fail": [
+        "Ausrutscher auf Wellblech."
+       ],
+       "failFx": {
+        "hp": -1
+       }
+      }
+     ]
+    },
+    {
+     "id": "ende",
+     "t": "Chor wieder laut",
+     "ort": "Neon Plaza",
+     "oe": "🌈",
+     "end": true,
+     "intro": [
+      "Der Synth-Chor trifft den Refrain. Neon Park hat seinen Soundtrack zurück. ✨"
+     ],
+     "goal": null,
+     "need": 0,
+     "opts": []
+    }
+   ]
+  },
+  {
+   "id": "portal-klemme",
+   "e": "🌀",
+   "titel": "Portalschloss klemmt",
+   "kurz": "Das kleine Portalschloss am Rand der Plaza klemmt – dahinter wartet ein verspätetes Paket für die Chaos Queen. Öffnet es, ohne Chaos zu entfesseln.",
+   "dauer": "ca. 20–25 Min.",
+   "schwierigkeit": "knifflig",
+   "tags": [
+    "Portal",
+    "Rätsel",
+    "Chaos"
+   ],
+   "begruessung": [
+    "🔮 Ein Schloss summt in der falschen Tonart. Die Chaos Queen wartet – geduldig? Eher nicht."
+   ],
+   "start": "tor",
+   "szenen": [
+    {
+     "id": "tor",
+     "t": "Das sumpende Schloss",
+     "ort": "Plaza-Rand",
+     "oe": "🌀",
+     "intro": [
+      "Ein kleines Portaltor vibriert. Runen flackern: LACHEN · LICHT · LIED. Darunter ein Zettel: „Nur wer alle drei trifft, kommt durch.“"
+     ],
+     "goal": {
+      "id": "g_runen",
+      "t": "Die drei Runen richtig aktivieren"
+     },
+     "need": 3,
+     "next": "raum",
+     "enc": 0.2,
+     "exit": [
+      "Das Tor öffnet sich einen Spalt weit. Dahinter: ein Wartungsraum voller Glitzerpakete."
+     ],
+     "opts": [
+      {
+       "id": "lachen",
+       "e": "😂",
+       "l": "Ein ehrliches Lachen",
+       "a": "CHA",
+       "sw": 11,
+       "tag": "sozial",
+       "ok": [
+        "Die LACHEN-Rune leuchtet. Das Tor kichert mit."
+       ],
+       "part": [
+        "Halbherzig – Rune flackert."
+       ],
+       "fail": [
+        "Verkrampftes Lachen. Rune rollt mit den Augen."
+       ]
+      },
+      {
+       "id": "licht",
+       "e": "✨",
+       "l": "Eigenes Licht opfern",
+       "a": "WEI",
+       "sw": 12,
+       "tag": "natur",
+       "ok": [
+        "{n} hält eine Laterne an die Rune. LICHT an."
+       ],
+       "part": [
+        "Funke reicht knapp."
+       ],
+       "fail": [
+        "Die Laterne geht aus. Pech."
+       ]
+      },
+      {
+       "id": "lied",
+       "e": "🎵",
+       "l": "Die Portalmelodie singen",
+       "a": "CHA",
+       "sw": 12,
+       "tag": "musik",
+       "ok": [
+        "LIED-Rune tanzt. Fast offen!"
+       ],
+       "part": [
+        "Falsche Strophe, richtige Absicht."
+       ],
+       "fail": [
+        "Karaoke-Fail."
+       ]
+      },
+      {
+       "id": "knacken",
+       "e": "🔓",
+       "l": "Schloss knacken",
+       "a": "INT",
+       "sw": 14,
+       "tag": "technik",
+       "ok": [
+        "Technischer Bypass. Die Chaos Queen wäre stolz – oder genervt."
+       ],
+       "part": [
+        "Halb geknackt."
+       ],
+       "fail": [
+        "Alarm-Glitzern. {n} bekommt einen Schreck."
+       ],
+       "failFx": {
+        "hp": -1
+       }
+      }
+     ]
+    },
+    {
+     "id": "raum",
+     "t": "Paket der Chaos Queen",
+     "ort": "Portal-Wartung",
+     "oe": "📦",
+     "intro": [
+      "Im Raum schwebt ein Paket mit Aufschrift „FRAGIL · NICHT SCHÜTTELN · OK DOCH“. Es summt verdächtig."
+     ],
+     "goal": {
+      "id": "g_paket",
+      "t": "Das Paket sicher bergen"
+     },
+     "need": 2,
+     "next": "ende",
+     "enc": 0,
+     "exit": [
+      "Paket gesichert. Das Tor schließt sich höflich. Die Queen wird sich freuen – hoffentlich."
+     ],
+     "opts": [
+      {
+       "id": "tragen",
+       "e": "🤲",
+       "l": "Behutsam tragen",
+       "a": "GES",
+       "sw": 13,
+       "tag": "mut",
+       "ok": [
+        "Kein Wackler. Profiarbeit."
+       ],
+       "part": [
+        "Einmal gewackelt – Paket murrt."
+       ],
+       "fail": [
+        "Stolperer. Das Paket lacht."
+       ],
+       "failFx": {
+        "hp": -1
+       }
+      },
+      {
+       "id": "beruhigen",
+       "e": "🗣️",
+       "l": "Mit dem Paket reden",
+       "a": "CHA",
+       "sw": 12,
+       "tag": "sozial",
+       "ok": [
+        "Das Paket entspannt sich. Es mag Komplimente."
+       ],
+       "part": [
+        "Es hört halb zu."
+       ],
+       "fail": [
+        "Es beleidigt {n} zurück."
+       ]
+      },
+      {
+       "id": "scan",
+       "e": "📡",
+       "l": "Inhalt scannen",
+       "a": "INT",
+       "sw": 12,
+       "tag": "analyse",
+       "ok": [
+        "Inhalt: Glitzertee + eine Notiz „Danke“. Sicher."
+       ],
+       "part": [
+        "Unscharf, aber harmlos."
+       ],
+       "fail": [
+        "Scanner zeigt nur Fragezeichen."
+       ],
+       "okFx": {
+        "item": [
+         "☕",
+         "Glitzertee"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "ende",
+     "t": "Paket zugestellt",
+     "ort": "Neon Plaza",
+     "oe": "👑",
+     "end": true,
+     "intro": [
+      "Irgendwo zwinkert ein Portal. Die Chaos Queen hat ihr Paket. Ihr habt Chaos … verhindert. Meistens. ✨"
+     ],
+     "goal": null,
+     "need": 0,
+     "opts": []
+    }
+   ]
+  }
  ]
 }

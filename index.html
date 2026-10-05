@@ -248,6 +248,12 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
 .mtile.wide{grid-column:1/-1;min-height:96px;flex-direction:row;gap:14px;justify-content:flex-start;text-align:left;padding:14px 16px}.mtile.wide>span{font-size:40px}
 .mtile.mini{min-height:88px;font-size:16px}.mtile.mini>span{font-size:30px}
 .mtile:active{transform:scale(.97)}.mtile:focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 20px color-mix(in srgb,var(--c) 55%,transparent)}
+.msec{margin:18px 0 6px}.msec:first-of-type{margin-top:8px}
+.msec-h{margin:0 0 8px;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);text-shadow:0 0 10px #00E5FF55}
+.msec-h[data-tone=gold]{color:var(--gold);text-shadow:0 0 10px #FFD34D55}
+.msec-h[data-tone=pink]{color:var(--pink);text-shadow:0 0 10px #FF2BD655}
+.msec .mtiles{margin:0 0 4px}
+.mhint{font-size:13.5px;color:var(--muted);margin:0 0 10px;line-height:1.4}
 .honest{border:2px dashed var(--gold);border-radius:14px;padding:10px 12px;background:#2a2010;color:#ffe9a8;margin:12px 0;line-height:1.45}
 .copybox{white-space:pre-wrap;background:#120a28;border:1px solid #ffffff33;border-radius:12px;padding:10px;font:14px/1.45 ui-monospace,monospace;color:var(--text);margin:8px 0;user-select:all}
 .backrow{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px}
@@ -331,23 +337,39 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
 
 
 <main class="wrap hide" id="menu" aria-labelledby="mH">
-  <div class="inhero brand-hero"><h1 id="mH">Neon Park</h1><p class="sub">Rollenspiel-Abende im Chat · Alpha</p></div>
+  <div class="inhero brand-hero"><h1 id="mH">Neon Park</h1><p class="sub">Synthwave-Fantasy · Alpha · alles bleibt auf diesem Gerät</p></div>
   <div id="mCont"></div>
-  <div class="mtiles">
-   <button class="mtile" style="--c:var(--cyan)" id="mJoin"><span aria-hidden="true">🚪</span>Spiel beitreten<small>Platz-Code · Figur · Spielstand</small></button>
-   <button class="mtile" style="--c:var(--gold)" id="mHost"><span aria-hidden="true">👑</span>Spiel erstellen<small>Tisch vorbereiten · Einladung</small></button>
-   <button class="mtile mini" style="--c:var(--green)" id="mSaves"><span aria-hidden="true">💾</span>Spielstände</button>
-   <button class="mtile mini" style="--c:var(--violet)" id="mHelp"><span aria-hidden="true">❓</span>Hilfe</button>
-   <button class="mtile mini" style="--c:var(--pink)" id="mIntro"><span aria-hidden="true">🌆</span>Einleitung</button>
-   <button class="mtile wide" style="--c:var(--gold)" id="mRunde"><span aria-hidden="true">🔮</span><span style="font-size:inherit;filter:none">App-Runde mit Neon Omina<br><small>Spielleiter im Gerät · KI-Mitspieler · online mit Freunden</small></span></button>
-   <button class="mtile mini" style="--c:var(--cyan)" id="mAkt"><span aria-hidden="true">📋</span>Activities</button>
-   <button class="mtile mini" style="--c:var(--orange)" id="mSnd" aria-pressed="true"><span aria-hidden="true">🔊</span><b id="mSndL">Ton an</b></button>
+
+  <div class="msec"><h2 class="msec-h" data-tone="gold">🔮 Spielen im Gerät</h2>
+   <p class="mhint">Neon Omina erzählt hier direkt – Schnelles oder Langes Spiel, optional mit Freunden oder KI-Mitspielern.</p>
+   <div class="mtiles">
+    <button class="mtile wide" style="--c:var(--pink)" id="mRunde"><span aria-hidden="true">🔮</span><span style="font-size:inherit;filter:none">App-Runde starten<br><small>⚡ Schnell · 📜 Lang · Online-Tisch · KI-Mitspieler</small></span></button>
+    <button class="mtile mini" style="--c:var(--cyan)" id="mAkt"><span aria-hidden="true">📋</span>Activities<small>Stand & Historie</small></button>
+   </div>
   </div>
-  <p class="honest">🧪 <b>Alpha:</b> kein eigener Server, kein Konto. Gespielt wird im Gruppen-Chat mit Neon Omina – <b>oder neu:</b> in der 🔮 App-Runde, wo Neon Omina direkt auf diesem Gerät erzählt (optional live mit Freunden per WebRTC).</p>
+
+  <div class="msec"><h2 class="msec-h">💬 Chat-Tisch vorbereiten</h2>
+   <p class="mhint">Klassisch: Texte für den Gruppen-Chat mit Neon Omina. Kein Live-Server – Spielstand per NP1-Code.</p>
+   <div class="mtiles">
+    <button class="mtile" style="--c:var(--cyan)" id="mJoin"><span aria-hidden="true">🚪</span>Figur & Beitritt<small>Charakter · Platz-Code · Speichern</small></button>
+    <button class="mtile" style="--c:var(--violet)" id="mHost"><span aria-hidden="true">👑</span>Chat-Einladung<small>Tischtext · Startbefehl kopieren</small></button>
+   </div>
+  </div>
+
+  <div class="msec"><h2 class="msec-h" data-tone="pink">⚙️ Mehr</h2>
+   <div class="mtiles">
+    <button class="mtile mini" style="--c:var(--green)" id="mSaves"><span aria-hidden="true">💾</span>Spielstände</button>
+    <button class="mtile mini" style="--c:var(--violet)" id="mHelp"><span aria-hidden="true">❓</span>Hilfe</button>
+    <button class="mtile mini" style="--c:var(--pink)" id="mIntro"><span aria-hidden="true">🌆</span>Einleitung</button>
+    <button class="mtile mini" style="--c:var(--orange)" id="mSnd" aria-pressed="true"><span aria-hidden="true">🔊</span><b id="mSndL">Ton an</b></button>
+   </div>
+  </div>
+
+  <p class="honest">🧪 <b>Alpha:</b> kein eigener Server, kein Konto. Zwei Wege: 🔮 <b>App-Runde</b> (Spielleiter im Browser, optional WebRTC) oder 💬 <b>Chat-Tisch</b> (kopieren & einfügen). Online-Host: Seite offen lassen. Figur-TP und App-Runden-HP sind getrennt.</p>
 </main>
 <main class="wrap hide" id="join" aria-labelledby="jH">
   <div class="backrow"><button class="btn small" style="--c:#ffffff55" data-menu>🏠 Hauptmenü</button></div>
-  <h1 id="jH">🚪 Spiel beitreten</h1>
+  <h1 id="jH">🚪 Figur & Beitritt</h1>
   <section class="insec" style="--c:var(--cyan)"><h2>🔗 Einladung & Platz</h2><p>Du hast den Link vom Host bekommen? Dann bist du hier richtig. Dein Tisch ist der <b>Gruppen-Chat mit Neon Omina</b> – es gibt keine Live-Verbindung zu einem Server.</p><p class="tip" id="pcState"></p><div id="pcBox"><details class="pdet hide" id="pcDet" open><summary>🎟️ Ich habe einen Platz-Code (optional)</summary><div class="pcode"><input id="pcIn2" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="NP-ALPHA-…" aria-label="Platz-Code"><button class="btn" id="pcGo2" style="--c:var(--violet)">🔓 Einlösen</button></div><p class="pmsg" id="pcMsg2" role="status"></p></details></div></section>
   <section class="insec" style="--c:var(--pink)"><h2>🧙 Deine Figur</h2><div id="jFig"></div>
    <div class="mtiles">
@@ -359,8 +381,8 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
 </main>
 <main class="wrap hide" id="host" aria-labelledby="hH">
   <div class="backrow"><button class="btn small" style="--c:#ffffff55" data-menu>🏠 Hauptmenü</button></div>
-  <h1 id="hH">👑 Spiel erstellen</h1>
-  <p class="honest">🧪 <b>Ehrlich gesagt (Alpha):</b> Hier wird <b>kein</b> Online-Tisch angelegt. Es gibt keinen Server und keine Live-Verbindung. Diese Seite bereitet nur Texte vor: die <b>Einladung</b> für deine Gruppe und den <b>Startbefehl</b> für Neon Omina. Gespielt wird im Chat, den Spielstand gleicht ihr mit dem NP1-Code ab.</p>
+  <h1 id="hH">👑 Chat-Tisch vorbereiten</h1>
+  <p class="honest">🧪 <b>Ehrlich gesagt (Alpha):</b> Das ist <b>nicht</b> der Online-Tisch der App-Runde. Hier entstehen nur Texte: <b>Einladung</b> + <b>Startbefehl</b> für Neon Omina im Chat. Live mit Freunden im Gerät? → Hauptmenü → 🔮 App-Runde → Online-Tisch öffnen.</p>
   <section class="insec" style="--c:var(--gold)"><h2>🌀 Abenteuer: Das Portalgate der Chaos Queen</h2><p>Die Chaos Queen schickt euch durch ihr Portalgate. Ihr stimmt ab, wohin:</p>
    <p>⚔️ Velmora · 🚀 Station Halcyon · 🌆 Rand des Dead Core · 🎲 Zufallswelt A · 🎲 Zufallswelt B</p><p class="tip">ca. 3–4 Std. · 5 Plätze · ab 18 · Intro Lang / Kurz / Skip</p></section>
   <section class="insec" style="--c:var(--cyan)"><h2>🏷️ Dein Tisch</h2>
@@ -436,7 +458,7 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
   <div class="stats" id="gStats"></div>
   <section class="vpanel" id="gVP" aria-label="Volk"></section>
   <button class="btn full big" style="--c:var(--violet);margin-top:12px" id="bigDice">🎲 Würfeln</button>
-  <button class="btn full" style="--c:var(--gold);margin-top:10px" id="toRunde">🔮 App-Runde mit Neon Omina · 📋 Activities</button>
+  <button class="btn full" style="--c:var(--gold);margin-top:10px" id="toRunde">🔮 Zur App-Runde (Schnell / Lang)</button>
   <div class="out" id="out">
     <pre id="outTxt">Tippe unten auf ☰ Aktionen – hier erscheint dein fertiger Chat-Text.</pre>
     <div class="row"><button class="btn" style="--c:var(--cyan)" id="copyBtn">📋 In den Chat kopieren</button><span id="copyOk" class="tip" aria-live="polite"></span></div>
@@ -500,7 +522,7 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
  <div class="box menu">
   <div class="top"><h2 id="moreH">⚙️ Mehr</h2><button class="x" data-close aria-label="Schließen">✕</button></div>
   <button class="homebtn" data-home><span aria-hidden="true">🏠</span><b>Zum Startmenü<small>Spiel beitreten · Spiel erstellen – deine Figur bleibt gespeichert</small></b></button>
-  <button class="btn" style="--c:var(--gold)" id="moreRunde">🔮 App-Runde mit Neon Omina (Spielleiter im Gerät)</button>
+  <button class="btn" style="--c:var(--gold)" id="moreRunde">🔮 App-Runde: Schnelles oder Langes Spiel</button>
   <button class="btn" style="--c:var(--cyan)" id="moreAkt">📋 Activities: Stand & Historie</button>
   <button class="btn" style="--c:var(--green)" data-open="sv">💾 Spielstände (Speichern & Laden)</button>
   <button class="btn" style="--c:var(--cyan)" data-open="imp">📥 Spielstand einfügen (Code von Neon)</button>

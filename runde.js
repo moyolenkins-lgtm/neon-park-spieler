@@ -67,8 +67,14 @@ function fill(t,m,extra){return String(t||'').replace(/\{n\}/g,m?first(m.name):'
 
 /* ---------- Kampagne laden ---------- */
 function loadK(){if(K||KERR==='lädt')return;KERR='lädt';fetch('kampagne.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(j=>{if(!j||j.format!=='np-kampagne')throw 0;K=j;KERR='';rerender()}).catch(()=>{KERR='Die Kampagne konnte nicht geladen werden. Bitte die Seite über den normalen Link (https) öffnen.';rerender()})}
-function scene(id){const v=V();if(!K||!v)return null;return K.szenen.find(s=>s.id===(id||v.scene))||null}
-function encDef(){const v=V();return v&&v.enc&&K?K.begegnungen.find(e=>e.id===v.enc.id):null}
+function questOf(id){return K&&(K.kurzquests||[]).find(q=>q.id===id)||null}
+function activeCamp(){if(!K)return null;const v=V();if(v&&v.mode==='schnell'&&v.questId){const q=questOf(v.questId);if(q)return Object.assign({},K,{id:q.id,titel:q.titel,kurz:q.kurz,dauer:q.dauer||'ca. 15–25 Min.',start:q.start,begruessung:q.begruessung||K.begruessung,szenen:q.szenen})}return K}
+function scene(id){const v=V();const C=activeCamp();if(!C||!v)return null;return C.szenen.find(s=>s.id===(id||v.scene))||null}
+function encDef(){const v=V();const C=activeCamp();return v&&v.enc&&C?(C.begegnungen||[]).find(e=>e.id===v.enc.id):null}
+function shuffle(a){const L=a.slice();for(let i=L.length-1;i>0;i--){const j=d(i+1)-1;const t=L[i];L[i]=L[j];L[j]=t}return L}
+function offerQuests(){ensureR();const pool=(K&&K.kurzquests)||[];if(!pool.length)return[];if(!R.questOffer||!R.questOffer.length){R.questOffer=shuffle(pool.map(q=>q.id)).slice(0,Math.min(3,pool.length));save()}return R.questOffer.map(id=>questOf(id)).filter(Boolean)}
+function setMode(m){ensureR();R.mode=m;R.questId=null;if(m==='lang'){R.camp=K?K.id:'funkenflug';R.questOffer=null}else{R.camp='';R.questOffer=null}log('sys',m==='lang'?'📜 Modus: Langes Spiel':'⚡ Modus: Schnelles Spiel');commit()}
+function pickQuest(id){ensureR();const q=questOf(id);if(!q)return;R.mode='schnell';R.questId=q.id;R.camp=q.id;log('sys',`⚡ Kurz-Quest gewählt: ${q.e} ${q.titel}`);commit()}
 
 /* ---------- Figuren ---------- */
 function usedColors(p){return new Set((p||[]).map(m=>m.color))}
@@ -88,7 +94,7 @@ function avHtml(m,lg){const c=col(m&&m.color);if(!m)return `<span class="npr-av$
 function clsTxt(m){const v=VOLK[m.volk];return `${v?v.e+' '+v.s+' · ':''}${OBER[m.ober]?OBER[m.ober].e:''} ${esc(m.ober)} · ${esc(m.unter)}${m.look?' · '+esc(m.look):''}`}
 
 /* ---------- Spielstand ---------- */
-function newR(){const p=[];const me=meMember(p);if(me)p.push(me);return {format:'np-runde',v:1,camp:K?K.id:'funkenflug',party:p,order:[],ti:0,round:1,scene:'',prog:0,ehp:null,done:{},goals:[],flags:{},enc:null,log:[],started:false,ended:false,seq:0,t0:Date.now()}}
+function newR(){const p=[];const me=meMember(p);if(me)p.push(me);return {format:'np-runde',v:1,camp:K?K.id:'funkenflug',mode:null,questId:null,questOffer:null,party:p,order:[],ti:0,round:1,scene:'',prog:0,ehp:null,done:{},goals:[],flags:{},enc:null,log:[],started:false,ended:false,seq:0,t0:Date.now()}}
 function ensureR(){if(!R){R=newR();save()}return R}
 function save(){saveJ(RKEY,R)}
 function log(k,txt,who,extra){const v=R;const sc=scene();const e=Object.assign({i:++v.seq,t:Date.now(),k,sc:v.scene||'vorbereitung',st:sc?sc.t:'Vorbereitung',r:v.started?v.round:0,txt:String(txt)},who?{w:who.id,n:who.name,c:who.color,e:who.kind==='bot'?who.e:'',a:who.kind==='bot'?'':who.av}:{});Object.assign(e,extra||{});v.log.push(e);if(v.log.length>1500)v.log.splice(0,v.log.length-1500)}
@@ -105,14 +111,14 @@ function syncMe(){const f=fig();let me=R.party.find(m=>m.id==='h:'+ME);if(!me){i
 function refreshMe(){const me=R&&R.party.find(m=>m.id==='h:'+ME);const f=fig();if(!me||!f)return;const n=meMember(R.party.filter(x=>x!==me));Object.assign(me,{name:n.name,av:n.av,ober:n.ober,unter:n.unter,volk:n.volk,st:n.st,max:n.max,inv:n.inv});me.hp=Math.min(me.hp,me.max);commit()}
 
 /* ---------- Spiel starten ---------- */
-function start(){ensureR();if(!K)return;if(!R.party.length){const me=meMember([]);if(me)R.party.push(me)}if(!R.party.length)return;
+function start(){ensureR();const C=activeCamp();if(!C)return;if(R.mode==='schnell'&&!R.questId)return;if(!R.mode){R.mode='lang';R.camp=C.id}if(!R.party.length){const me=meMember([]);if(me)R.party.push(me)}if(!R.party.length)return;
  R.log=R.log.filter(e=>e.k==='sys');R.started=true;R.ended=false;R.round=1;R.done={};R.goals=[];R.flags={};R.enc=null;
- (K.begruessung||[]).forEach(t=>log('gm',t));
+ (C.begruessung||[]).forEach(t=>log('gm',t));
  const ini=R.party.map(m=>{const r=d(20),b=mod(m.st[1])+(m.ober==='Athlet'?1:0);return {m,r,b,t:r+b}}).sort((a,b)=>b.t-a.t);
  R.order=ini.map(x=>x.m.id);R.ti=0;
  log('sys','🔁 Initiative (W20 + Geschick): '+ini.map(x=>`${x.m.name} ${x.r}${x.b?(x.b>0?'+':'−')+Math.abs(x.b):''}=${x.t}`).join(' · ')+'. Zugreihenfolge: '+ini.map(x=>first(x.m.name)).join(' → '));
- enterScene(K.start);snd('portal');commit()}
-function enterScene(id){const s=K.szenen.find(x=>x.id===id);if(!s)return;R.scene=s.id;R.prog=0;R.ehp=s.enemy?s.enemy.hp:null;R.done={};R.enc=null;
+ enterScene(C.start);snd('portal');commit()}
+function enterScene(id){const C=activeCamp();if(!C)return;const s=C.szenen.find(x=>x.id===id);if(!s)return;R.scene=s.id;R.prog=0;R.ehp=s.enemy?s.enemy.hp:null;R.done={};R.enc=null;
  log('gm',`📍 ${s.oe} ${s.ort} – „${s.t}“\n${pick(s.intro)}`);
  if(s.goal){if(!R.goals.some(g=>g.id===s.goal.id))R.goals.push({id:s.goal.id,t:s.goal.t,done:false,sc:s.id});log('sys',`🎯 Neues Ziel: ${s.goal.t}`)}
  if(s.enemy)log('gm',`${s.enemy.e} ${s.enemy.n} stellt sich euch in den Weg (Ausdauer ${s.enemy.hp}). Reden, Tricks und Mut zählen genauso wie Kraft – niemand wird ernsthaft verletzt.`);
@@ -155,11 +161,11 @@ function genEffect(m,o,res){if(o.id==='g:helfen'){const t=lowest(m)||R.party.fin
   if(res==='ok'){log('gm',`${first(m.name)} kümmert sich um ${first(t.name)}: ein paar aufmunternde Worte, ein Pflaster mit Leuchtmuster – und Rückenwind für die nächste Probe.`);hpChange(t,d(4)+1+emp);t.fx=(t.fx||[]).filter(x=>x!=='Rückenwind'&&x!=='Erschöpft').concat('Rückenwind')}
   else if(res==='part'){log('gm',`${first(m.name)} hilft ${first(t.name)} kurz wieder auf die Beine.`);hpChange(t,1+Math.floor(emp/2))}
   else log('gm',`${first(m.name)} will helfen, stolpert aber über die eigenen Füße. Die Geste zählt!`)}
- if(o.id==='g:umsehen'){log('gm',pick(K.stimmung));if(res==='ok'){log('gm',`${first(m.name)} entdeckt dabei einen nützlichen Hinweis.`);if(R.enc)R.enc.prog++;else if(!scene().enemy)R.prog++}}}
+ if(o.id==='g:umsehen'){log('gm',pick((activeCamp()||K).stimmung));if(res==='ok'){log('gm',`${first(m.name)} entdeckt dabei einen nützlichen Hinweis.`);if(R.enc)R.enc.prog++;else if(!scene().enemy)R.prog++}}}
 function progressCheck(){if(R.enc)return;const s=scene();if(!s||s.end||!sceneDone())return;log('gm',pick(s.exit));const fx=s.exitFx||{};if(fx.itemAll)R.party.forEach(m=>giveItem(m,fx.itemAll));if(fx.itemFirst){const m=R.party.find(x=>x.kind==='mensch')||R.party[0];if(m)giveItem(m,fx.itemFirst)}
  const g=R.goals.find(x=>x.id===(s.goal&&s.goal.id));if(g){g.done=true;log('sys',`✅ Ziel erreicht: ${g.t}`)}snd('good');enterScene(s.next)}
 function endTurn(){if(!R.order.length)return;let guard=0;do{R.ti=(R.ti+1)%R.order.length;if(R.ti===0){R.round++;log('sys',`🔁 Runde ${R.round} beginnt.`);roundEvents()}const c=curM(R);if(c&&(c.fx||[]).includes('Erschöpft')){c.fx=c.fx.filter(x=>x!=='Erschöpft');c.hp=Math.max(1,c.hp);log('sys',`😮‍💨 ${c.name} verschnauft diese Runde und steht mit ${c.hp} TP wieder auf.`,c);continue}break}while(++guard<12)}
-function roundEvents(){const s=scene();if(!s||R.ended||R.enc)return;if(s.enc&&d(100)<=Math.round(s.enc*100)){const e=pick(K.begegnungen);R.enc={id:e.id,prog:0,ehp:e.enemy?e.enemy.hp:null};log('gm',`${e.e} Begegnung: „${e.t}“\n${pick(e.intro)}`);return}if(d(100)<=40)log('gm',pick(K.stimmung))}
+function roundEvents(){const s=scene();if(!s||R.ended||R.enc)return;if(s.enc&&d(100)<=Math.round(s.enc*100)){const e=pick((activeCamp()||K).begegnungen);R.enc={id:e.id,prog:0,ehp:e.enemy?e.enemy.hp:null};log('gm',`${e.e} Begegnung: „${e.t}“\n${pick(e.intro)}`);return}if(d(100)<=40)log('gm',pick((activeCamp()||K).stimmung))}
 function skipTurn(){if(!isHost()||!R.started)return;const c=curM(R);if(c)log('sys',`⏭️ ${c.name} setzt diesen Zug aus.`,c);endTurn();commit()}
 function sayAs(m,t){t=cleanTxt(t,140);if(!t||!m)return;log('say',t,m);commit()}
 
@@ -225,7 +231,7 @@ function viewImport(o){G=o;saveJ(GKEY,G);hostClose(true);MP.role='view';rerender
 function takeOver(o){if(R&&R.started&&!confirm('Eigene App-Runde auf diesem Gerät durch den eingefügten Spielstand ersetzen?'))return;hostClose(true);R=o;R.party.forEach(m=>{if(m.kind==='mensch'){m.dev=ME;m.online=true}});log('sys','📥 Spielstand übernommen – alle menschlichen Figuren spielen jetzt an diesem Gerät (Hot-Seat).');MP.role='solo';commit()}
 function dl(name,txt,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
 function stamp(){const x=new Date();const p=n=>String(n).padStart(2,'0');return `${x.getFullYear()}-${p(x.getMonth()+1)}-${p(x.getDate())}-${p(x.getHours())}${p(x.getMinutes())}`}
-function logText(v,list){const L=list||v.log;let out=[`Neon Park – App-Runde „${K?K.titel:''}“ · Export ${new Date().toLocaleString('de-DE')}`,''];let sc=null,rd=null;
+function logText(v,list){const L=list||v.log;const AC=activeCamp();let out=[`Neon Park – App-Runde „${AC?AC.titel:(K?K.titel:'')}“ · Export ${new Date().toLocaleString('de-DE')}`,''];let sc=null,rd=null;
  L.forEach(e=>{if(e.sc!==sc){sc=e.sc;rd=null;out.push('','=== Szene: '+e.st+' ===')}if(e.r!==rd){rd=e.r;out.push('--- Runde '+(e.r||'–')+' ---')}const tm=new Date(e.t).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});const who=e.k==='gm'?'[Erzähler · Neon Omina]':e.n?`[${e.n}]`:'[System]';out.push(`${tm} ${TYP[e.k][0]} ${who} ${e.txt}`)});return out.join('\n')}
 function exportTxt(){const v=V();if(!v)return;dl(`neonpark-runde-${stamp()}.txt`,logText(v,filtered(v)),'text/plain;charset=utf-8')}
 function exportJson(){const v=V();if(!v)return;dl(`neonpark-runde-${stamp()}.json`,JSON.stringify({format:'np-runde-export',v:1,app:'Neon Park Spieler-Seite',exportiert:new Date().toISOString(),runde:v},null,1),'application/json')}
@@ -254,7 +260,7 @@ function renderRunde(){const el=$$('runde');const v=V();let h=topBar();
  if(!V()||!V().started){h+=setupHtml(V());el.innerHTML=h;wire(el);return}
  const s=scene();const e=encDef();const c=curM(v);
  h+=`<div class="row" style="gap:8px"><button class="btn" style="--c:var(--cyan)" data-npr="akt">📋 Activities: Stand & Historie</button></div>`;
- h+=`<section class="npr-scene" aria-label="Aktuelle Szene"><div class="npr-ort"><span>${s?esc(s.oe):''} Ort: <b>${s?esc(s.ort):'–'}</b></span><span>🔁 Runde <b>${v.round}</b></span><span>📖 ${esc(K.titel)}</span></div><h2>${s?esc(s.t):''}</h2>`+
+ h+=`<section class="npr-scene" aria-label="Aktuelle Szene"><div class="npr-ort"><span>${s?esc(s.oe):''} Ort: <b>${s?esc(s.ort):'–'}</b></span><span>🔁 Runde <b>${v.round}</b></span><span>📖 ${esc((activeCamp()||K).titel)}</span></div><h2>${s?esc(s.t):''}</h2>`+
   (s&&s.goal?`<div class="npr-goal">🎯 Ziel: ${esc(s.goal.t)}${!s.enemy&&!e?` <span class="tip">(Fortschritt ${Math.min(v.prog,need())}/${need()})</span>`:''}</div>`:'')+
   (s&&s.enemy&&!e?`<div class="npr-enemy">${esc(s.enemy.e)} <b>${esc(s.enemy.n)}</b> · Ausdauer ${v.ehp}/${s.enemy.hp}<div class="npr-hp"><i style="width:${Math.round(100*v.ehp/s.enemy.hp)}%"></i></div></div>`:'')+
   (e?`<div class="npr-enemy" style="border-color:var(--violet);background:#a78bfa1a">${esc(e.e)} <b>Begegnung: ${esc(e.t)}</b>${e.enemy?` · Ausdauer ${v.enc.ehp}/${e.enemy.hp}`:''}</div>`:'')+
@@ -272,13 +278,30 @@ function renderRunde(){const el=$$('runde');const v=V();let h=topBar();
 function groupBtns(v){const free=MAXP-v.party.length;const pg=FIGS.filter(p=>!v.party.some(m=>m.id==='h:'+ME+':'+p.id)&&!(fig()&&fig().id===p.id));return `<div class="row" style="margin-top:6px"><button class="btn" style="--c:var(--green)" data-npr="fill" ${free<=0?'disabled':''}>🤖 Gruppe mit KI-Spielern auffüllen${free>0?' (+'+free+')':' (voll)'}</button>${v.party.some(m=>m.kind==='bot')?'<button class="btn small" style="--c:var(--red)" data-npr="nobots">🧹 Alle KI entfernen</button>':''}</div>
  ${free>0&&pg.length?`<div class="row" style="margin-top:8px"><select id="nprHot" style="flex:1;width:auto" aria-label="Fertige Figur für Hot-Seat">${pg.map(p=>`<option value="${p.id}">${esc(p.name)} · ${esc(p.unter)}</option>`).join('')}</select><button class="btn small" style="--c:var(--cyan)" data-npr="hot">🪑 Mitspieler an diesem Gerät</button></div>`:''}
  ${fig()&&v.party.some(m=>m.id==='h:'+ME)?'':fig()&&free>0?'<button class="btn small" style="--c:var(--pink);margin-top:8px" data-npr="addme">⭐ Meine Figur hinzufügen</button>':''}<p class="tip">Ziel: 5er-Gruppe. KI-Mitspieler handeln selbst (regelbasiert, ohne Internet) und sind jederzeit mit ✖ entfernbar.</p>`}
-function setupHtml(v){const r=v||{party:[]};let h=`<section class="npr-scene"><div class="npr-ort"><span>📖 Kampagne</span><span>⏱️ ${esc(K.dauer)}</span></div><h2>${esc(K.titel)}</h2><p>${esc(K.kurz)}</p><p class="tip">🔮 Neon Omina erzählt hier direkt im Browser – regelbasiert, ohne KI-Dienst, ohne Kosten. ${esc(K.regeln)}</p></section>`;
- if(MP.role==='client'||MP.role==='view'){h+=`<div class="npr-panel" style="--c:var(--cyan)"><h3>👥 Gruppe am Tisch</h3>${r.party.map(m=>memCard(m,r,false)).join('')||'<p class="tip">Noch keine Daten vom Host.</p>'}<p class="tip">⏳ Warte, bis der Host das Abenteuer startet.</p></div>`+mpPanel()+sharePanel();return h}
- h+=`<div class="npr-panel" style="--c:var(--gold)"><h3>👥 Eure Gruppe (${r.party.length}/${MAXP})</h3>${r.party.map(m=>memCard(m,r,true)).join('')}${groupBtns(r)}</div>`;
+function diffBadge(s){const m={leicht:['var(--green)','leicht'],mittel:['var(--orange)','mittel'],knifflig:['var(--red)','knifflig']};const x=m[s]||['var(--cyan)',s||'?'];return `<span class="npr-diff" style="--c:${x[0]}">${esc(x[1])}</span>`}
+function modePickerHtml(){return `<section class="npr-scene" aria-label="Spielmodus wählen"><div class="npr-ort"><span>🔮 App-Runde</span><span>Neon Omina im Gerät</span></div><h2>Wie wollt ihr spielen?</h2><p class="tip">Beide Modi nutzen denselben Spielleiter im Browser – ohne KI-Dienst, ohne Kosten. Figur-TP im Charakterbogen und HP in der App-Runde sind getrennt.</p>
+ <div class="npr-modes">
+  <button class="npr-mode" style="--c:var(--cyan)" data-npr="mode-schnell"><span aria-hidden="true">⚡</span><b>Schnelles Spiel</b><small>Kurz-Quest · ca. 15–25 Min. · 3 Szenarien zur Wahl</small></button>
+  <button class="npr-mode" style="--c:var(--gold)" data-npr="mode-lang"><span aria-hidden="true">📜</span><b>Langes Spiel</b><small>${esc(K.titel)} · ${esc(K.dauer)} · volle Kampagne</small></button>
+ </div></section>`+mpPanel()+sharePanel()}
+function questPickerHtml(){const L=offerQuests();let h=`<section class="npr-scene"><div class="npr-ort"><span>⚡ Schnelles Spiel</span><span>3 von ${(K.kurzquests||[]).length} Quests</span></div><h2>Welche Kurz-Quest?</h2><p class="tip">Zufällig aus dem Pool. Tippe auf eine Karte – danach Gruppe auffüllen und starten.</p></section>`;
+ h+=`<div class="npr-quests" role="list">${L.map(q=>`<button class="npr-quest" style="--c:var(--cyan)" data-npr="quest" data-qid="${esc(q.id)}" role="listitem"><span class="qe" aria-hidden="true">${esc(q.e||'⚡')}</span><div class="grow"><b>${esc(q.titel)}</b><p>${esc(q.kurz)}</p><div class="npr-qmeta"><span>⏱️ ${esc(q.dauer||'ca. 15–25 Min.')}</span>${diffBadge(q.schwierigkeit)}${(q.tags||[]).slice(0,2).map(t=>`<span class="npr-tag">${esc(t)}</span>`).join('')}</div></div></button>`).join('')}</div>`;
+ h+=`<div class="row" style="margin-top:10px"><button class="btn small" style="--c:#ffffff55" data-npr="reroll">🎲 Andere 3 ziehen</button><button class="btn small" style="--c:var(--violet)" data-npr="mode-back">↩️ Modus wechseln</button></div>`;
+ return h+mpPanel()+sharePanel()}
+function setupHtml(v){const r=v||{party:[]};
+ if(MP.role==='client'||MP.role==='view'){const C=activeCamp()||K;let h=`<section class="npr-scene"><div class="npr-ort"><span>📖 ${r.mode==='schnell'?'Kurz-Quest':'Kampagne'}</span><span>⏱️ ${esc(C.dauer)}</span></div><h2>${esc(C.titel)}</h2><p>${esc(C.kurz)}</p></section>`;
+  h+=`<div class="npr-panel" style="--c:var(--cyan)"><h3>👥 Gruppe am Tisch</h3>${r.party.map(m=>memCard(m,r,false)).join('')||'<p class="tip">Noch keine Daten vom Host.</p>'}<p class="tip">⏳ Warte, bis der Host das Abenteuer startet.</p></div>`+mpPanel()+sharePanel();return h}
+ if(!r.mode)return modePickerHtml();
+ if(r.mode==='schnell'&&!r.questId)return questPickerHtml();
+ const C=activeCamp()||K;const modeL=r.mode==='schnell'?`⚡ Schnelles Spiel`:`📜 Langes Spiel`;
+ let h=`<section class="npr-scene"><div class="npr-ort"><span>${modeL}</span><span>⏱️ ${esc(C.dauer)}</span>${r.mode==='schnell'?diffBadge((questOf(r.questId)||{}).schwierigkeit):''}</div><h2>${esc(C.titel)}</h2><p>${esc(C.kurz)}</p><p class="tip">🔮 Neon Omina erzählt hier direkt im Browser – regelbasiert, ohne KI-Dienst, ohne Kosten. ${esc(C.regeln||K.regeln)}</p>
+ <div class="row"><button class="btn small" style="--c:#ffffff55" data-npr="mode-back">↩️ Modus / Quest wechseln</button></div></section>`;
+ h+=`<div class="npr-panel" style="--c:var(--gold)"><h3>👥 Eure Gruppe (${r.party.length}/${MAXP})</h3><p class="tip">Freunde einladen (Online-Tisch) oder mit KI-Mitspielern auffüllen – dann starten.</p>${r.party.map(m=>memCard(m,r,true)).join('')}${groupBtns(r)}</div>`;
+ h+=`<div class="npr-online" role="note"><b>📌 Kurz notiert:</b> Online-Host muss die Seite offen lassen. Figur-TP (Charakterbogen) und Runden-HP sind getrennt – in der App-Runde zählen die HP der Gruppenkarten.</div>`;
  h+=`<button class="btn full big" style="--c:var(--pink);margin-top:6px" data-npr="start">▶️ Abenteuer starten</button>`;
  return h+mpPanel()+sharePanel()}
 function mpPanel(){let h=`<div class="npr-panel" style="--c:var(--cyan)"><h3>🌐 Mehrspieler (kostenlos, ohne Konto)</h3>`;
- if(MP.role==='host'){const link=(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'')+'#mp='+MP.code;h+=`<p>Tisch-Code:</p><p><span class="npr-code" id="nprCode">${esc(MP.code)}</span></p><p class="tip">${esc(MP.status)}</p><div class="row"><button class="btn small" style="--c:var(--cyan)" data-npr="cplink" data-link="${esc(link)}">🔗 Einladungslink kopieren</button><button class="btn small" style="--c:var(--red)" data-npr="close">⛔ Tisch schließen</button></div><p class="tip">Dein Gerät ist die Quelle der Wahrheit: Es würfelt, erzählt und schickt den Stand live an alle (WebRTC, direkt zwischen den Geräten). Lass diese Seite offen.</p>`}
+ if(MP.role==='host'){const link=(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'')+'#mp='+MP.code;h+=`<p>Tisch-Code:</p><p><span class="npr-code" id="nprCode">${esc(MP.code)}</span></p><p class="tip">${esc(MP.status)}</p><div class="row"><button class="btn small" style="--c:var(--cyan)" data-npr="cplink" data-link="${esc(link)}">🔗 Einladungslink kopieren</button><button class="btn small" style="--c:var(--red)" data-npr="close">⛔ Tisch schließen</button></div><p class="tip">Dein Gerät ist die Quelle der Wahrheit: Es würfelt, erzählt und schickt den Stand live an alle (WebRTC, direkt zwischen den Geräten). ⚠️ Lass diese Seite offen – lädst du neu, tippen Gäste „🔄 Neu verbinden“ (gleicher Code).</p>`}
  else if(MP.role==='client'){h+=`<p>${esc(MP.status)}</p><div class="row"><button class="btn small" style="--c:var(--cyan)" data-npr="rejoin">🔄 Neu verbinden</button><button class="btn small" style="--c:var(--red)" data-npr="close">🚪 Tisch verlassen</button></div>`}
  else{h+=`${MP.status?`<p>${esc(MP.status)}</p>`:''}<div class="row"><button class="btn" style="--c:var(--green)" data-npr="host">🌐 Online-Tisch öffnen (Host)</button></div><label class="f" for="nprJoin">Tisch-Code vom Host</label><div class="row"><input type="text" id="nprJoin" maxlength="8" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="z. B. K7Q2M" style="flex:1;width:auto;text-transform:uppercase;letter-spacing:2px" value="${esc(PENDING||'')}"><button class="btn small" style="--c:var(--cyan)" data-npr="join">🚪 Beitreten</button></div><p class="tip">🔒 Verbindung direkt zwischen den Geräten (WebRTC). Nur zum Finden der Geräte wird der kostenlose PeerJS-Vermittlungsserver genutzt (sieht Tisch-Code und IP-Adresse, keine Spielinhalte). Übertragen werden nur Figurname, Volk, Klasse, Werte und Standard-Avatar – keine eigenen Bilder.</p>`}
  return h+'</div>'}
@@ -292,7 +315,7 @@ function renderAkt(){const el=$$('akt');const v=V();let h=topBar()+`<h1>📋 Act
  h+=`<div id="aktPanel" role="tabpanel" aria-labelledby="${TAB==='stand'?'tabStand':'tabHist'}">`+(TAB==='stand'?standHtml(v):histHtml(v))+'</div>';
  h+=`<div class="row" style="margin-top:12px"><button class="btn" style="--c:var(--pink)" data-npr="runde">🔮 Zurück zur App-Runde</button></div>`;
  el.innerHTML=h;wire(el)}
-function standHtml(v){const s=K?K.szenen.find(x=>x.id===v.scene):null;const c=curM(v);const me=myMember(v);let h='';
+function standHtml(v){const C=activeCamp();const s=C?C.szenen.find(x=>x.id===v.scene):null;const c=curM(v);const me=myMember(v);let h='';
  h+=`<section class="npr-scene"><div class="npr-ort"><span>${s?esc(s.oe):'🧭'} Ort: <b>${s?esc(s.ort):'noch nicht gestartet'}</b></span><span>🔁 Runde <b>${v.started?v.round:'–'}</b></span></div><h2>🎬 ${s?esc(s.t):'Vorbereitung'}</h2>`+
   (c&&v.started&&!v.ended?`<div class="row" style="margin-top:6px">${avHtml(c)}<b>🎯 Am Zug: ${esc(c.name)}</b>${mine(c)?' <span class="npr-badge" style="--c:var(--cyan)">⭐ das bist du</span>':''}</div>`:v.ended?'<p>🌈 Abenteuer abgeschlossen.</p>':'')+'</section>';
  if(me)h+=`<div class="npr-panel" style="--c:${col(me.color)}"><h3>⭐ Meine Figur</h3>${memCard(me,v,false)}<h3 style="margin-top:8px">🎒 Inventar</h3>${invHtml(me)}</div>`;
@@ -325,9 +348,13 @@ function act(k,b){const v=V();
  if(k==='newfig'){SCR=null;if(typeof wizNew==='function'){wizNew()}show2();return}
  if(k==='fill')return fillBots();if(k==='nobots')return removeBots();if(k==='hot')return addHot($$('nprHot').value);
  if(k==='addme'){const m=meMember(R.party);if(m&&!R.party.some(x=>x.id===m.id)){R.party.unshift(m);if(R.started)R.order.push(m.id);commit()}return}
+ if(k==='mode-schnell')return setMode('schnell');if(k==='mode-lang')return setMode('lang');
+ if(k==='mode-back'){ensureR();R.mode=null;R.questId=null;R.questOffer=null;commit();return}
+ if(k==='reroll'){ensureR();R.questOffer=null;R.questId=null;commit();return}
+ if(k==='quest'){const id=b&&b.dataset&&b.dataset.qid;return pickQuest(id)}
  if(k==='start')return start();if(k==='skip')return skipTurn();
  if(k==='botnow'){clearTimeout(botT);return botTurn()}if(k==='pause'){PAUSE=!PAUSE;if(!PAUSE)schedule();else clearTimeout(botT);return rerender()}
- if(k==='reset'){if(!confirm('Neues Abenteuer vorbereiten? Die Gruppe bleibt, die Historie wird geleert (vorher ggf. exportieren).'))return;const p=R.party;p.forEach(m=>{m.hp=m.max;m.fx=[]});R=newR();R.party=p;commit();return}
+ if(k==='reset'){if(!confirm('Neues Abenteuer vorbereiten? Die Gruppe bleibt, die Historie wird geleert (vorher ggf. exportieren). Danach wählst du erneut Schnelles oder Langes Spiel.'))return;const p=R.party;p.forEach(m=>{m.hp=m.max;m.fx=[]});R=newR();R.party=p;commit();return}
  if(k==='say'){const i=$$('nprSay');const t=i&&i.value;if(!t||!t.trim())return;const me=myMember(v);if(MP.role==='client')clientSay(t);else sayAs(curM(R)&&mine(curM(R))?curM(R):me,t);if(i)i.value='';snd('tap');return}
  if(k==='host')return hostOpen();if(k==='close'){if(MP.role==='client'){G=null;saveJ(GKEY,null)}return hostClose()}
  if(k==='join'){const c=$$('nprJoin').value;PENDING=c;return clientJoin(c)}if(k==='rejoin')return clientJoin(MP.code);
@@ -345,7 +372,7 @@ function boot(){const go=w=>()=>{if(typeof snd==='function')snd('step');SCR=w;wi
  if(PENDING&&fig()&&typeof SCR!=='undefined'){SCR='runde';window.show()}
  if(h.get('screen')==='runde'||h.get('screen')==='akt'){SCR=h.get('screen');window.show()}
  loadK()}
-window.NPR={show,boot,rerender,_:{get R(){return R},get G(){return G},MP:()=>MP,fillBots,start,resolve,BOTS}};
+window.NPR={show,boot,rerender,_:{get R(){return R},get G(){return G},MP:()=>MP,fillBots,start,resolve,BOTS,activeCamp,setMode,pickQuest}};
 document.addEventListener('DOMContentLoaded',boot);
 window.addEventListener('hashchange',()=>{const c=new URLSearchParams(location.hash.slice(1)).get('mp');if(c&&typeof fig==='function'&&fig()){PENDING=c.toUpperCase();try{sessionStorage.setItem('neonpark-mp-join',PENDING)}catch(e){}SCR='runde';window.show()}});
 })();
