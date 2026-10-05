@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Neon Park – Spieler-Seite (Xeon Park)</title>
+<title>Neon Park – Spieler-Seite</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%8E%B2%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="runde.css">
 <style>
@@ -12,14 +12,14 @@
 html,body{margin:0;background:var(--bg);color:var(--text);font:17px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
 html{background:#0e061c}
 body{background:transparent;isolation:isolate;min-height:100vh;padding-bottom:110px}
-/* Neon-Park-Graffiti als Atmosphäre: feste Bildebene + dunkles Overlay (Lesbarkeit). Xeon-Park-Logo bleibt Branding. */
+/* Neon-Park-Poster (Hochformat) als Atmosphäre: feste Bildebene + dunkles Overlay (Lesbarkeit). */
 body::before,body::after{content:"";position:fixed;left:0;right:0;pointer-events:none}
-body::before{top:-3vh;height:106vh;z-index:-2;background:#0e061c url(assets/neon-park-graffiti.webp) 50% 42%/cover no-repeat;transform:translate3d(0,var(--bgy,0px),0);will-change:transform}
-body::after{top:0;bottom:0;z-index:-1;background:radial-gradient(ellipse at 50% -8%,#7B2CFF44 0%,transparent 50%),linear-gradient(180deg,rgba(14,6,28,.30) 0%,rgba(14,6,28,0) 28%,rgba(14,6,28,.38) 100%),linear-gradient(90deg,rgba(14,6,28,.60) 0%,rgba(14,6,28,.84) calc(50% - 380px),rgba(14,6,28,.84) calc(50% + 380px),rgba(14,6,28,.60) 100%)}
-@media (max-width:720px){body::after{background:radial-gradient(ellipse at 50% -8%,#7B2CFF40 0%,transparent 50%),linear-gradient(180deg,rgba(14,6,28,.66) 0%,rgba(14,6,28,.78) 40%,rgba(14,6,28,.84) 100%)}}
+body::before{top:-3vh;height:106vh;z-index:-2;background:#0e061c url(assets/neon-park-poster.webp) 50% 0/cover no-repeat;transform:translate3d(0,var(--bgy,0px),0);will-change:transform}
+body::after{top:0;bottom:0;z-index:-1;background:radial-gradient(ellipse at 50% -8%,#7B2CFF44 0%,transparent 50%),linear-gradient(180deg,rgba(14,6,28,.22) 0%,rgba(14,6,28,.10) 22%,rgba(14,6,28,.42) 100%),linear-gradient(90deg,rgba(14,6,28,.45) 0%,rgba(14,6,28,.82) calc(50% - 380px),rgba(14,6,28,.82) calc(50% + 380px),rgba(14,6,28,.45) 100%)}
+@media (max-width:720px){body::after{background:radial-gradient(ellipse at 50% -8%,#7B2CFF40 0%,transparent 50%),linear-gradient(180deg,rgba(14,6,28,.55) 0%,rgba(14,6,28,.72) 38%,rgba(14,6,28,.86) 100%)}}
 @media (prefers-contrast:more){body::after{background:rgba(14,6,28,.9)}}
 .wrap>h2,.wrap>p,.wrap>.sub,.wrap>label{text-shadow:0 1px 3px #0e061c,0 0 12px #0e061ccc}
-.wrap>h1,.brand-hero h1{filter:drop-shadow(0 1px 2px #0e061c) drop-shadow(0 0 10px #0e061c99)}
+.wrap>h1,.inhero h1{filter:drop-shadow(0 1px 2px #0e061c) drop-shadow(0 0 10px #0e061c99)}
 button,select,input{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:3px solid var(--cyan);outline-offset:3px;box-shadow:0 0 0 1px #14081f,0 0 12px var(--glow-c)}
@@ -263,13 +263,20 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
 .dyn{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}.dyn .pips{display:flex;gap:5px}.dyn .pips i{width:20px;height:20px;border-radius:50%;border:2px solid var(--c);display:inline-block}.dyn .pips i.on{background:var(--c);box-shadow:0 0 8px var(--c)}
 .dyn .btn{min-width:44px;min-height:44px}
 
-/* Titelbildschirm & Zum Startmenü — Xeon-Park-Branding */
+/* Titelbildschirm & Zum Startmenü — Neon-Park-Poster als Kulisse */
 .title{position:fixed;inset:0;z-index:60;display:flex;align-items:stretch;justify-content:center;background:#0a0418;overflow:hidden;cursor:pointer}
 .title.hide{display:none}
-.tbg{position:absolute;inset:-24px;background:url(assets/neon-park-graffiti.webp) 50% 42%/cover no-repeat;filter:blur(6px) brightness(.36) saturate(1.2)}
-.tpic{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;width:100%;max-width:640px;margin:0 auto;padding:24px 16px calc(140px + env(safe-area-inset-bottom))}
-.tpic .brand{display:block;width:min(92vw,560px);height:auto;max-height:52vh;object-fit:contain;filter:drop-shadow(0 0 24px #FF2BD666) drop-shadow(0 0 40px #00E5FF44);animation:tglow 3.2s ease-in-out infinite alternate}
-.tpic::after{content:none}
+.tbg{position:absolute;inset:0;overflow:hidden;background:#0a0418}
+.tbg::before,.tbg::after{content:"";position:absolute;inset:0}
+.tbg::before{background:url(assets/neon-park-poster.webp) 50% 0/cover no-repeat}
+.tbg::after{background:linear-gradient(180deg,rgba(10,4,24,.10) 0%,rgba(10,4,24,0) 30%,rgba(10,4,24,.30) 56%,rgba(10,4,24,.86) 80%,rgba(10,4,24,.95) 100%)}
+/* Breite Screens: Poster vollständig (contain) vor weichgezeichneter, abgedunkelter Cover-Fassung */
+@media (min-aspect-ratio:4/5){
+.tbg{background:#0a0418}
+.tbg::before{inset:-40px;background:url(assets/neon-park-poster.webp) 50% 22%/cover no-repeat;filter:blur(22px) brightness(.42) saturate(1.15)}
+.tbg>.tbg-fit{position:absolute;inset:0;background:url(assets/neon-park-poster.webp) 50% 0/contain no-repeat}
+.tbg::after{background:linear-gradient(180deg,rgba(10,4,24,.05) 0%,rgba(10,4,24,0) 45%,rgba(10,4,24,.55) 72%,rgba(10,4,24,.94) 100%)}
+}
 .tbox{position:absolute;left:0;right:0;bottom:0;z-index:1;text-align:center;padding:0 16px calc(28px + env(safe-area-inset-bottom))}
 .tlogo{margin:0;font:900 clamp(28px,7vw,40px)/1.05 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.06em;text-transform:uppercase;background:linear-gradient(180deg,var(--pink),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 10px #FF2BD655)}
 .tlogo span{display:inline}
@@ -279,20 +286,12 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
 .tgo:focus-visible{outline:3px solid #fff;outline-offset:4px}
 .tnote{margin:12px 0 0;font-size:13px;color:var(--muted)}
 .tgo{animation:tpulse 2.6s ease-in-out infinite}
-@keyframes tglow{0%{opacity:.92;filter:drop-shadow(0 0 18px #FF2BD655) brightness(.96)}100%{opacity:1;filter:drop-shadow(0 0 28px #00E5FF66) brightness(1.08)}}
 @keyframes tpulse{50%{box-shadow:0 0 32px #FF2BD6,0 0 48px #00E5FF66,inset 0 0 16px #00E5FF55}}
-@media (prefers-reduced-motion: reduce){.tpic .brand,.tgo{animation:none}}
+@media (prefers-reduced-motion: reduce){.tgo{animation:none}}
 .homebtn{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;margin:8px 0 14px;padding:10px 16px;border-radius:18px;border:3px solid var(--cyan);background:linear-gradient(160deg,#00E5FF26,#7B2CFF1a);color:#fff;font-weight:800;font-size:19px;text-align:left;box-shadow:0 0 14px var(--glow-c)}
 .homebtn>span{font-size:32px;line-height:1;filter:drop-shadow(0 0 8px var(--cyan))}.homebtn small{display:block;font-weight:500;font-size:13px;color:var(--muted)}
 .homebtn:hover{background:linear-gradient(160deg,#00E5FF3a,#7B2CFF2a)}.homebtn:focus-visible{outline:3px solid #fff;outline-offset:2px}
 .homebtn.compact{min-height:52px;font-size:17px;margin:4px 0 8px;width:auto}.homebtn.compact>span{font-size:26px}
-/* Brand / logo helpers */
-.brand-hero{text-align:center;padding:8px 4px 4px}
-.brand-logo{display:block;width:min(88vw,420px);height:auto;margin:0 auto 8px;object-fit:contain;filter:drop-shadow(0 0 16px #FF2BD655) drop-shadow(0 0 24px #00E5FF44)}
-.brand-logo.sm{width:min(70vw,260px);margin-bottom:4px}
-.brand-mark{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);text-shadow:0 0 8px var(--glow-c)}
-.hdr-brand{display:flex;align-items:center;gap:10px;margin:4px 0 10px}
-.hdr-brand img{width:48px;height:auto;object-fit:contain;filter:drop-shadow(0 0 8px #FF2BD655)}
 .drip{position:relative}
 .drip::before{content:"";position:absolute;right:14%;top:-1px;width:2px;height:8px;border-radius:0 0 2px 2px;background:linear-gradient(180deg,var(--pink),transparent);opacity:.5;pointer-events:none}
 .npr-online{border:2px solid var(--cyan);background:linear-gradient(160deg,#00E5FF18,#7B2CFF14);border-radius:14px;padding:10px 12px;margin:8px 0;box-shadow:0 0 16px var(--glow-c)}
@@ -301,21 +300,15 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
 </head>
 <body data-errors="0">
 <div class="title hide" id="title" role="dialog" aria-modal="true" aria-labelledby="tH" aria-describedby="tSub">
-  <div class="tbg" aria-hidden="true"></div>
-  <div class="tpic">
-    <picture>
-      <source srcset="assets/xeon-park-logo-web.webp" type="image/webp">
-      <img class="brand" src="assets/xeon-park-logo.png" alt="Xeon Park Logo" width="1080" height="608" decoding="async" fetchpriority="high">
-    </picture>
-  </div>
-  <div class="tbox"><h1 class="tlogo" id="tH">Neon Park</h1><p class="tsub" id="tSub">Das Rollenspiel · powered by Xeon Park</p>
+  <div class="tbg" aria-hidden="true"><div class="tbg-fit"></div></div>
+  <div class="tbox"><h1 class="tlogo" id="tH">Neon Park</h1><p class="tsub" id="tSub">Das Rollenspiel</p>
   <button class="tgo" id="tGo"><span aria-hidden="true">▶️</span>Tippen zum Starten</button><p class="tnote">Test · alles bleibt auf diesem Gerät</p></div>
 </div>
 <div class="banner">TEST · Neon Park · Synthwave · alles bleibt auf diesem Gerät</div>
 
 
 <main class="wrap hide" id="intro" aria-labelledby="inH">
-  <div class="inhero brand-hero"><picture><source srcset="assets/xeon-park-logo-web.webp" type="image/webp"><img class="brand-logo" src="assets/xeon-park-logo.png" alt="Xeon Park" width="540" height="304" decoding="async"></picture><p class="brand-mark">Xeon Park</p><h1 id="inH">Willkommen in Neon Park</h1><p class="sub">Ein Rollenspiel-Abend im Chat – in zwei Minuten erklärt.</p></div>
+  <div class="inhero brand-hero"><h1 id="inH">Willkommen in Neon Park</h1><p class="sub">Ein Rollenspiel-Abend im Chat – in zwei Minuten erklärt.</p></div>
   <section class="insec" style="--c:var(--pink)"><h2>🌆 Die Welt</h2><p>Neon Park ist eine Stadt, in der <b>Magie und Neonlicht</b> zusammen leuchten: Drachen über Lichterbrücken, Brunnengeister, Runen an jeder Ecke. Ihr seid eine kleine Heldengruppe, die gemeinsam Rätsel löst, Freunde findet und Abenteuer erlebt.</p></section>
   <section class="insec" style="--c:var(--cyan)"><h2>🎲 So spielst du</h2>
    <ol class="insteps"><li><span>🧙</span><div><b>Neon Omina erzählt</b> im Gruppen-Chat, was passiert.</div></li><li><span>📱</span><div><b>Du wählst hier</b> eine Aktion – reden, untersuchen, helfen, würfeln …</div></li><li><span>📋</span><div><b>Kopier die fertige Zeile</b> und schick sie in den Chat. Fertig!</div></li></ol>
@@ -342,7 +335,7 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
 
 
 <main class="wrap hide" id="menu" aria-labelledby="mH">
-  <div class="inhero brand-hero"><picture><source srcset="assets/xeon-park-logo-web.webp" type="image/webp"><img class="brand-logo" src="assets/xeon-park-logo.png" alt="Xeon Park" width="540" height="304" decoding="async"></picture><p class="brand-mark">Xeon Park Branding</p><h1 id="mH">Neon Park</h1><p class="sub">Rollenspiel-Abende im Chat · Alpha</p></div>
+  <div class="inhero brand-hero"><h1 id="mH">Neon Park</h1><p class="sub">Rollenspiel-Abende im Chat · Alpha</p></div>
   <div id="mCont"></div>
   <div class="mtiles">
    <button class="mtile" style="--c:var(--cyan)" id="mJoin"><span aria-hidden="true">🚪</span>Spiel beitreten<small>Platz-Code · Figur · Spielstand</small></button>

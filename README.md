@@ -22,7 +22,7 @@ Neon Omina kann jetzt auch **direkt im Browser** erzählen – regelbasiert, **o
 
 **Grenzen:** Der Host muss die Seite offen lassen; lädt er neu, öffnet er den Tisch erneut (gleicher Code) und Gäste tippen „🔄 Neu verbinden“. In sehr strengen Firmen-/Mobilnetzen kann WebRTC scheitern → dann Code/Datei oder Hot-Seat. Der kostenlose PeerJS-Server hat keine Verfügbarkeitsgarantie. Die Erzählung ist vorgeschrieben + zufällig kombiniert, keine freie Improvisation wie im Chat.
 
-## Design (Xeon Park)
-Synthwave-/Cyber-Fantasy-UI angelehnt an das Xeon-Park-Logo: Magenta `#FF2BD6`, Cyan `#00E5FF`, Indigo `#7B2CFF` / Hintergrund `#2A0A4A`. Logo unter `assets/xeon-park-logo-web.webp` (Web) bzw. `assets/xeon-park-logo.png`. Spielname bleibt „Neon Park“; Branding zeigt Xeon Park auf Splash, Menü und Einleitung.
+## Design (Neon Park)
+Synthwave-/Cyber-Fantasy-UI: Magenta `#FF2BD6`, Cyan `#00E5FF`, Indigo `#7B2CFF` / Hintergrund `#2A0A4A`. Spielname „Neon Park“.
 
-**Hintergrund (Neon Park):** Das Neon-Park-Graffiti (`assets/neon-park-graffiti.webp`, 1600×900, ~185 KB; Original `assets/neon-park-graffiti.jpg`) liegt als feste Bildebene hinter allen Seiten (cover, zentriert) mit dunklem Overlay für Lesbarkeit – auf Handys gleichmäßig dunkler, am Desktop hinter der Inhaltsspalte dunkler und an den Rändern heller. Titelbildschirm: Graffiti weichgezeichnet als Kulisse, Xeon-Park-Logo bleibt vorne als Branding. Dezenter Parallax nur am Desktop mit Maus; aus bei „Bewegung reduzieren“. Bei „Mehr Kontrast“ wird das Overlay fast deckend.
+**Hintergrund (Neon Park):** Das Hochformat-Poster (`assets/neon-park-poster.webp`, 1200×2133, ~505 KB; Original `assets/neon-park-poster.jpg`) liegt als feste Bildebene hinter allen Seiten (cover, oben zentriert) mit dunklem Overlay für Lesbarkeit – auf Handys gleichmäßig dunkler, am Desktop hinter der Inhaltsspalte dunkler und an den Rändern heller. Titelbildschirm: Poster als Kulisse (ohne zusätzliches Logo). Dezenter Parallax nur am Desktop; aus bei „Bewegung reduzieren“. Bei „Mehr Kontrast“ wird das Overlay fast deckend. Altes Graffiti (`assets/neon-park-graffiti.webp`) bleibt im Repo, wird aber nicht mehr geladen.

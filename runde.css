@@ -1,4 +1,4 @@
-/* ===== App-Runde (eingebauter Spielleiter) & Activities — Xeon-Park Design ===== */
+/* ===== App-Runde (eingebauter Spielleiter) & Activities — Neon-Park Design ===== */
 .npr-top{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:8px 0}
 .npr-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;border:2px solid var(--c,#ffffff55);font-size:14px;font-weight:700;background:#ffffff0d;box-shadow:0 0 10px color-mix(in srgb,var(--c,#fff) 35%,transparent)}
 .npr-scene{background:radial-gradient(circle at 50% 0,#7B2CFF44 0,var(--panel) 75%);border:2px solid var(--pink);border-radius:20px;padding:14px;margin:10px 0;box-shadow:0 0 22px var(--glow-p,#FF2BD644),inset 0 0 24px #00E5FF12;position:relative;overflow:hidden}
