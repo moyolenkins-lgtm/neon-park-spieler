@@ -49,3 +49,6 @@ Danach Dateien ersetzen, Commit „Völker-Portraits: GenerateImage-Stil“.
 ## Screenshots
 
 `/workspace/neon-park-spieler-shots/v-folk-faces-*.png`
+
+## Update 2026-10-05 Abend
+GenerateImage-Portraits (Parent) ersetzen Interim-Crops für alle klassischen Völker m/w inkl. Goblin-w. Beastioid-neutral unverändert.
