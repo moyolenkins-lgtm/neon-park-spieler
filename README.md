@@ -9,6 +9,10 @@ Begleit-Seite für Testabende des Fantasy-Rollenspiels **Neon Park**: Charakter 
 
 ▶️ Seite öffnen: siehe Link in der Repo-Beschreibung (GitHub Pages).
 
+## 🎲 Würfel-Specials & 🔑 Hex-Gate
+
+Double Roll, Lucky & Chaos, Pasch-Events, **🔑 Hex-Gate** (11:11, früher „Key-Pasch“) sowie die neuen Specials **🌟 Neon-Echo**, **🫧 Glimmbruch** und **🌉 Lumen-Brücke** lassen sich vor Spielbeginn einzeln an- und ausschalten (Standard: alle an). Details stehen in [`docs/HEX-GATE.md`](docs/HEX-GATE.md).
+
 ## 🔮 App-Runde mit Neon Omina (Spielleiter im Gerät)
 
 Neon Omina kann jetzt auch **direkt im Browser** erzählen – regelbasiert, **ohne KI-Dienst, ohne API, ohne Kosten**.
