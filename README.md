@@ -21,3 +21,6 @@ Neon Omina kann jetzt auch **direkt im Browser** erzählen – regelbasiert, **o
 - Alles wird lokal gespeichert (localStorage `neonpark-runde-v1`). Die bisherige Chat-Spielweise mit NP1-Codes bleibt unverändert.
 
 **Grenzen:** Der Host muss die Seite offen lassen; lädt er neu, öffnet er den Tisch erneut (gleicher Code) und Gäste tippen „🔄 Neu verbinden“. In sehr strengen Firmen-/Mobilnetzen kann WebRTC scheitern → dann Code/Datei oder Hot-Seat. Der kostenlose PeerJS-Server hat keine Verfügbarkeitsgarantie. Die Erzählung ist vorgeschrieben + zufällig kombiniert, keine freie Improvisation wie im Chat.
+
+## Design (Xeon Park)
+Synthwave-/Cyber-Fantasy-UI angelehnt an das Xeon-Park-Logo: Magenta `#FF2BD6`, Cyan `#00E5FF`, Indigo `#7B2CFF` / Hintergrund `#2A0A4A`. Logo unter `assets/xeon-park-logo-web.webp` (Web) bzw. `assets/xeon-park-logo.png`. Spielname bleibt „Neon Park“; Branding zeigt Xeon Park auf Splash, Menü und Einleitung.

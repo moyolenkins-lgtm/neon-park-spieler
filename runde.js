@@ -5,7 +5,7 @@
 (function(){
 'use strict';
 const RKEY='neonpark-runde-v1',GKEY='neonpark-runde-gast-v1',PIDKEY='neonpark-pid-v1',MPKEY='neonpark-mp-v1';
-const MAXP=5,NARR={n:'Neon Omina',e:'🔮',c:'#E9D5FF'};
+const MAXP=5,NARR={n:'Neon Omina',e:'🔮',c:'#C4B5FD'};
 const BOTS=[
  {id:'paulov',name:'Paulov',e:'🐸',c:'#2DD4BF',look:'Cyber-Frosch',volk:'gnom',gen:'m',ober:'Kreativist',unter:'Ingenieur',st:[8,13,14,15,12,10],pref:{technik:3,analyse:3},
   info:'Physik & Mathe, analytisch',
@@ -39,7 +39,7 @@ const BOTS=[
   idle:['Hab ich euch schon von den singenden Dünen erzählt?','Kompass zeigt: Abenteuer. Wie immer.']}
 ];
 const BOT=Object.fromEntries(BOTS.map(b=>[b.id,b]));
-const HUMC=['#3DE7FF','#FF6B6B','#F6F0FF','#93C5FD','#C084FC'];
+const HUMC=['#00E5FF','#FF2BD6','#F6F0FF','#7B2CFF','#5CFF9D'];
 const GEN_ACTS=[
  {id:'g:helfen',e:'❤️',l:'Jemandem helfen',a:'WEI',sw:10,tag:'heilen',gen:1},
  {id:'g:umsehen',e:'🔍',l:'Umsehen',a:'WEI',sw:12,tag:'analyse',gen:1}
@@ -234,7 +234,8 @@ function exportJson(){const v=V();if(!v)return;dl(`neonpark-runde-${stamp()}.jso
 function rerender(){if(!$$('runde'))return;if(!$$('runde').classList.contains('hide'))renderRunde();if(!$$('akt').classList.contains('hide'))renderAkt()}
 function show(which){loadK();if(typeof closeAll==='function')closeAll();if(typeof hideScreens==='function')hideScreens();const el=$$(which==='akt'?'akt':'runde');el.classList.remove('hide');document.body.dataset.screen=which==='akt'?'akt':'runde';if(which==='akt')renderAkt();else renderRunde();window.scrollTo(0,0)}
 function topBar(){const st=MP.role==='host'?`<span class="npr-badge" style="--c:var(--green)">🌐 Host · ${esc(MP.code)}</span>`:MP.role==='client'?`<span class="npr-badge" style="--c:var(--cyan)">🌐 Gast · ${esc(MP.code)}</span>`:MP.role==='view'?`<span class="npr-badge" style="--c:var(--orange)">👁️ Nur ansehen</span>`:`<span class="npr-badge" style="--c:#ffffff66">📱 Solo / Hot-Seat</span>`;
- return `<div class="npr-top"><button class="btn small" style="--c:#ffffff55" data-npr="menu">🏠 Hauptmenü</button>${st}</div>`}
+ const online=MP.role==='host'||MP.role==='client'?`<div class="npr-online" role="status"><b>🌐 Online-Tisch aktiv</b> · ${MP.role==='host'?'Du bist Host – lass die Seite offen.':'Verbunden mit dem Host. Live-Sync per WebRTC.'}</div>`:'';
+ return `<div class="npr-brand"><img src="assets/xeon-park-logo-web.webp" alt="" width="56" height="32" decoding="async"><div><b>Neon Park</b><br><small>Xeon Park · App-Runde</small></div></div><div class="npr-top"><button class="btn small" style="--c:#ffffff55" data-npr="menu">🏠 Hauptmenü</button>${st}</div>${online}`}
 function feedHtml(L,full){return L.map(e=>entryHtml(e)).join('')}
 function entryHtml(e){const c=e.k==='gm'?NARR.c:col(e.c||'#9aa');const tm=new Date(e.t).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});const ty=TYP[e.k]||TYP.sys;
  const who=e.k==='gm'?`<span class="npr-av" style="--c:${NARR.c}" aria-hidden="true">🔮</span>Neon Omina <span class="typ">${ty[0]} Erzähler</span>`:e.n?`${e.e?`<span class="npr-av" style="--c:${c}" aria-hidden="true">${esc(e.e)}</span>`:(e.a&&AV[e.a]?`<img class="npr-av" style="--c:${c}" src="${AV[e.a]}" alt="">`:`<span class="npr-av" style="--c:${c}" aria-hidden="true">${esc(first(e.n).slice(0,1))}</span>`)}${esc(e.n)} <span class="typ">${ty[0]} ${ty[1]}</span>`:`<span class="typ">${ty[0]} ${ty[1]}</span>`;
@@ -301,6 +302,7 @@ function standHtml(v){const s=K?K.szenen.find(x=>x.id===v.scene):null;const c=cu
 function invHtml(m){return (m.inv||[]).length?`<ul class="npr-goals">${m.inv.map(i=>`<li><span aria-hidden="true">${esc(i.e)}</span><span>${esc(i.n)}${i.heal?` <small class="tip">· heilt ${esc(i.heal)}${i.uses!=null?' · '+i.uses+'×':''}</small>`:''}</span></li>`).join('')}</ul>`:'<p class="tip">leer</p>'}
 function histHtml(v){const L=filtered(v);let h=`<p class="tip">Vollständiges Protokoll, sortiert nach Szene und Runde. Jede Figur hat eine eigene Farbe <b>und</b> Namen/Symbol; Würfe sind als Würfelkästchen mit Ergebnis-Label markiert.</p>`;
  h+=`<div class="npr-legend" aria-label="Legende"><span>🔮 Erzähler</span><span>💬 sagt</span><span>▶️ Aktion</span><span>🎲 Wurf</span><span>🎁 Fund</span><span>⚙️ System</span><span>✅ Erfolg</span><span>◐ Teilerfolg</span><span>✖ Fehlschlag</span></div>`;
+ h+=`<div class="npr-legend" aria-hidden="false"><span class="lg-gm">🔮 Erzähler (Lila-Rand)</span><span class="lg-fig">👤 Figuren (eigene Farben)</span><span>🎲 Würfe · 💬 Dialog</span></div>`;
  h+=`<div class="npr-filter" role="group" aria-label="Nach Figur filtern"><button data-f="alle" aria-pressed="${FILT==='alle'}" style="--c:#ffffff">👥 Alle</button><button data-f="gm" aria-pressed="${FILT==='gm'}" style="--c:${NARR.c}">🔮 Erzähler</button>${v.party.map(m=>`<button data-f="${esc(m.id)}" aria-pressed="${FILT===m.id}" style="--c:${col(m.color)}">${m.kind==='bot'?esc(m.e):'👤'} ${esc(first(m.name))}</button>`).join('')}</div>`;
  h+=`<label class="row" style="gap:10px;margin:4px 0 8px"><input type="checkbox" id="nprOnlyRoll" ${ONLYROLL?'checked':''} style="width:26px;height:26px"> 🎲 Nur Würfelwürfe zeigen</label>`;
  h+=`<div class="row"><button class="btn small" style="--c:var(--cyan)" data-npr="txt">📄 Export als Text</button><button class="btn small" style="--c:var(--violet)" data-npr="json">🧾 Export als JSON</button><span class="tip">${L.length} Einträge</span></div>`;
