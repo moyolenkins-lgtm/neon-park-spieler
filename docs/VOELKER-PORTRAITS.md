@@ -52,3 +52,8 @@ Danach Dateien ersetzen, Commit „Völker-Portraits: GenerateImage-Stil“.
 
 ## Update 2026-10-05 Abend
 GenerateImage-Portraits (Parent) ersetzen Interim-Crops für alle klassischen Völker m/w inkl. Goblin-w. Beastioid-neutral unverändert.
+
+
+## Untertypen
+
+Siehe [VOELKER-UNTERTYPEN.md](./VOELKER-UNTERTYPEN.md) – Unterrassen mit eigenen m/w-Portraits unter `assets/voelker/untertypen/`.
