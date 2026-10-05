@@ -269,7 +269,7 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
 .tbg{position:absolute;inset:0;overflow:hidden;background:#0a0418}
 .tbg::before,.tbg::after{content:"";position:absolute;inset:0}
 .tbg::before{background:url(assets/neon-park-poster.webp) 50% 0/cover no-repeat}
-.tbg::after{background:linear-gradient(180deg,rgba(10,4,24,.10) 0%,rgba(10,4,24,0) 30%,rgba(10,4,24,.30) 56%,rgba(10,4,24,.86) 80%,rgba(10,4,24,.95) 100%)}
+.tbg::after{background:linear-gradient(180deg,rgba(10,4,24,0) 0%,rgba(10,4,24,0) 42%,rgba(10,4,24,.35) 62%,rgba(10,4,24,.82) 82%,rgba(10,4,24,.94) 100%)}
 /* Breite Screens: Poster vollständig (contain) vor weichgezeichneter, abgedunkelter Cover-Fassung */
 @media (min-aspect-ratio:4/5){
 .tbg{background:#0a0418}
@@ -278,10 +278,6 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
 .tbg::after{background:linear-gradient(180deg,rgba(10,4,24,.05) 0%,rgba(10,4,24,0) 45%,rgba(10,4,24,.55) 72%,rgba(10,4,24,.94) 100%)}
 }
 .tbox{position:absolute;left:0;right:0;bottom:0;z-index:1;text-align:center;padding:0 16px calc(28px + env(safe-area-inset-bottom))}
-.tlogo{margin:0;font:900 clamp(28px,7vw,40px)/1.05 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.06em;text-transform:uppercase;background:linear-gradient(180deg,var(--pink),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 10px #FF2BD655)}
-.tlogo span{display:inline}
-.tlogo .n1,.tlogo .n2{color:inherit;text-shadow:none}
-.tsub{margin:8px 0 16px;font-size:clamp(14px,3.8vw,18px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#e6d8ff;text-shadow:0 0 10px #7B2CFF,0 0 22px #FF2BD655}
 .tgo{min-height:60px;min-width:240px;padding:12px 26px;border-radius:999px;border:3px solid var(--cyan);background:linear-gradient(160deg,#FF2BD633,#2A0A4Acc);color:#fff;font-size:21px;font-weight:800;box-shadow:0 0 22px var(--glow-p),0 0 36px #00E5FF44,inset 0 0 14px #00E5FF33;display:inline-flex;align-items:center;justify-content:center;gap:10px}
 .tgo:focus-visible{outline:3px solid #fff;outline-offset:4px}
 .tnote{margin:12px 0 0;font-size:13px;color:var(--muted)}
@@ -299,9 +295,9 @@ details.pdet{margin:4px auto 0;max-width:520px;text-align:left}details.pdet summ
 </style>
 </head>
 <body data-errors="0">
-<div class="title hide" id="title" role="dialog" aria-modal="true" aria-labelledby="tH" aria-describedby="tSub">
+<div class="title hide" id="title" role="dialog" aria-modal="true" aria-label="Neon Park" aria-describedby="tGo">
   <div class="tbg" aria-hidden="true"><div class="tbg-fit"></div></div>
-  <div class="tbox"><h1 class="tlogo" id="tH">Neon Park</h1><p class="tsub" id="tSub">Das Rollenspiel</p>
+  <div class="tbox">
   <button class="tgo" id="tGo"><span aria-hidden="true">▶️</span>Tippen zum Starten</button><p class="tnote">Test · alles bleibt auf diesem Gerät</p></div>
 </div>
 <div class="banner">TEST · Neon Park · Synthwave · alles bleibt auf diesem Gerät</div>
