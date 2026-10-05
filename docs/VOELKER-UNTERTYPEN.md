@@ -24,7 +24,7 @@ Beastioide bleiben wie bisher: **Ganztie / Humanoid-Tierwesen / Primebeasts** + 
 | Elf | **Yngesthera** (hell/edel), **Kren'zogh** (Wüstenkrieger), **Zeng'thok** (dunkel/mythisch-okkult; Anzra = Dunkelelfe) |
 | Untot | **Zombies**, **Skelette**, **Geister** (Geister: 1× neutrales Portrait) |
 | Ork | **Stahlherz**, **Blutklang**, **Moornarbe** |
-| Goblin | **Hira'kka**, **Neonfunken**, **Tunnelwusel** |
+| Goblin | **Glimmohr**, **Neonfunken**, **Tunnelwusel** |
 | Zwerg | **Lichtschmiede**, **Tiefenader**, **Brückenwächter** |
 | Gnom | **Funkenwerk**, **Rätselchor**, **Glitzerflor** |
 | Halbling | **Wanderfeuer**, **Herdglück**, **Schattenklee** |
