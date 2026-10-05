@@ -1,0 +1,8 @@
+
+
+# Local backups (large binaries stay on box only)
+backups/releases/*.tar.gz
+backups/assets-orig/*
+!backups/assets-orig/.gitkeep
+backups/local-saves/*
+!backups/local-saves/README.md
