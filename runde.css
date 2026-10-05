@@ -108,3 +108,8 @@
 .npr-quest:hover{background:linear-gradient(160deg,color-mix(in srgb,var(--c,#00E5FF) 28%,var(--panel2)),var(--panel));box-shadow:0 0 22px color-mix(in srgb,var(--c,#00E5FF) 50%,transparent)}
 .npr-quest:focus-visible{outline:3px solid #fff;outline-offset:2px}
 @media (min-width:720px){.npr-quests{grid-template-columns:1fr}.npr-modes{grid-template-columns:1fr 1fr}}
+
+.npr-hostwarn{border-color:var(--orange);background:linear-gradient(160deg,#ff9f3d22,#7B2CFF14);box-shadow:0 0 16px #ff9f3d44}
+.npr-hostwarn b{color:var(--orange)}
+.npr-rtabs{margin-bottom:4px}
+.npr-quest:focus-visible{outline:3px solid #fff;outline-offset:3px}

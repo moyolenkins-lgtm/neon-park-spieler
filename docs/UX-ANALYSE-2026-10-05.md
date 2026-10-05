@@ -69,3 +69,13 @@ Technisch: `R.mode`, `R.questId`, `R.questOffer`; `activeCamp()` blendet Mini-Sz
 - Onboarding-Tooltip „Host offen lassen“ beim ersten Host-Klick.
 - Mehr Kurz-Quests / Generator aus Templates.
 - A11y: Quest-Karten mit `aria-describedby`.
+
+
+---
+
+## Optimierungen X3 (2026-10-05)
+
+- **TP/HP:** Start kopiert Charakterbogen-TP → Runden-HP (+ Log/Tooltip); Button „TP jetzt → HP“; am Ende optional „HP → Charakterbogen-TP“.
+- **Activities:** Tab „Spielen | Activities“ in laufender App-Runde; Menü-Kachel leitet um (bei laufender Runde in den Tab).
+- **Host-Hinweis:** Warnbox vor „Online-Tisch öffnen“ + Confirm-Dialog.
+- **A11y:** Quest-Karten mit `aria-label` / `aria-describedby`.
