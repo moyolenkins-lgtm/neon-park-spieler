@@ -57,3 +57,8 @@ Dann je Untertyp die `desc` + Haut-/Look-Hinweise aus der Tabelle (z. B. Zeng'th
 ## Neon-Park-Namensregel
 
 Keine 1:1-D&D-Fähigkeitsnamen. Klassische Rassenkonzepte OK mit Neon-Park-Flair. Keine Realwelt-Ethnienlabels für Menschen.
+
+
+## GenerateImage-Nachzug 2026-10-05
+
+Ersetzt (Selbstbild-Stil): **Elf** (Yngesthera/Kren'zogh/Zeng'thok m+w), **Untot** (Zombie m+w, Skelett m+w, Geist), **Mensch** (Auralithen/Solvaren/Kessari/Umbrakin/Verdani m+w). Restliche Völker noch stilisiert.
